@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
  * during client-side navigation events. It's inspired by popular
  * libraries like NProgress but implemented with Framer Motion.
  */
-export function GlobalLoadingIndicator() {
+function LoadingIndicator() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(false)
@@ -69,13 +69,22 @@ export function GlobalLoadingIndicator() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed top-0 left-0 right-0 h-1 bg-[#0056a8] z-[9999]"
-          initial={{ width: "0%" }}
-          animate={{ width: `${progress}%` }}
-          exit={{ opacity: 0 }}
-          transition={{ ease: "easeInOut" }}
+          className="fixed top-0 left-0 right-0 h-1 bg-blue-500 z-50"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: progress / 100, opacity: 1 }}
+          exit={{ scaleX: 1, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          style={{ transformOrigin: "0%" }}
         />
       )}
     </AnimatePresence>
+  )
+}
+
+export function GlobalLoadingIndicator() {
+  return (
+    <Suspense fallback={null}>
+      <LoadingIndicator />
+    </Suspense>
   )
 }
