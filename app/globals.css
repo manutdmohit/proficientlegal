@@ -1,0 +1,407 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add CSS to handle font loading states */
+/* Add these rules at the top of the file */
+
+/* Default styles before fonts are loaded */
+html {
+  font-display: swap;
+}
+
+/* Styles when fonts are successfully loaded */
+html.fonts-loaded {
+  /* No flash of unstyled text once fonts are loaded */
+  font-display: auto;
+}
+
+/* Add a class for when fonts fail to load */
+html.fonts-failed {
+  /* Use system fonts as fallback */
+  --font-gt-walsheim: system-ui, sans-serif;
+  --font-playfair: Georgia, serif;
+  --font-montserrat: system-ui, sans-serif;
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.5% 48%;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-gt-walsheim), system-ui, sans-serif;
+}
+
+/* Custom font classes */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-playfair);
+}
+
+p,
+span,
+a,
+button,
+input,
+textarea,
+select,
+li {
+  font-family: var(--font-gt-walsheim), var(--font-montserrat), system-ui, sans-serif;
+}
+
+/* Letter spacing for different text elements */
+h1 {
+  letter-spacing: -0.02em; /* Slightly tighter for large headings */
+  font-weight: 700;
+}
+
+h2 {
+  letter-spacing: -0.01em; /* Subtle tightening for section headings */
+  font-weight: 700;
+}
+
+h3,
+h4 {
+  letter-spacing: -0.005em; /* Very subtle adjustment for smaller headings */
+  font-weight: 600;
+}
+
+p,
+li {
+  letter-spacing: 0.01em; /* Slightly increased for better readability in body text */
+  line-height: 1.7;
+}
+
+.text-xs,
+.text-sm {
+  letter-spacing: 0.02em; /* More space for small text to improve readability */
+}
+
+/* Special letter-spacing for specific elements */
+nav a,
+button,
+.btn {
+  letter-spacing: 0.03em; /* Wider spacing for navigation and buttons */
+}
+
+.card-title {
+  letter-spacing: 0.01em; /* Specific adjustment for card titles */
+}
+
+.uppercase,
+.all-caps {
+  letter-spacing: 0.08em; /* Much wider spacing for uppercase text */
+  text-transform: uppercase;
+}
+
+/* Enhanced hero heading styles */
+.hero-heading {
+  letter-spacing: 0.01em; /* Improved spacing for hero headings */
+  font-weight: 800;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced text shadow for better readability */
+  word-spacing: 0.1em; /* Add space between words */
+}
+
+.subtitle {
+  letter-spacing: 0.04em; /* Wider spacing for subtitles */
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow for better readability */
+}
+
+/* Add a utility class for adjusting letter-spacing */
+.tracking-tight {
+  letter-spacing: -0.03em;
+}
+.tracking-slight {
+  letter-spacing: -0.01em;
+}
+.tracking-normal {
+  letter-spacing: 0;
+}
+.tracking-wide {
+  letter-spacing: 0.03em;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+.tracking-widest {
+  letter-spacing: 0.08em;
+}
+
+/* Font family utility classes */
+.font-gt-walsheim {
+  font-family: var(--font-gt-walsheim), system-ui, sans-serif;
+  font-display: swap;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), serif;
+  font-display: swap;
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat), sans-serif;
+  font-display: swap;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* Animation delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Button animations */
+.btn-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Card animations */
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Navigation dropdown animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.fade-in-80 {
+  animation-duration: 0.15s;
+}
+
+/* Add a small delay to prevent accidental hover */
+.group:hover .group-hover\:visible {
+  transition-delay: 0.1s;
+}
+
+/* Ensure dropdown stays visible when hovering over it */
+.group-hover\:visible:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Card equal height styles */
+.grid-cols-3 > * {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+/* Enhanced text shadow utilities */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.text-shadow-xl {
+  text-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Fix for full width layout */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
