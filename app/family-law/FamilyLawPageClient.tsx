@@ -37,9 +37,9 @@ export default function FamilyLawPageClient() {
   // Implement smooth scrolling for anchor links
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
+      anchor.addEventListener("click", (e) => {
         e.preventDefault()
-        const href = this.getAttribute("href")
+        const href = anchor.getAttribute("href")
         if (href) {
           document.querySelector(href)?.scrollIntoView({
             behavior: "smooth",
@@ -68,7 +68,7 @@ export default function FamilyLawPageClient() {
           <div className="relative h-[600px]">
             <Image
               src="/family-law-hero.png"
-              alt="Family Law Services"
+              alt="Family law consultation in Sydney, Melbourne, and Brisbane"
               fill
               className="object-cover"
               priority
@@ -81,11 +81,10 @@ export default function FamilyLawPageClient() {
           <div className="container absolute inset-0 flex items-center z-20">
             <div className="max-w-3xl text-white drop-shadow-lg">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
-                Family Law Services
+                Family Law Services in Sydney, Melbourne & Brisbane
               </h1>
               <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
-                Compassionate legal guidance through life's most challenging transitions. We help families find clarity,
-                resolution, and a path forward.
+                Proficient Legal specializes in family law, including divorce, child custody, and property settlements. Our experienced family lawyers in Sydney, Melbourne, and Brisbane provide compassionate guidance for all family law matters.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
@@ -126,7 +125,7 @@ export default function FamilyLawPageClient() {
                 <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
                   <Image
                     src="/family-consultation.png"
-                    alt="Family Law Consultation"
+                    alt="Family law consultation with a lawyer in Australia"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -141,22 +140,20 @@ export default function FamilyLawPageClient() {
                     Compassionate Family Law Solutions
                   </h2>
                   <p className="text-gray-600 mb-4">
-                    At Proficient Legal, we understand that family law matters are often emotionally challenging. Our
-                    experienced team provides compassionate guidance and practical solutions to help you navigate these
-                    difficult times with confidence.
+                    At Proficient Legal, we understand that family law matters are often emotionally challenging. Our experienced team provides compassionate guidance and practical solutions to help you navigate these difficult times with confidence.
                   </p>
                   <p className="text-gray-600 mb-4">
-                    We offer comprehensive legal support, including legal information, mediation on parenting and
-                    financial matters, and full legal documentation. Our approach is client-centered, ensuring your
-                    needs and concerns are always our priority.
+                    We offer comprehensive legal support, including legal information, mediation on parenting and financial matters, and full legal documentation. Our approach is client-centered, ensuring your needs and concerns are always our priority.
                   </p>
                   <p className="text-gray-600 mb-6">
-                    With fixed pricing and an efficient process, we help you move forward with clarity and confidence,
-                    aiming to get you on a new life track within 90 days.
+                    With fixed pricing and an efficient process, we help you move forward with clarity and confidence, aiming to get you on a new life track within 90 days.
                   </p>
                   <div className="flex items-center text-[#0056a8]">
                     <Phone className="h-5 w-5 mr-2" />
                     <span className="font-medium">1300 011 581</span>
+                  </div>
+                  <div className="mt-6">
+                    <Link href="/property-law" className="text-[#0056a8] underline font-medium">Learn more about our Property Law services</Link>
                   </div>
                 </div>
               </AnimationWrapper>
@@ -171,7 +168,7 @@ export default function FamilyLawPageClient() {
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">Our Family Law Services</h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Comprehensive legal support tailored to your family's unique needs.
+                  Comprehensive legal support tailored to your family's unique needs, including divorce, child custody, property settlements, and more.
                 </p>
               </div>
             </AnimationWrapper>

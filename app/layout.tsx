@@ -1,6 +1,7 @@
 import type React from "react"
 import ClientLayout from "./ClientLayout"
 import { defaultMetadata } from "./metadata"
+import './globals.css'
 
 export const metadata = defaultMetadata
 
@@ -16,8 +17,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <ClientLayout>{children}</ClientLayout>
+  return (
+    <html lang="en">
+      <body>
+        <ClientLayout>{children}</ClientLayout>
+      </body>
+    </html>
+  )
 }
-
-
-import './globals.css'

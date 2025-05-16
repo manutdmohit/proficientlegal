@@ -39,7 +39,7 @@ export default function PropertyLawClientPage() {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
         e.preventDefault()
-        const href = this.getAttribute("href")
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href")
         if (href) {
           document.querySelector(href)?.scrollIntoView({
             behavior: "smooth",
@@ -68,7 +68,7 @@ export default function PropertyLawClientPage() {
           <div className="relative h-[600px]">
             <Image
               src="/modern-real-estate-city.png"
-              alt="Property Law Services"
+              alt="Property law and real estate services in ACT and NSW"
               fill
               className="object-cover"
               priority
@@ -81,10 +81,10 @@ export default function PropertyLawClientPage() {
           <div className="container absolute inset-0 flex items-center z-20">
             <div className="max-w-3xl text-white drop-shadow-lg">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
-                Property & Real Estate Services
+                Property Law & Real Estate Services in ACT & NSW
               </h1>
               <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
-                Expert legal guidance for all your property transactions and real estate matters in ACT and NSW regions.
+                Proficient Legal provides expert legal guidance for all your property transactions and real estate matters in ACT and NSW. Our experienced property lawyers ensure your interests are protected from contract to settlement.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
@@ -125,7 +125,7 @@ export default function PropertyLawClientPage() {
                 <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
                   <Image
                     src="/real-estate-discussion.png"
-                    alt="Property Law Consultation"
+                    alt="Property law consultation with a lawyer in Australia"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -140,22 +140,20 @@ export default function PropertyLawClientPage() {
                     Comprehensive Property Law Solutions
                   </h2>
                   <p className="text-gray-600 mb-4">
-                    Proficient Legal's Property Division specializes in providing comprehensive legal support for
-                    property-related matters in the ACT and NSW regions. Our experienced team guides you through every
-                    step of your property transaction with expertise and attention to detail.
+                    Proficient Legal's Property Division specializes in providing comprehensive legal support for property-related matters in the ACT and NSW regions. Our experienced team guides you through every step of your property transaction with expertise and attention to detail.
                   </p>
                   <p className="text-gray-600 mb-4">
-                    Whether you're buying your first home, investing in commercial property, or developing real estate,
-                    our property lawyers ensure your interests are protected and the process runs smoothly from contract
-                    to settlement.
+                    Whether you're buying your first home, investing in commercial property, or developing real estate, our property lawyers ensure your interests are protected and the process runs smoothly from contract to settlement.
                   </p>
                   <p className="text-gray-600 mb-6">
-                    With our fixed-fee approach and commitment to clear communication, you'll have complete transparency
-                    throughout your property transaction, allowing you to make informed decisions with confidence.
+                    With our fixed-fee approach and commitment to clear communication, you'll have complete transparency throughout your property transaction, allowing you to make informed decisions with confidence.
                   </p>
                   <div className="flex items-center text-[#0056a8]">
                     <Phone className="h-5 w-5 mr-2" />
                     <span className="font-medium">1300 123 456</span>
+                  </div>
+                  <div className="mt-6">
+                    <Link href="/family-law" className="text-[#0056a8] underline font-medium">Learn more about our Family Law services</Link>
                   </div>
                 </div>
               </AnimationWrapper>
@@ -169,10 +167,10 @@ export default function PropertyLawClientPage() {
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
-                  Our Property & Real Estate Services
+                  Our Property Law & Real Estate Services
                 </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Comprehensive legal support tailored to your property needs in ACT and NSW.
+                  Comprehensive legal support tailored to your property needs in ACT and NSW, including residential conveyancing, commercial property, leasing, and property disputes.
                 </p>
               </div>
             </AnimationWrapper>
