@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://unifiedlawyers.com.au/sitemap.xml
+Sitemap: https://proficientlegal.com.au/sitemap.xml
