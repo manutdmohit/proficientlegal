@@ -30,19 +30,19 @@ export function TeamSection() {
   // Data for team members - extracted from JSX for better maintainability
   const teamMembers: TeamMember[] = [
     {
-      name: "Sarah Johnson",
-      role: "Family Law Specialist",
-      bio: "Over 15 years of experience in family law with a focus on complex property settlements and child custody matters.",
+      name: "Nischal Pokharel",
+      role: "Principal Solicitor / Director",
+      bio: "Leading our legal team with extensive experience in various areas of law and a strong commitment to client success.",
     },
     {
-      name: "Michael Chen",
-      role: "Property Law Expert",
-      bio: "Specializes in residential and commercial property transactions with extensive experience in property development.",
+      name: "Steven Stefanic",
+      role: "Principal Director / Director",
+      bio: "Bringing strategic leadership and deep legal expertise to drive our firm's vision and client-focused approach.",
     },
     {
-      name: "Emma Williams",
-      role: "Immigration Lawyer",
-      bio: "Expert in all aspects of Australian immigration law with a proven track record in complex visa applications.",
+      name: "Darren Ho",
+      role: "Solicitor",
+      bio: "Dedicated legal professional providing expert counsel and representation across a range of legal matters.",
     },
   ]
 
