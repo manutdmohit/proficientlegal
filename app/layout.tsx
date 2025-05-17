@@ -3,6 +3,7 @@ import ClientLayout from "./ClientLayout"
 import { defaultMetadata } from "./metadata"
 import './globals.css'
 import Script from "next/script"
+import { playfair, montserrat, gtWalsheim } from "./fonts"
 
 export const metadata = defaultMetadata
 
@@ -19,7 +20,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html 
+      lang="en"
+      suppressHydrationWarning
+      className={`${playfair.variable} ${montserrat.variable} ${gtWalsheim.variable}`}
+    >
       <head>
         <Script id="ld-json" type="application/ld+json" strategy="afterInteractive">
           {JSON.stringify({
@@ -44,7 +49,7 @@ export default function RootLayout({
           })}
         </Script>
       </head>
-      <body>
+      <body className={gtWalsheim.className}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
