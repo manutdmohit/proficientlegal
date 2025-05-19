@@ -3,7 +3,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { Header } from "@/components/layout/header"
-import type { Metadata } from "next"
 
 const NotFoundPage = () => {
   return (
@@ -107,11 +106,6 @@ const NotFoundPage = () => {
       </footer>
     </div>
   )
-}
-
-export const metadata: Metadata = {
-  title: "404 Not Found | Proficient Legal",
-  description: "Sorry, the page you are looking for does not exist. Return to Proficient Legal's homepage or contact support for assistance.",
 }
 
 export default NotFoundPage

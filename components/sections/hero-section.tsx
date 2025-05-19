@@ -64,10 +64,10 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.8 }}
             >
-              <Link href="/contact#free-enquiry" aria-label="Request a free legal enquiry">
+              <Link href="/book-consultation" aria-label="Request a free legal enquiry">
                 <Button className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-6 btn-hover-effect">
                   <MessageSquare className="h-5 w-5 mr-2" aria-hidden="true" />
-                  Free Enquiry
+                Book Consultation
                 </Button>
               </Link>
             </motion.div>
