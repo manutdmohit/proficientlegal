@@ -51,6 +51,7 @@ export default function BookConsultationPage() {
   });
   const [selected, setSelected] = useState(OPTIONS[0]);
   const [loading, setLoading] = useState(false);
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [errors, setErrors] = useState({
     name: '',
     email: '',
@@ -76,6 +77,26 @@ export default function BookConsultationPage() {
     };
     checkExistingSession();
   }, []);
+
+  // Add effect to fetch booked slots when date changes
+  useEffect(() => {
+    const fetchBookedSlots = async () => {
+      if (form.date) {
+        try {
+          const response = await fetch(
+            `/api/available-slots?date=${form.date}`
+          );
+          const data = await response.json();
+          if (data.bookedSlots) {
+            setBookedSlots(data.bookedSlots);
+          }
+        } catch (error) {
+          console.error('Error fetching booked slots:', error);
+        }
+      }
+    };
+    fetchBookedSlots();
+  }, [form.date]);
 
   const validateForm = () => {
     const newErrors = {
@@ -127,6 +148,10 @@ export default function BookConsultationPage() {
 
     for (let hour = startHour; hour <= endHour; hour++) {
       const value = `${hour.toString().padStart(2, '0')}:00`;
+      // Skip if this time slot is booked
+      if (bookedSlots.includes(value)) {
+        continue;
+      }
       const displayHour = hour > 12 ? hour - 12 : hour;
       const ampm = hour >= 12 ? 'PM' : 'AM';
       slots.push({
