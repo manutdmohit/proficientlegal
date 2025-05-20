@@ -1,28 +1,52 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const { data: session, status } = useSession();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/admin');
+    }
+  }, [status, router]);
+
+  // Don't render the login form if user is authenticated
+  if (status === 'authenticated') {
+    return null;
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
+    setError('');
     setLoading(true);
-    setTimeout(() => {
-      if (email === "admin@demo.com" && password === "admin123") {
-        localStorage.setItem("mockAdmin", "true");
-        router.push("/admin/dashboard");
+
+    try {
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError(result.error);
       } else {
-        setError("Invalid credentials. Try admin@demo.com / admin123");
+        router.push('/admin');
+        router.refresh();
       }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+    } finally {
       setLoading(false);
-    }, 700);
+    }
   }
 
   return (
@@ -38,7 +62,11 @@ export default function AdminLoginPage() {
             Admin Login
           </h2>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit} autoComplete="off">
+        <form
+          className="mt-8 space-y-6"
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="email" className="sr-only">
@@ -51,7 +79,7 @@ export default function AdminLoginPage() {
                 autoComplete="email"
                 required
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="appearance-none rounded-t-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-base bg-white"
                 placeholder="Email address"
               />
@@ -67,7 +95,7 @@ export default function AdminLoginPage() {
                 autoComplete="current-password"
                 required
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 className="appearance-none rounded-b-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-base bg-white"
                 placeholder="Password"
               />
@@ -75,7 +103,9 @@ export default function AdminLoginPage() {
           </div>
 
           {error && (
-            <div className="text-red-500 text-sm text-center font-medium animate-pulse">{error}</div>
+            <div className="text-red-500 text-sm text-center font-medium bg-red-50 p-3 rounded-lg border border-red-200">
+              {error}
+            </div>
           )}
 
           <div className="pt-2">
@@ -86,9 +116,25 @@ export default function AdminLoginPage() {
             >
               {loading ? (
                 <span className="flex items-center justify-center">
-                  <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                  <svg
+                    className="animate-spin h-5 w-5 mr-2 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8z"
+                    ></path>
                   </svg>
                   Signing in...
                 </span>
@@ -104,4 +150,4 @@ export default function AdminLoginPage() {
       </div>
     </div>
   );
-} 
+}

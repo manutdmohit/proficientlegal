@@ -60,6 +60,10 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  customerPhone: {
+    type: String,
+    required: true,
+  },
   message: {
     type: String,
   },
@@ -78,9 +82,10 @@ const paymentSchema = new mongoose.Schema({
 });
 
 // Add middleware to update the updatedAt field
-paymentSchema.pre('save', function(next) {
+paymentSchema.pre('save', function (next) {
   this.updatedAt = new Date();
   next();
 });
 
-export default mongoose.models.Payment || mongoose.model('Payment', paymentSchema); 
+export default mongoose.models.Payment ||
+  mongoose.model('Payment', paymentSchema);

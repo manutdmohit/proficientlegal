@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-04-30.basil',
@@ -7,23 +9,36 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: NextRequest) {
   try {
+    const authSession = await getServerSession(authOptions);
+    const userId = authSession?.user?.id || '000000000000000000000000';
+
     const {
-      name, email, message, date, time,
-      consultationType, consultationName, consultationPrice, stripeAmount, consultationDuration
+      name,
+      email,
+      phone,
+      message,
+      date,
+      time,
+      consultationType,
+      consultationName,
+      consultationPrice,
+      stripeAmount,
+      consultationDuration,
     } = await req.json();
 
-    const session = await stripe.checkout.sessions.create({
+    const checkoutSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: 'aud',
             product_data: {
               name: consultationName || 'Legal Consultation',
-              description: consultationType === 'comprehensive'
-                ? 'A full hour with a senior lawyer to discuss your matter in detail, review documents, and provide tailored legal advice.'
-                : 'A focused 30-minute session for specific questions or a second opinion on your legal issue.',
+              description:
+                consultationType === 'comprehensive'
+                  ? 'A full hour with a senior lawyer to discuss your matter in detail, review documents, and provide tailored legal advice.'
+                  : 'A focused 30-minute session for specific questions or a second opinion on your legal issue.',
             },
             unit_amount: stripeAmount || 10000, // fallback to $100
           },
@@ -32,7 +47,9 @@ export async function POST(req: NextRequest) {
       ],
       customer_email: email,
       metadata: {
+        userId,
         name,
+        phone,
         message,
         date,
         time,
@@ -49,9 +66,9 @@ export async function POST(req: NextRequest) {
       automatic_tax: { enabled: true },
     });
 
-    return NextResponse.json({ url: session.url });
+    return NextResponse.json({ url: checkoutSession.url });
   } catch (err: any) {
     console.error('Error creating checkout session:', err);
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
-} 
+}

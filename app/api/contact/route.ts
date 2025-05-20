@@ -1,44 +1,48 @@
 import { NextResponse } from 'next/server';
 import connectDB from '@/app/config/database';
 import Contact from '@/app/models/Contact';
-import { sendEmail } from '@/app/lib/email';
+import { z } from 'zod';
+
+// Validation schema for contact form data
+const contactFormSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
+  phone: z.string().min(1, 'Phone number is required'),
+  subject: z.string().min(1, 'Subject is required'),
+  message: z.string().min(1, 'Message is required'),
+  formType: z.enum(['contact', 'enquiry'])
+});
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    // Connect to database
     await connectDB();
 
-    // Create contact record
-    const contact = await Contact.create(body);
+    // Parse request body
+    const body = await request.json();
 
-    // Send email notification
-    await sendEmail({
-      to: process.env.ADMIN_EMAIL!,
-      subject: 'New Contact Form Submission',
-      text: `
-        Name: ${body.name}
-        Email: ${body.email}
-        Phone: ${body.phone}
-        Message: ${body.message}
-      `,
-    });
+    // Validate request data
+    const validatedData = contactFormSchema.parse(body);
 
-    // Send confirmation email to user
-    await sendEmail({
-      to: body.email,
-      subject: 'Thank you for contacting Proficient Legal',
-      text: `
-        Dear ${body.name},
+    // Create new contact form submission
+    const contact = await Contact.create(validatedData);
 
-        Thank you for contacting Proficient Legal. We have received your message and will get back to you shortly.
-
-        Best regards,
-        Proficient Legal Team
-      `,
-    });
-
-    return NextResponse.json(contact, { status: 201 });
+    return NextResponse.json(
+      { message: 'Form submitted successfully', data: contact },
+      { status: 201 }
+    );
   } catch (error) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { message: 'Validation error', errors: error.errors },
+        { status: 400 }
+      );
+    }
+
+    console.error('Contact form submission error:', error);
+    return NextResponse.json(
+      { message: 'Internal server error' },
+      { status: 500 }
+    );
   }
 } 

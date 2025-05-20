@@ -19,6 +19,24 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  notificationPreferences: {
+    emailNotifications: {
+      type: Boolean,
+      default: true,
+    },
+    newEnquiries: {
+      type: Boolean,
+      default: true,
+    },
+    newPayments: {
+      type: Boolean,
+      default: true,
+    },
+    systemUpdates: {
+      type: Boolean,
+      default: true,
+    },
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -29,4 +47,4 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.models.User || mongoose.model('User', userSchema); 
+export default mongoose.models.User || mongoose.model('User', userSchema);

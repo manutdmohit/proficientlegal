@@ -4,6 +4,7 @@ import { defaultMetadata } from "./metadata"
 import './globals.css'
 import Script from "next/script"
 import { playfair, montserrat, gtWalsheim } from "./fonts"
+import { Toaster } from 'sonner'
 
 export const metadata = defaultMetadata
 
@@ -51,6 +52,12 @@ export default function RootLayout({
       </head>
       <body className={gtWalsheim.className}>
         <ClientLayout>{children}</ClientLayout>
+        <Toaster 
+          position="top-right"
+          expand={true}
+          richColors
+          closeButton
+        />
       </body>
     </html>
   )

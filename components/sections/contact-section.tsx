@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { PhoneCall, Mail, MapPin, User, FileText, MessageSquare, Send, Phone } from "lucide-react"
 import AnimationWrapper from "@/components/animation-wrapper"
+import { useContactForm } from "@/hooks/useContactForm"
 
 /**
  * Contact section component with detailed contact information and a message form.
@@ -12,6 +13,13 @@ import AnimationWrapper from "@/components/animation-wrapper"
  * Includes animations for enhanced user experience.
  */
 export function ContactSection() {
+  const {
+    register,
+    handleSubmit,
+    errors,
+    isSubmitting
+  } = useContactForm('contact');
+
   return (
     <section id="contact" className="py-16 bg-[#003b73] text-white">
       <div className="container">
@@ -60,7 +68,7 @@ export function ContactSection() {
           <AnimationWrapper animation="slideRight">
             <div className="bg-white p-8 rounded-lg shadow-lg text-gray-800">
               <h3 className="text-2xl font-bold text-[#003b73] mb-6">Send Us a Message</h3>
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Two-column layout for name and phone fields on larger screens */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -74,8 +82,12 @@ export function ContactSection() {
                     <input
                       type="text"
                       id="contact-name"
+                      {...register('name')}
                       className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0056a8] focus:border-transparent transition-all duration-300"
                     />
+                    {errors.name && (
+                      <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                    )}
                   </div>
                   <div>
                     <label
@@ -88,8 +100,12 @@ export function ContactSection() {
                     <input
                       type="tel"
                       id="contact-phone"
+                      {...register('phone')}
                       className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0056a8] focus:border-transparent transition-all duration-300"
                     />
+                    {errors.phone && (
+                      <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -103,8 +119,12 @@ export function ContactSection() {
                   <input
                     type="email"
                     id="contact-email"
+                    {...register('email')}
                     className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0056a8] focus:border-transparent transition-all duration-300"
                   />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -117,8 +137,12 @@ export function ContactSection() {
                   <input
                     type="text"
                     id="contact-subject"
+                    {...register('subject')}
                     className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0056a8] focus:border-transparent transition-all duration-300"
                   />
+                  {errors.subject && (
+                    <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -131,12 +155,20 @@ export function ContactSection() {
                   <textarea
                     id="contact-message"
                     rows={5}
+                    {...register('message')}
                     className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#0056a8] focus:border-transparent transition-all duration-300"
                   ></textarea>
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                  )}
                 </div>
-                <Button className="w-full bg-[#003b73] hover:bg-[#005566] py-6 text-lg btn-hover-effect">
+                <Button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#003b73] hover:bg-[#005566] py-6 text-lg btn-hover-effect"
+                >
                   <Send className="h-5 w-5 mr-2" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </div>

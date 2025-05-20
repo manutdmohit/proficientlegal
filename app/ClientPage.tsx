@@ -41,9 +41,9 @@ export default function Home() {
    */
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
+      anchor.addEventListener("click", (e) => {
         e.preventDefault()
-        const href = this.getAttribute("href")
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href")
         if (href) {
           document.querySelector(href)?.scrollIntoView({
             behavior: "smooth",
@@ -59,12 +59,12 @@ export default function Home() {
       name: "Unified Lawyers",
       description:
         "Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.",
-      url: "https://unifiedlawyers.com.au",
-      logo: "https://unifiedlawyers.com.au/unified-lawyers-logo.png",
+      url: "https://proficientlegal.com.au",
+      logo: "https://proficientlegal.com.au/unified-lawyers-logo.png",
       sameAs: [
-        "https://www.facebook.com/unifiedlawyers",
+        "https://www.facebook.com/proficientlegal.com.au",
         "https://www.linkedin.com/company/unified-lawyers",
-        "https://twitter.com/unifiedlawyers",
+        "https://twitter.com/proficientlegal.com.au",
       ],
       address: [
         {
@@ -90,7 +90,7 @@ export default function Home() {
         },
       ],
       telephone: "1300 011 581",
-      email: "info@unifiedlawyers.com.au",
+      email: "info@proficientlegal.com.au",
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
