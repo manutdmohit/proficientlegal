@@ -39,6 +39,7 @@ export default function BookingSuccess() {
 
   useEffect(() => {
     if (session) {
+      localStorage.removeItem('bookingData');
       const timer = setTimeout(() => {
         router.push('/');
       }, REDIRECT_DELAY);
