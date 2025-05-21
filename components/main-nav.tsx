@@ -1,5 +1,5 @@
-"use client"
-import Link from "next/link"
+'use client';
+import Link from 'next/link';
 import {
   Users,
   Briefcase,
@@ -15,7 +15,7 @@ import {
   Building,
   Star,
   Contact,
-} from "lucide-react"
+} from 'lucide-react';
 
 export function MainNav() {
   return (
@@ -46,10 +46,13 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Building className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">About Proficient Legal</div>
+                  <div className="text-sm font-medium leading-none">
+                    About Proficient Legal
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Learn more about our firm, our values, and our commitment to client satisfaction.
+                  Learn more about our firm, our values, and our commitment to
+                  client satisfaction.
                 </p>
               </Link>
 
@@ -59,7 +62,9 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Users className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Our Team</div>
+                  <div className="text-sm font-medium leading-none">
+                    Our Team
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                   Meet our team of experienced legal specialists.
@@ -72,10 +77,13 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <MapPin className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Our Locations</div>
+                  <div className="text-sm font-medium leading-none">
+                    Our Locations
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Visit us at one of our convenient office locations across Australia.
+                  Visit us at one of our convenient office locations across
+                  Australia.
                 </p>
               </Link>
 
@@ -85,7 +93,9 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Star className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Testimonials</div>
+                  <div className="text-sm font-medium leading-none">
+                    Testimonials
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                   Read what our clients say about our services.
@@ -110,10 +120,13 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Users className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Family Law</div>
+                  <div className="text-sm font-medium leading-none">
+                    Family Law
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Expert guidance through divorce, child custody, property settlements, and all family law matters.
+                  Expert guidance through divorce, child custody, property
+                  settlements, and all family law matters.
                 </p>
               </Link>
 
@@ -123,10 +136,13 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Briefcase className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Property Law</div>
+                  <div className="text-sm font-medium leading-none">
+                    Property Law
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Comprehensive property law services for residential and commercial matters.
+                  Comprehensive property law services for residential and
+                  commercial matters.
                 </p>
               </Link>
 
@@ -136,10 +152,13 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Globe className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Immigration Law</div>
+                  <div className="text-sm font-medium leading-none">
+                    Immigration Law
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Navigating the complexities of Australian immigration law with expert guidance.
+                  Navigating the complexities of Australian immigration law with
+                  expert guidance.
                 </p>
               </Link>
             </div>
@@ -161,7 +180,9 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Phone className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Call Us</div>
+                  <div className="text-sm font-medium leading-none">
+                    Call Us
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                   1300 123 456 - Available Mon-Fri: 9am-5pm
@@ -174,7 +195,9 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <Mail className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Email Us</div>
+                  <div className="text-sm font-medium leading-none">
+                    Email Us
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                   info@proficientlegal.com.au - We respond within 24 hours
@@ -187,10 +210,13 @@ export function MainNav() {
               >
                 <div className="flex items-center">
                   <MapPin className="h-6 w-6 text-[#0056a8] mr-3" />
-                  <div className="text-sm font-medium leading-none">Visit Us</div>
+                  <div className="text-sm font-medium leading-none">
+                    Visit Us
+                  </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Sydney, Melbourne, Brisbane - See locations for detailed addresses
+                  Sydney, Melbourne, Brisbane - See locations for detailed
+                  addresses
                 </p>
               </Link>
             </div>
@@ -199,7 +225,7 @@ export function MainNav() {
 
         <li>
           <Link
-            href="/contact#free-enquiry"
+            href="/free-enquiry"
             className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
           >
             <MessageSquare className="h-4 w-4 mr-2" />
@@ -208,5 +234,5 @@ export function MainNav() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }
