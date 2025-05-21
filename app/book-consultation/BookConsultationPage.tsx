@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Header } from '@/components/layout/header';
 import { ContactSection } from '@/components/sections/contact-section';
+import { format } from 'date-fns';
 
 const OPTIONS = [
   {
@@ -97,6 +98,9 @@ export default function BookConsultationPage() {
     };
     fetchBookedSlots();
   }, [form.date]);
+
+  // Add this to get today's date in yyyy-mm-dd format
+  const today = format(new Date(), 'yyyy-MM-dd');
 
   const validateForm = () => {
     const newErrors = {
@@ -344,6 +348,7 @@ export default function BookConsultationPage() {
                       value={form.date}
                       onChange={handleChange}
                       required
+                      min={today}
                       className={`mt-1.5 focus:ring-2 focus:ring-blue-500 ${
                         errors.date ? 'border-red-500' : ''
                       }`}
