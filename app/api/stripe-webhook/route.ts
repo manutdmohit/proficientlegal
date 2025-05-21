@@ -21,10 +21,12 @@ export const config = {
 };
 
 export async function POST(req: NextRequest) {
-  console.log('=== Webhook Request Received ===');
+  console.log('\n\n========== WEBHOOK REQUEST RECEIVED ==========');
+  console.log('Timestamp:', new Date().toISOString());
   console.log('Request method:', req.method);
   console.log('Content-Type:', req.headers.get('content-type'));
   console.log('Stripe-Signature:', req.headers.get('stripe-signature'));
+  console.log('===========================================\n\n');
 
   const sig = req.headers.get('stripe-signature');
   if (!sig) {
@@ -143,6 +145,63 @@ export async function POST(req: NextRequest) {
         amount: savedPayment.amount,
         status: savedPayment.status,
       });
+
+      // Send payment receipt email
+      try {
+        console.log('\n========== SENDING PAYMENT RECEIPT EMAIL ==========');
+        console.log('Email data:', {
+          customerName: savedPayment.customerName,
+          customerEmail: savedPayment.customerEmail,
+          amount: savedPayment.amount,
+          consultationType: savedPayment.consultationType,
+          consultationName: savedPayment.consultationName,
+          consultationDate: savedPayment.consultationDate
+            .toISOString()
+            .split('T')[0],
+          consultationTime: savedPayment.consultationTime,
+          paymentId: savedPayment._id,
+        });
+
+        const emailUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/send-payment-receipt`;
+        console.log('Sending request to:', emailUrl);
+
+        const emailResponse = await fetch(emailUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            customerName: savedPayment.customerName,
+            customerEmail: savedPayment.customerEmail,
+            amount: savedPayment.amount,
+            consultationType: savedPayment.consultationType,
+            consultationName: savedPayment.consultationName,
+            consultationDate: savedPayment.consultationDate
+              .toISOString()
+              .split('T')[0],
+            consultationTime: savedPayment.consultationTime,
+            paymentId: savedPayment._id,
+          }),
+        });
+
+        console.log('Email response status:', emailResponse.status);
+        const emailResult = await emailResponse.json();
+        console.log('Email response body:', emailResult);
+        console.log('===========================================\n');
+
+        if (!emailResponse.ok) {
+          throw new Error(
+            `Email sending failed: ${JSON.stringify(emailResult)}`
+          );
+        }
+      } catch (emailError: any) {
+        console.error('\n========== PAYMENT RECEIPT EMAIL ERROR ==========');
+        console.error('Error details:', {
+          error: emailError,
+          message: emailError.message,
+          stack: emailError.stack,
+        });
+        console.error('===========================================\n');
+        // Don't throw the error as the payment is already saved
+      }
 
       return NextResponse.json({ success: true, paymentId: savedPayment._id });
     } catch (error: any) {

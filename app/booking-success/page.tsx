@@ -1,7 +1,7 @@
-"use client";
-import { useEffect, useState } from "react";
-import { CheckCircle2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+'use client';
+import { useEffect, useState } from 'react';
+import { CheckCircle2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function BookingSuccess() {
   const [session, setSession] = useState<any>(null);
@@ -10,18 +10,37 @@ export default function BookingSuccess() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const sessionId = params.get("session_id");
+    const sessionId = params.get('session_id');
     if (sessionId) {
       fetch(`/api/retrieve-session?session_id=${sessionId}`)
-        .then(res => res.json())
-        .then(data => setSession(data));
+        .then((res) => res.json())
+        .then((data) => {
+          setSession(data);
+          // Send payment receipt
+          fetch('/api/send-payment-receipt', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerName: data.metadata?.name,
+              customerEmail: data.customer_email,
+              amount: data.amount_total / 100,
+              consultationType: data.metadata?.consultationType,
+              consultationName: data.metadata?.consultationName,
+              consultationDate: data.metadata?.date,
+              consultationTime: data.metadata?.time,
+              paymentId: data.payment_intent,
+            }),
+          }).catch((error) =>
+            console.error('Error sending payment receipt:', error)
+          );
+        });
     }
   }, []);
 
   useEffect(() => {
     if (session) {
       const timer = setTimeout(() => {
-        router.push("/");
+        router.push('/');
       }, REDIRECT_DELAY);
       return () => clearTimeout(timer);
     }
@@ -35,26 +54,33 @@ export default function BookingSuccess() {
             <CheckCircle2 className="w-12 h-12 text-green-600" />
           </span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-green-700 mb-2">Booking Confirmed!</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-green-700 mb-2">
+          Booking Confirmed!
+        </h1>
         {session ? (
           <>
-            <p className="mb-2 text-gray-700">Thank you, <b>{session.metadata?.name}</b>!</p>
             <p className="mb-2 text-gray-700">
-              Your consultation is booked for <b>{session.metadata?.date}</b> at <b>{session.metadata?.time}</b>.
+              Thank you, <b>{session.metadata?.name}</b>!
+            </p>
+            <p className="mb-2 text-gray-700">
+              Your consultation is booked for <b>{session.metadata?.date}</b> at{' '}
+              <b>{session.metadata?.time}</b>.
             </p>
             <p className="mb-6 text-gray-700">
               A confirmation has been sent to <b>{session.customer_email}</b>.
             </p>
-            <div className="mb-4 text-blue-500 text-sm">You will be redirected to the home page shortly…</div>
+            <div className="mb-4 text-blue-500 text-sm">
+              You will be redirected to the home page shortly…
+            </div>
             <button
               className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg transition mb-2"
-              onClick={() => router.push("/")}
+              onClick={() => router.push('/')}
             >
               Return to Home
             </button>
             <button
               className="w-full py-3 rounded-xl border border-blue-600 text-blue-600 font-semibold text-lg transition hover:bg-blue-50"
-              onClick={() => router.push("/book-consultation")}
+              onClick={() => router.push('/book-consultation')}
             >
               Book Another Consultation
             </button>
@@ -65,4 +91,4 @@ export default function BookingSuccess() {
       </div>
     </div>
   );
-} 
+}

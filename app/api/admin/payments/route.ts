@@ -22,7 +22,10 @@ export async function GET(request: Request) {
     const payments = await Payment.find()
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .select(
+        'customerName customerEmail customerPhone amount status createdAt'
+      );
 
     return NextResponse.json({
       payments,

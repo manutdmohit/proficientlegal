@@ -23,13 +23,14 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Loader2,
 } from 'lucide-react';
 
 interface Payment {
   _id: string;
-  name: string;
-  email: string;
-  phone: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
   amount: number;
   status: string;
   createdAt: string;
@@ -45,6 +46,7 @@ interface PaginationInfo {
 export default function PaymentsPage() {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
+  const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
   const [pagination, setPagination] = useState<PaginationInfo>({
     total: 0,
     page: 1,
@@ -54,10 +56,11 @@ export default function PaymentsPage() {
 
   useEffect(() => {
     fetchPayments();
-  }, [pagination.page]);
+  }, [pagination.page, pagination.limit]);
 
   const fetchPayments = async () => {
     try {
+      setLoading(true);
       const response = await fetch(
         `/api/admin/payments?page=${pagination.page}&limit=${pagination.limit}`
       );
@@ -74,6 +77,7 @@ export default function PaymentsPage() {
 
   const updateStatus = async (id: string, status: string) => {
     try {
+      setUpdatingStatus(id);
       const response = await fetch('/api/admin/payments', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -90,11 +94,17 @@ export default function PaymentsPage() {
       );
     } catch (error) {
       console.error('Error updating status:', error);
+    } finally {
+      setUpdatingStatus(null);
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
+  if (loading && payments.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+      </div>
+    );
   }
 
   return (
@@ -118,14 +128,15 @@ export default function PaymentsPage() {
                 <TableCell>
                   {format(new Date(payment.createdAt), 'MMM d, yyyy')}
                 </TableCell>
-                <TableCell>{payment.name}</TableCell>
-                <TableCell>{payment.email}</TableCell>
-                <TableCell>{payment.phone}</TableCell>
+                <TableCell>{payment.customerName}</TableCell>
+                <TableCell>{payment.customerEmail}</TableCell>
+                <TableCell>{payment.customerPhone}</TableCell>
                 <TableCell>${payment.amount.toFixed(2)}</TableCell>
                 <TableCell>
                   <Select
                     defaultValue={payment.status}
                     onValueChange={(value) => updateStatus(payment._id, value)}
+                    disabled={updatingStatus === payment._id}
                   >
                     <SelectTrigger className="w-[130px]">
                       <SelectValue />
@@ -136,6 +147,9 @@ export default function PaymentsPage() {
                       <SelectItem value="failed">Failed</SelectItem>
                     </SelectContent>
                   </Select>
+                  {updatingStatus === payment._id && (
+                    <Loader2 className="h-4 w-4 animate-spin ml-2 inline" />
+                  )}
                 </TableCell>
               </TableRow>
             ))}
@@ -181,7 +195,7 @@ export default function PaymentsPage() {
               variant="outline"
               className="hidden h-8 w-8 p-0 lg:flex"
               onClick={() => setPagination((prev) => ({ ...prev, page: 1 }))}
-              disabled={pagination.page === 1}
+              disabled={pagination.page === 1 || loading}
             >
               <span className="sr-only">Go to first page</span>
               <ChevronsLeft className="h-4 w-4" />
@@ -195,7 +209,7 @@ export default function PaymentsPage() {
                   page: Math.max(1, prev.page - 1),
                 }))
               }
-              disabled={pagination.page === 1}
+              disabled={pagination.page === 1 || loading}
             >
               <span className="sr-only">Go to previous page</span>
               <ChevronLeft className="h-4 w-4" />
@@ -209,7 +223,7 @@ export default function PaymentsPage() {
                   page: Math.min(prev.totalPages, prev.page + 1),
                 }))
               }
-              disabled={pagination.page === pagination.totalPages}
+              disabled={pagination.page === pagination.totalPages || loading}
             >
               <span className="sr-only">Go to next page</span>
               <ChevronRight className="h-4 w-4" />
@@ -220,7 +234,7 @@ export default function PaymentsPage() {
               onClick={() =>
                 setPagination((prev) => ({ ...prev, page: prev.totalPages }))
               }
-              disabled={pagination.page === pagination.totalPages}
+              disabled={pagination.page === pagination.totalPages || loading}
             >
               <span className="sr-only">Go to last page</span>
               <ChevronsRight className="h-4 w-4" />
