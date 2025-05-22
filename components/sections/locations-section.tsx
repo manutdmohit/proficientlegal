@@ -68,7 +68,7 @@ export function LocationsSection() {
         </AnimationWrapper>
 
         {/* Locations grid - responsive layout with 3 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-4xl">
           {locations.map((location, index) => (
             <AnimationWrapper
               key={location.city}
@@ -77,12 +77,13 @@ export function LocationsSection() {
             >
               <Card className="h-full shadow-lg flex flex-col">
                 {/* City image */}
-                <div className="relative h-48">
+                <div className="relative h-48 w-full">
                   <Image
                     src={`/abstract-geometric-shapes.png?height=200&width=400&query=${location.city} city skyline`}
                     alt={location.city}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-t-lg"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <CardHeader>
