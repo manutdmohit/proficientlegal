@@ -1,12 +1,12 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import Image from "next/image"
-import { MainNav } from "@/components/main-nav"
-import { MobileNav } from "@/components/layout/mobile-nav"
-import { motion } from "framer-motion"
-import { PhoneCall, Mail, MapPin, Clock } from "lucide-react"
-import { FloatingContactPanel } from "@/components/floating-contact-panel"
+import Link from 'next/link';
+import Image from 'next/image';
+import { MainNav } from '@/components/main-nav';
+import { MobileNav } from '@/components/layout/mobile-nav';
+import { motion } from 'framer-motion';
+import { PhoneCall, Mail, MapPin, Clock } from 'lucide-react';
+import { FloatingContactPanel } from '@/components/floating-contact-panel';
 
 /**
  * Header component containing the top information bar and main navigation.
@@ -23,7 +23,9 @@ export function Header() {
       <div className="bg-[#003b73] text-white py-2 w-full">
         <div className="container px-4 md:px-6 mx-auto w-full">
           {/* Remove mobile view from header - it will be in the floating panel */}
-          <div className="hidden">{/* This content is moved to the floating panel */}</div>
+          <div className="hidden">
+            {/* This content is moved to the floating panel */}
+          </div>
 
           {/* Desktop view - horizontal with left/right alignment */}
           <div className="hidden md:flex md:justify-between md:items-center">
@@ -35,7 +37,7 @@ export function Header() {
                 className="flex items-center"
               >
                 <PhoneCall className="h-4 w-4 mr-2" aria-hidden="true" />
-                <a href="tel:1300123456">1300 123 456</a>
+                <a href="tel:1300123456">1300 011 581</a>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -44,7 +46,9 @@ export function Header() {
                 className="flex items-center"
               >
                 <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
-                <a href="mailto:info@proficientlegal.com.au">info@proficientlegal.com.au</a>
+                <a href="mailto:info@proficientlegal.com.au">
+                  info@proficientlegal.com.au
+                </a>
               </motion.div>
             </div>
             <div className="flex items-center space-x-4 text-sm">
@@ -55,7 +59,7 @@ export function Header() {
                 className="flex items-center"
               >
                 <MapPin className="h-4 w-4 mr-2" aria-hidden="true" />
-                <span>Sydney, Melbourne, Brisbane</span>
+                <span>Sydney, Melbourne</span>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -90,7 +94,9 @@ export function Header() {
                   height={50}
                   className="h-12 w-auto mr-3"
                 />
-                <span className="text-white font-bold text-xl tracking-tight">Proficient Legal</span>
+                <span className="text-white font-bold text-xl tracking-tight">
+                  Proficient Legal
+                </span>
               </div>
             </Link>
           </div>
@@ -112,5 +118,5 @@ export function Header() {
         <FloatingContactPanel />
       </div>
     </>
-  )
+  );
 }

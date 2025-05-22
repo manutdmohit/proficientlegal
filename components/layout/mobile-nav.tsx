@@ -305,7 +305,7 @@ export function MobileNav() {
               <div className="space-y-2 text-white/80 text-sm">
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 mr-2" />
-                  <span>1300 123 456</span>
+                  <span>1300 011 581</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 mr-2" />

@@ -1,23 +1,32 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { MapPin, PhoneCall, Clock, Navigation } from "lucide-react"
-import AnimationWrapper from "@/components/animation-wrapper"
-import Link from "next/link"
+import Image from 'next/image';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { MapPin, PhoneCall, Clock, Navigation, Phone } from 'lucide-react';
+import AnimationWrapper from '@/components/animation-wrapper';
+import Link from 'next/link';
+import { CONTACT_INFO } from '@/lib/constants';
 
 /**
  * Interface for location data structure
  * @property city - Office city name
  * @property address - Full office address
  * @property phone - Office phone number with area code
+ * @property mapsUrl - Google Maps URL for directions
  */
 type Location = {
-  city: string
-  address: string
-  phone: string
-}
+  city: string;
+  address: string;
+  phone: string;
+  mapsUrl: string;
+};
 
 /**
  * Locations section component displaying the firm's office locations.
@@ -29,21 +38,18 @@ export function LocationsSection() {
   // Data for office locations - extracted from JSX for better maintainability
   const locations: Location[] = [
     {
-      city: "Sydney",
-      address: "Level 5, 233 Castlereagh Street, Sydney NSW 2000",
-      phone: "02 8006 5135",
+      city: 'Sydney',
+      address: '10 Park Rd, Hurstville NSW 2220, Australia',
+      phone: '02 8006 5135',
+      mapsUrl: 'https://maps.app.goo.gl/z1xg6gA3vStce7Dj6',
     },
     {
-      city: "Melbourne",
-      address: "Level 4, 180 Queen Street, Melbourne VIC 3000",
-      phone: "03 9070 9950",
+      city: 'Melbourne',
+      address: 'Suite 220/222, Level 2, 1 Queens Road, Melbourne, VIC 3004',
+      phone: '03 9070 9950',
+      mapsUrl: 'https://maps.app.goo.gl/Xs3GXj8dBmXsDvHU8',
     },
-    {
-      city: "Brisbane",
-      address: "Level 10, 239 George Street, Brisbane QLD 4000",
-      phone: "07 3506 3909",
-    },
-  ]
+  ];
 
   return (
     <section id="locations" className="py-16">
@@ -51,9 +57,12 @@ export function LocationsSection() {
         {/* Section heading with animation */}
         <AnimationWrapper animation="slideUp">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">Our Locations</h2>
+            <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+              Our Locations
+            </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Visit us at one of our convenient office locations across Australia.
+              Visit us at one of our convenient office locations across
+              Australia.
             </p>
           </div>
         </AnimationWrapper>
@@ -61,7 +70,11 @@ export function LocationsSection() {
         {/* Locations grid - responsive layout with 3 columns on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {locations.map((location, index) => (
-            <AnimationWrapper key={location.city} animation="slideUp" delay={0.2 * index}>
+            <AnimationWrapper
+              key={location.city}
+              animation="slideUp"
+              delay={0.2 * index}
+            >
               <Card className="h-full shadow-lg flex flex-col">
                 {/* City image */}
                 <div className="relative h-48">
@@ -73,7 +86,9 @@ export function LocationsSection() {
                   />
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl">{location.city} Office</CardTitle>
+                  <CardTitle className="text-xl">
+                    {location.city} Office
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2 flex-grow">
                   {/* Address with icon */}
@@ -82,9 +97,14 @@ export function LocationsSection() {
                     <p className="text-gray-600">{location.address}</p>
                   </div>
                   {/* Phone with icon */}
-                  <div className="flex items-center">
-                    <PhoneCall className="h-5 w-5 text-[#0056a8] mr-2" />
-                    <p className="text-gray-600">{location.phone}</p>
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-primary" />
+                    <a
+                      href={`tel:${CONTACT_INFO.phone}`}
+                      className="text-sm text-gray-600 hover:text-primary"
+                    >
+                      {CONTACT_INFO.phone}
+                    </a>
                   </div>
                   {/* Add hours with icon */}
                   <div className="flex items-center">
@@ -93,7 +113,12 @@ export function LocationsSection() {
                   </div>
                 </CardContent>
                 <CardFooter className="mt-auto">
-                  <Link href={`/contact#${location.city.toLowerCase()}`}>
+                  <a
+                    href={location.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
                     <Button
                       variant="outline"
                       className="w-full border-[#0056a8] text-[#0056a8] hover:bg-[#0056a8] hover:text-white"
@@ -101,7 +126,7 @@ export function LocationsSection() {
                       <Navigation className="h-5 w-5 mr-2" />
                       Get Directions
                     </Button>
-                  </Link>
+                  </a>
                 </CardFooter>
               </Card>
             </AnimationWrapper>
@@ -109,5 +134,5 @@ export function LocationsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

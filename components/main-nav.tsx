@@ -215,8 +215,7 @@ export function MainNav() {
                   </div>
                 </div>
                 <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  Sydney, Melbourne, Brisbane - See locations for detailed
-                  addresses
+                  Sydney, Melbourne - See locations for detailed addresses
                 </p>
               </Link>
             </div>
