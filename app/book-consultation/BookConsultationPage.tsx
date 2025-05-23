@@ -212,21 +212,10 @@ export default function BookConsultationPage() {
     }
   };
 
-  // Restore form data if it exists in sessionStorage
+  // Remove the form data restoration effect
   useEffect(() => {
-    const savedForm = sessionStorage.getItem('consultationForm');
-    if (savedForm) {
-      const parsedForm = JSON.parse(savedForm);
-      setForm(parsedForm);
-      const savedType = OPTIONS.find(
-        (opt) => opt.type === parsedForm.selectedType
-      );
-      if (savedType) {
-        setSelected(savedType);
-      }
-      // Clear the saved form data
-      sessionStorage.removeItem('consultationForm');
-    }
+    // Clear any existing form data in sessionStorage
+    sessionStorage.removeItem('consultationForm');
   }, []);
 
   return (

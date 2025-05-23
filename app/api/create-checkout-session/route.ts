@@ -26,6 +26,22 @@ export async function POST(req: NextRequest) {
       consultationDuration,
     } = await req.json();
 
+    console.log('Creating Stripe customer with email:', email);
+    const customer = await stripe.customers.create({
+      email, // use the email from the current booking
+      name,
+      phone,
+      metadata: {
+        message,
+        date,
+        time,
+        consultationType,
+        consultationName,
+        consultationPrice,
+        consultationDuration,
+      },
+    });
+
     const checkoutSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
@@ -45,7 +61,8 @@ export async function POST(req: NextRequest) {
           quantity: 1,
         },
       ],
-      customer_email: email,
+      customer: customer.id,
+      customer_update: { address: 'auto' },
       metadata: {
         userId,
         name,
@@ -57,12 +74,10 @@ export async function POST(req: NextRequest) {
         consultationName,
         consultationPrice,
         consultationDuration,
+        email,
       },
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/booking-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/booking-cancelled`,
-      payment_intent_data: {
-        receipt_email: email,
-      },
       automatic_tax: { enabled: true },
     });
 

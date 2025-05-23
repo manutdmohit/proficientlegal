@@ -16,23 +16,33 @@ export default function BookingSuccess() {
         .then((res) => res.json())
         .then((data) => {
           setSession(data);
-          // Send payment receipt
-          fetch('/api/send-payment-receipt', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              customerName: data.metadata?.name,
-              customerEmail: data.customer_email,
-              amount: data.amount_total / 100,
-              consultationType: data.metadata?.consultationType,
-              consultationName: data.metadata?.consultationName,
-              consultationDate: data.metadata?.date,
-              consultationTime: data.metadata?.time,
-              paymentId: data.payment_intent,
-            }),
-          }).catch((error) =>
-            console.error('Error sending payment receipt:', error)
-          );
+          if (data.payment_status === 'paid') {
+            fetch('/api/save-payment-and-send-receipt', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                userId: data.metadata?.userId,
+                customerName: data.metadata?.name,
+                customerEmail: data.customer_email || data.metadata?.email,
+                customerPhone: data.metadata?.phone,
+                amount: data.amount_total / 100,
+                currency: data.currency || 'AUD',
+                status: 'completed',
+                paymentMethod: 'card',
+                stripePaymentId: data.payment_intent,
+                stripeSessionId: data.id,
+                consultationType: data.metadata?.consultationType,
+                consultationName: data.metadata?.consultationName,
+                consultationDuration: data.metadata?.consultationDuration,
+                consultationDate: data.metadata?.date,
+                consultationTime: data.metadata?.time,
+                message: data.metadata?.message,
+                description: `Payment for ${data.metadata?.consultationName} on ${data.metadata?.date} at ${data.metadata?.time}`,
+              }),
+            }).catch((error) =>
+              console.error('Error saving payment or sending receipt:', error)
+            );
+          }
         });
     }
   }, []);
@@ -68,7 +78,8 @@ export default function BookingSuccess() {
               <b>{session.metadata?.time}</b>.
             </p>
             <p className="mb-6 text-gray-700">
-              A confirmation has been sent to <b>{session.customer_email}</b>.
+              A confirmation has been sent to{' '}
+              <b>{session.customer_email || session.metadata?.email}</b>.
             </p>
             <div className="mb-4 text-blue-500 text-sm">
               You will be redirected to the home page shortly…
