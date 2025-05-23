@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { notFound } from 'next/navigation';
 import { Post } from '@/lib/models/Post';
 import { Comment } from '@/lib/models/Comment';
-import connectDB from '@/lib/db';
+import connectDB from '@/app/config/database';
 import CommentSection from '@/components/CommentSection';
 
 interface PostData {
@@ -43,9 +43,9 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   await connectDB();
-  const post = await Post.findOne({ slug: params.slug, published: true })
+  const post = (await Post.findOne({ slug: params.slug, published: true })
     .select('title excerpt seo')
-    .lean();
+    .lean()) as PostData | null;
 
   if (!post) {
     return {
@@ -63,9 +63,9 @@ export async function generateMetadata({
 
 async function getPost(slug: string) {
   await connectDB();
-  const post = await Post.findOne({ slug, published: true })
+  const post = (await Post.findOne({ slug, published: true })
     .populate('author', 'name')
-    .lean();
+    .lean()) as PostData | null;
 
   if (!post) {
     notFound();
