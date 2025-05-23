@@ -10,10 +10,15 @@ import {
   MessageSquare,
   Send,
   Phone,
+  Users,
+  Building,
+  Star,
+  Scale,
 } from 'lucide-react';
 import AnimationWrapper from '@/components/animation-wrapper';
 import { useContactForm } from '@/hooks/useContactForm';
 import { CONTACT_INFO } from '@/lib/constants';
+import Link from 'next/link';
 
 /**
  * Contact section component with detailed contact information and a message form.
@@ -77,6 +82,55 @@ export function ContactSection() {
                     <p className="text-white/80">
                       See locations for detailed addresses
                     </p>
+                  </div>
+                </div>
+
+                {/* Useful Links Section */}
+                <div className="pt-6 border-t border-white/10">
+                  <h3 className="font-semibold text-lg mb-4">Useful Links</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Link
+                      href="/teams"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Users className="h-4 w-4 mr-2" />
+                      Our Team
+                    </Link>
+                    <Link
+                      href="/locations"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <MapPin className="h-4 w-4 mr-2" />
+                      Our Locations
+                    </Link>
+                    <Link
+                      href="/about-us"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Building className="h-4 w-4 mr-2" />
+                      About Us
+                    </Link>
+                    <Link
+                      href="/testimonials"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Star className="h-4 w-4 mr-2" />
+                      Testimonials
+                    </Link>
+                    <Link
+                      href="/family-law"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Scale className="h-4 w-4 mr-2" />
+                      Family Law
+                    </Link>
+                    <Link
+                      href="/property-law"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Scale className="h-4 w-4 mr-2" />
+                      Property Law
+                    </Link>
                   </div>
                 </div>
               </div>

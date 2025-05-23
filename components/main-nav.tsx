@@ -39,7 +39,7 @@ export function MainNav() {
           </button>
 
           <div className="absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div className="grid gap-3 p-4 md:grid-cols-2">
+            <div className="grid gap-3 p-4">
               <Link
                 href="/about-us"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground md:col-span-2"
@@ -57,7 +57,7 @@ export function MainNav() {
               </Link>
 
               <Link
-                href="/about#team"
+                href="/teams"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <div className="flex items-center">
@@ -72,7 +72,7 @@ export function MainNav() {
               </Link>
 
               <Link
-                href="/about#locations"
+                href="/locations"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <div className="flex items-center">
@@ -88,7 +88,7 @@ export function MainNav() {
               </Link>
 
               <Link
-                href="/about#testimonials"
+                href="/testimonials"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <div className="flex items-center">
@@ -112,8 +112,8 @@ export function MainNav() {
             <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180" />
           </button>
 
-          <div className="absolute left-0 top-full mt-1.5 w-[600px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div className="grid gap-3 p-6 lg:grid-cols-3">
+          <div className="absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="grid gap-3 p-4">
               <Link
                 href="/family-law"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -124,7 +124,7 @@ export function MainNav() {
                     Family Law
                   </div>
                 </div>
-                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                <p className="text-sm leading-snug text-muted-foreground">
                   Expert guidance through divorce, child custody, property
                   settlements, and all family law matters.
                 </p>
@@ -140,7 +140,7 @@ export function MainNav() {
                     Property Law
                   </div>
                 </div>
-                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                <p className="text-sm leading-snug text-muted-foreground">
                   Comprehensive property law services for residential and
                   commercial matters.
                 </p>
@@ -156,7 +156,7 @@ export function MainNav() {
                     Immigration Law
                   </div>
                 </div>
-                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                <p className="text-sm leading-snug text-muted-foreground">
                   Navigating the complexities of Australian immigration law with
                   expert guidance.
                 </p>
@@ -172,10 +172,10 @@ export function MainNav() {
             <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180" />
           </button>
 
-          <div className="absolute left-0 top-full mt-1.5 w-[600px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div className="grid gap-3 p-6 lg:grid-cols-3">
-              <Link
-                href="/contact#phone"
+          <div className="absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="grid gap-3 p-4">
+              <a
+                href="tel:1300011581"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <div className="flex items-center">
@@ -184,13 +184,13 @@ export function MainNav() {
                     Call Us
                   </div>
                 </div>
-                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                  1300 123 456 - Available Mon-Fri: 9am-5pm
+                <p className="text-sm leading-snug text-muted-foreground">
+                  1300 011 581 - Available Mon-Fri: 9am-5pm
                 </p>
-              </Link>
+              </a>
 
-              <Link
-                href="/contact#email"
+              <a
+                href="mailto:info@proficientlegal.com.au"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <div className="flex items-center">
@@ -199,13 +199,13 @@ export function MainNav() {
                     Email Us
                   </div>
                 </div>
-                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                <p className="text-sm leading-snug text-muted-foreground">
                   info@proficientlegal.com.au - We respond within 24 hours
                 </p>
-              </Link>
+              </a>
 
               <Link
-                href="/contact#locations"
+                href="/locations"
                 className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
               >
                 <div className="flex items-center">
@@ -214,7 +214,7 @@ export function MainNav() {
                     Visit Us
                   </div>
                 </div>
-                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                <p className="text-sm leading-snug text-muted-foreground">
                   Sydney, Melbourne - See locations for detailed addresses
                 </p>
               </Link>

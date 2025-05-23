@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   Menu,
   X,
@@ -26,10 +27,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const router = useRouter();
 
-  const toggleSubmenu = (menu: string) => {
-    setOpenSubmenu(openSubmenu === menu ? null : menu);
-  };
+  const toggleSubmenu = useCallback(
+    (menu: string) => {
+      setOpenSubmenu(openSubmenu === menu ? null : menu);
+    },
+    [openSubmenu]
+  );
+
+  const handleNavigation = useCallback(
+    (path: string) => {
+      setIsOpen(false);
+      router.push(path);
+    },
+    [router]
+  );
+
+  const handleContactClick = useCallback((type: 'phone' | 'email') => {
+    setIsOpen(false);
+    if (type === 'phone') {
+      window.location.href = 'tel:1300011581';
+    } else {
+      window.location.href = 'mailto:info@proficientlegal.com.au';
+    }
+  }, []);
 
   return (
     <div className="md:hidden">
@@ -82,14 +104,13 @@ export function MobileNav() {
               <ul className="space-y-2">
                 {/* Home */}
                 <li>
-                  <Link
-                    href="/"
-                    className="flex items-center text-white py-3 px-4 rounded-md hover:bg-white/10"
-                    onClick={() => setIsOpen(false)}
+                  <button
+                    onClick={() => handleNavigation('/')}
+                    className="flex items-center w-full text-white py-3 px-4 rounded-md hover:bg-white/10"
                   >
                     <Home className="h-5 w-5 mr-3" />
                     <span>Home</span>
-                  </Link>
+                  </button>
                 </li>
 
                 {/* About Us */}
@@ -119,44 +140,40 @@ export function MobileNav() {
                         className="overflow-hidden pl-8 space-y-1 mt-1"
                       >
                         <li>
-                          <Link
-                            href="/about-us"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/about-us')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Building className="h-4 w-4 mr-3" />
                             <span>About Proficient Legal</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/about#team"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/teams')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Users className="h-4 w-4 mr-3" />
                             <span>Our Team</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/about#locations"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/locations')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <MapPin className="h-4 w-4 mr-3" />
                             <span>Our Locations</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/about#testimonials"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/testimonials')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Star className="h-4 w-4 mr-3" />
                             <span>Testimonials</span>
-                          </Link>
+                          </button>
                         </li>
                       </motion.ul>
                     )}
@@ -190,34 +207,31 @@ export function MobileNav() {
                         className="overflow-hidden pl-8 space-y-1 mt-1"
                       >
                         <li>
-                          <Link
-                            href="/family-law"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/family-law')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Users className="h-4 w-4 mr-3" />
                             <span>Family Law</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/property-law"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/property-law')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Briefcase className="h-4 w-4 mr-3" />
                             <span>Property Law</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/immigration-law"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/immigration-law')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Globe className="h-4 w-4 mr-3" />
                             <span>Immigration Law</span>
-                          </Link>
+                          </button>
                         </li>
                       </motion.ul>
                     )}
@@ -251,34 +265,31 @@ export function MobileNav() {
                         className="overflow-hidden pl-8 space-y-1 mt-1"
                       >
                         <li>
-                          <Link
-                            href="/contact#phone"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleContactClick('phone')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Phone className="h-4 w-4 mr-3" />
                             <span>Call Us</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/contact#email"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleContactClick('email')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Mail className="h-4 w-4 mr-3" />
                             <span>Email Us</span>
-                          </Link>
+                          </button>
                         </li>
                         <li>
-                          <Link
-                            href="/contact#locations"
-                            className="flex items-center text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
-                            onClick={() => setIsOpen(false)}
+                          <button
+                            onClick={() => handleNavigation('/locations')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <MapPin className="h-4 w-4 mr-3" />
                             <span>Visit Us</span>
-                          </Link>
+                          </button>
                         </li>
                       </motion.ul>
                     )}
@@ -287,14 +298,13 @@ export function MobileNav() {
 
                 {/* Free Enquiry */}
                 <li>
-                  <Link
-                    href="/free-enquiry"
-                    className="flex items-center text-white py-3 px-4 rounded-md hover:bg-white/10"
-                    onClick={() => setIsOpen(false)}
+                  <button
+                    onClick={() => handleNavigation('/free-enquiry')}
+                    className="flex items-center w-full text-white py-3 px-4 rounded-md hover:bg-white/10"
                   >
                     <MessageSquare className="h-5 w-5 mr-3" />
                     <span>Free Enquiry</span>
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </nav>
