@@ -102,6 +102,13 @@ export default function BookConsultationPage() {
   // Add this to get today's date in yyyy-mm-dd format
   const today = format(new Date(), 'yyyy-MM-dd');
 
+  // Add function to check if a date is a weekend
+  const isWeekend = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDay();
+    return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
+  };
+
   const validateForm = () => {
     const newErrors = {
       name: !form.name ? 'Name is required' : '',
@@ -341,10 +348,29 @@ export default function BookConsultationPage() {
                       className={`mt-1.5 focus:ring-2 focus:ring-blue-500 ${
                         errors.date ? 'border-red-500' : ''
                       }`}
+                      onKeyDown={(e) => {
+                        // Prevent manual input of dates
+                        e.preventDefault();
+                      }}
+                      onInput={(e) => {
+                        const input = e.target as HTMLInputElement;
+                        if (isWeekend(input.value)) {
+                          input.value = '';
+                          setForm((prev) => ({ ...prev, date: '' }));
+                          setErrors((prev) => ({
+                            ...prev,
+                            date: 'Weekends are not available for booking',
+                          }));
+                        }
+                      }}
                     />
                     {errors.date && (
                       <p className="text-red-500 text-sm mt-1">{errors.date}</p>
                     )}
+                    <p className="text-xs text-gray-500 mt-1">
+                      Note: Bookings are not available on weekends (Saturday and
+                      Sunday)
+                    </p>
                   </div>
                   <div className="flex-1">
                     <Label
