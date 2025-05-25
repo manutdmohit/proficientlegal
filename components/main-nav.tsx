@@ -1,4 +1,5 @@
 'use client';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Users,
@@ -18,34 +19,97 @@ import {
 } from 'lucide-react';
 
 export function MainNav() {
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const menuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent, menuName: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setActiveMenu(activeMenu === menuName ? null : menuName);
+    } else if (e.key === 'Escape') {
+      setActiveMenu(null);
+    }
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        activeMenu &&
+        menuRefs.current[activeMenu] &&
+        !menuRefs.current[activeMenu]?.contains(event.target as Node)
+      ) {
+        setActiveMenu(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [activeMenu]);
+
   return (
-    <nav className="hidden md:flex justify-center">
-      <ul className="flex items-center space-x-1">
-        <li>
+    <nav
+      className="hidden md:flex justify-center"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <ul className="flex items-center space-x-1" role="menubar">
+        <li role="none">
           <Link
             href="/"
-            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            role="menuitem"
+            aria-label="Go to home page"
           >
-            <Home className="h-4 w-4 mr-2" />
+            <Home className="h-4 w-4 mr-2" aria-hidden="true" />
             Home
           </Link>
         </li>
 
-        <li className="relative group">
-          <button className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap">
-            <Info className="h-4 w-4 mr-2" />
+        <li className="relative group" role="none">
+          <button
+            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            role="menuitem"
+            aria-haspopup="true"
+            aria-expanded={activeMenu === 'about'}
+            aria-controls="about-menu"
+            onClick={() =>
+              setActiveMenu(activeMenu === 'about' ? null : 'about')
+            }
+            onKeyDown={(e) => handleKeyDown(e, 'about')}
+          >
+            <Info className="h-4 w-4 mr-2" aria-hidden="true" />
             About Us
-            <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180" />
+            <ChevronDown
+              className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180"
+              aria-hidden="true"
+            />
           </button>
 
-          <div className="absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div
+            id="about-menu"
+            ref={(el) => (menuRefs.current['about'] = el)}
+            className={`absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg transition-all duration-200 z-50 ${
+              activeMenu === 'about'
+                ? 'opacity-100 visible'
+                : 'opacity-0 invisible'
+            }`}
+            role="menu"
+            aria-label="About Us submenu"
+          >
             <div className="grid gap-3 p-4">
               <Link
                 href="/about-us"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground md:col-span-2"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50 md:col-span-2"
+                role="menuitem"
+                aria-label="About Proficient Legal"
               >
                 <div className="flex items-center">
-                  <Building className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <Building
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     About Proficient Legal
                   </div>
@@ -105,21 +169,49 @@ export function MainNav() {
           </div>
         </li>
 
-        <li className="relative group">
-          <button className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap">
-            <Scale className="h-4 w-4 mr-2" />
+        <li className="relative group" role="none">
+          <button
+            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            role="menuitem"
+            aria-haspopup="true"
+            aria-expanded={activeMenu === 'services'}
+            aria-controls="services-menu"
+            onClick={() =>
+              setActiveMenu(activeMenu === 'services' ? null : 'services')
+            }
+            onKeyDown={(e) => handleKeyDown(e, 'services')}
+          >
+            <Scale className="h-4 w-4 mr-2" aria-hidden="true" />
             Our Services
-            <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180" />
+            <ChevronDown
+              className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180"
+              aria-hidden="true"
+            />
           </button>
 
-          <div className="absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div
+            id="services-menu"
+            ref={(el) => (menuRefs.current['services'] = el)}
+            className={`absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg transition-all duration-200 z-50 ${
+              activeMenu === 'services'
+                ? 'opacity-100 visible'
+                : 'opacity-0 invisible'
+            }`}
+            role="menu"
+            aria-label="Our Services submenu"
+          >
             <div className="grid gap-3 p-4">
               <Link
                 href="/family-law"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Family Law Services"
               >
                 <div className="flex items-center">
-                  <Users className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <Users
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     Family Law
                   </div>
@@ -132,10 +224,15 @@ export function MainNav() {
 
               <Link
                 href="/property-law"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Property Law Services"
               >
                 <div className="flex items-center">
-                  <Briefcase className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <Briefcase
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     Property Law
                   </div>
@@ -148,10 +245,15 @@ export function MainNav() {
 
               <Link
                 href="/immigration-law"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Immigration Law Services"
               >
                 <div className="flex items-center">
-                  <Globe className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <Globe
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     Immigration Law
                   </div>
@@ -165,21 +267,49 @@ export function MainNav() {
           </div>
         </li>
 
-        <li className="relative group">
-          <button className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap">
-            <Contact className="h-4 w-4 mr-2" />
+        <li className="relative group" role="none">
+          <button
+            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            role="menuitem"
+            aria-haspopup="true"
+            aria-expanded={activeMenu === 'contact'}
+            aria-controls="contact-menu"
+            onClick={() =>
+              setActiveMenu(activeMenu === 'contact' ? null : 'contact')
+            }
+            onKeyDown={(e) => handleKeyDown(e, 'contact')}
+          >
+            <Contact className="h-4 w-4 mr-2" aria-hidden="true" />
             Contact
-            <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180" />
+            <ChevronDown
+              className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-hover:rotate-180"
+              aria-hidden="true"
+            />
           </button>
 
-          <div className="absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div
+            id="contact-menu"
+            ref={(el) => (menuRefs.current['contact'] = el)}
+            className={`absolute left-0 top-full mt-1.5 w-[500px] rounded-md border bg-popover text-popover-foreground shadow-lg transition-all duration-200 z-50 ${
+              activeMenu === 'contact'
+                ? 'opacity-100 visible'
+                : 'opacity-0 invisible'
+            }`}
+            role="menu"
+            aria-label="Contact options"
+          >
             <div className="grid gap-3 p-4">
               <a
                 href="tel:1300011581"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Call us at 1300 011 581"
               >
                 <div className="flex items-center">
-                  <Phone className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <Phone
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     Call Us
                   </div>
@@ -191,10 +321,15 @@ export function MainNav() {
 
               <a
                 href="mailto:info@proficientlegal.com.au"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Email us at info@proficientlegal.com.au"
               >
                 <div className="flex items-center">
-                  <Mail className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <Mail
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     Email Us
                   </div>
@@ -206,10 +341,15 @@ export function MainNav() {
 
               <Link
                 href="/locations"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Visit our office locations"
               >
                 <div className="flex items-center">
-                  <MapPin className="h-6 w-6 text-[#0056a8] mr-3" />
+                  <MapPin
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
                   <div className="text-sm font-medium leading-none">
                     Visit Us
                   </div>
@@ -222,12 +362,14 @@ export function MainNav() {
           </div>
         </li>
 
-        <li>
+        <li role="none">
           <Link
             href="/free-enquiry"
-            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            role="menuitem"
+            aria-label="Submit a free enquiry"
           >
-            <MessageSquare className="h-4 w-4 mr-2" />
+            <MessageSquare className="h-4 w-4 mr-2" aria-hidden="true" />
             Free Enquiry
           </Link>
         </li>

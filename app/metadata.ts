@@ -209,6 +209,102 @@ export const aboutUsMetadata: Metadata = {
   },
 };
 
+// Metadata for the Teams page
+export const teamsMetadata: Metadata = {
+  title: 'Proficient Legal | Our Legal Team | Expert Lawyers in Australia',
+  description:
+    'Meet our team of experienced lawyers specializing in family, property, and immigration law. Dedicated professionals committed to your legal success.',
+  keywords:
+    'legal team, Australian lawyers, expert attorneys, family lawyers, property lawyers, immigration lawyers, law specialists, legal professionals, Sydney lawyers, Melbourne lawyers',
+  alternates: {
+    canonical: '/teams',
+  },
+  openGraph: {
+    title: 'Proficient Legal | Our Legal Team | Expert Lawyers in Australia',
+    description:
+      'Meet our team of experienced lawyers specializing in family, property, and immigration law. Dedicated professionals committed to your legal success.',
+    url: 'https://proficientlegal.com.au/teams',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/teams-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Team',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Proficient Legal | Our Legal Team | Expert Lawyers in Australia',
+    description:
+      'Meet our team of experienced lawyers specializing in family, property, and immigration law. Dedicated professionals committed to your legal success.',
+    images: ['https://proficientlegal.com.au/teams-twitter.jpg'],
+  },
+};
+
+// Metadata for the Locations page
+export const locationsMetadata: Metadata = {
+  title: 'Proficient Legal | Our Locations | Sydney, Melbourne & Brisbane',
+  description:
+    'Visit our law offices in Sydney, Melbourne, and Brisbane. Convenient locations providing expert legal services across Australia.',
+  keywords:
+    'law firm locations, Sydney office, Melbourne office, Brisbane office, legal office locations, Australian law firm, legal consultation locations, lawyer offices',
+  alternates: {
+    canonical: '/locations',
+  },
+  openGraph: {
+    title: 'Proficient Legal | Our Locations | Sydney, Melbourne & Brisbane',
+    description:
+      'Visit our law offices in Sydney, Melbourne, and Brisbane. Convenient locations providing expert legal services across Australia.',
+    url: 'https://proficientlegal.com.au/locations',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/locations-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Locations',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Proficient Legal | Our Locations | Sydney, Melbourne & Brisbane',
+    description:
+      'Visit our law offices in Sydney, Melbourne, and Brisbane. Convenient locations providing expert legal services across Australia.',
+    images: ['https://proficientlegal.com.au/locations-twitter.jpg'],
+  },
+};
+
+// Metadata for the Blog page
+export const blogMetadata: Metadata = {
+  title: 'Proficient Legal | Legal Insights & Updates | Law Blog',
+  description:
+    'Stay informed with our legal blog covering family law, property law, immigration updates, and expert insights from our experienced lawyers.',
+  keywords:
+    'legal blog, law updates, legal insights, family law blog, property law news, immigration updates, Australian law blog, legal articles, law firm blog',
+  alternates: {
+    canonical: '/blog',
+  },
+  openGraph: {
+    title: 'Proficient Legal | Legal Insights & Updates | Law Blog',
+    description:
+      'Stay informed with our legal blog covering family law, property law, immigration updates, and expert insights from our experienced lawyers.',
+    url: 'https://proficientlegal.com.au/blog',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/blog-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Blog',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Proficient Legal | Legal Insights & Updates | Law Blog',
+    description:
+      'Stay informed with our legal blog covering family law, property law, immigration updates, and expert insights from our experienced lawyers.',
+    images: ['https://proficientlegal.com.au/blog-twitter.jpg'],
+  },
+};
+
 // Add structured data for the homepage
 export const homePageStructuredData = {
   '@context': 'https://schema.org',
@@ -218,14 +314,32 @@ export const homePageStructuredData = {
     'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
   url: 'https://proficientlegal.com.au',
   logo: 'https://proficientlegal.com.au/logo.png',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '123 Legal Street',
-    addressLocality: 'Sydney',
-    addressRegion: 'NSW',
-    postalCode: '2000',
-    addressCountry: 'AU',
-  },
+  address: [
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '123 Legal Street',
+      addressLocality: 'Sydney',
+      addressRegion: 'NSW',
+      postalCode: '2000',
+      addressCountry: 'AU',
+    },
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '456 Law Avenue',
+      addressLocality: 'Melbourne',
+      addressRegion: 'VIC',
+      postalCode: '3000',
+      addressCountry: 'AU',
+    },
+    {
+      '@type': 'PostalAddress',
+      streetAddress: '789 Justice Road',
+      addressLocality: 'Brisbane',
+      addressRegion: 'QLD',
+      postalCode: '4000',
+      addressCountry: 'AU',
+    },
+  ],
   telephone: '+61-2-1234-5678',
   email: 'contact@proficientlegal.com.au',
   sameAs: [
@@ -233,7 +347,7 @@ export const homePageStructuredData = {
     'https://www.linkedin.com/company/proficientlegal',
     'https://twitter.com/proficientlegal',
   ],
-  areaServed: 'AU',
+  areaServed: ['AU-NSW', 'AU-VIC', 'AU-QLD'],
   priceRange: '$$$',
   openingHours: 'Mo-Fr 09:00-17:00',
   hasMap: 'https://proficientlegal.com.au/locations',
@@ -241,5 +355,16 @@ export const homePageStructuredData = {
     '@type': 'GeoCoordinates',
     latitude: -33.8688,
     longitude: 151.2093,
+  },
+  availableLanguage: ['en', 'zh', 'hi', 'ar'],
+  paymentAccepted: ['Credit Card', 'Debit Card', 'Bank Transfer'],
+  serviceArea: {
+    '@type': 'GeoCircle',
+    geoMidpoint: {
+      '@type': 'GeoCoordinates',
+      latitude: -33.8688,
+      longitude: 151.2093,
+    },
+    geoRadius: '100km',
   },
 };
