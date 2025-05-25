@@ -20,10 +20,9 @@ interface PostData {
   };
 }
 
-export const metadata: Metadata = {
-  title: 'Blog | Proficient Legal',
-  description: 'Latest legal insights and updates from Proficient Legal',
-};
+import { blogMetadata } from '../metadata';
+
+export const metadata: Metadata = blogMetadata;
 
 async function getPosts(searchParams: {
   [key: string]: string | string[] | undefined;

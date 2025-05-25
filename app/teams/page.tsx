@@ -1,6 +1,10 @@
+import type { Metadata } from 'next';
+import { teamsMetadata } from '../metadata';
 import { TeamSection } from '@/components/sections/team-section';
 import { Header } from '@/components/layout/header';
 import { ContactSection } from '@/components/sections/contact-section';
+
+export const metadata: Metadata = teamsMetadata;
 
 export default function TeamsPage() {
   return (

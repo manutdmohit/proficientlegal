@@ -21,6 +21,7 @@ import {
 export function MainNav() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent, menuName: string) => {
@@ -32,21 +33,28 @@ export function MainNav() {
     }
   };
 
-  // Close menu when clicking outside
+  // Handle hover events
+  const handleMouseEnter = (menuName: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setActiveMenu(menuName);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveMenu(null);
+    }, 100); // Small delay to prevent flickering
+  };
+
+  // Cleanup timeout on unmount
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        activeMenu &&
-        menuRefs.current[activeMenu] &&
-        !menuRefs.current[activeMenu]?.contains(event.target as Node)
-      ) {
-        setActiveMenu(null);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
       }
     };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [activeMenu]);
+  }, []);
 
   return (
     <nav
@@ -67,16 +75,18 @@ export function MainNav() {
           </Link>
         </li>
 
-        <li className="relative group" role="none">
+        <li
+          className="relative group"
+          role="none"
+          onMouseEnter={() => handleMouseEnter('about')}
+          onMouseLeave={handleMouseLeave}
+        >
           <button
             className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
             role="menuitem"
             aria-haspopup="true"
             aria-expanded={activeMenu === 'about'}
             aria-controls="about-menu"
-            onClick={() =>
-              setActiveMenu(activeMenu === 'about' ? null : 'about')
-            }
             onKeyDown={(e) => handleKeyDown(e, 'about')}
           >
             <Info className="h-4 w-4 mr-2" aria-hidden="true" />
@@ -169,16 +179,18 @@ export function MainNav() {
           </div>
         </li>
 
-        <li className="relative group" role="none">
+        <li
+          className="relative group"
+          role="none"
+          onMouseEnter={() => handleMouseEnter('services')}
+          onMouseLeave={handleMouseLeave}
+        >
           <button
             className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
             role="menuitem"
             aria-haspopup="true"
             aria-expanded={activeMenu === 'services'}
             aria-controls="services-menu"
-            onClick={() =>
-              setActiveMenu(activeMenu === 'services' ? null : 'services')
-            }
             onKeyDown={(e) => handleKeyDown(e, 'services')}
           >
             <Scale className="h-4 w-4 mr-2" aria-hidden="true" />
@@ -267,16 +279,18 @@ export function MainNav() {
           </div>
         </li>
 
-        <li className="relative group" role="none">
+        <li
+          className="relative group"
+          role="none"
+          onMouseEnter={() => handleMouseEnter('contact')}
+          onMouseLeave={handleMouseLeave}
+        >
           <button
             className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
             role="menuitem"
             aria-haspopup="true"
             aria-expanded={activeMenu === 'contact'}
             aria-controls="contact-menu"
-            onClick={() =>
-              setActiveMenu(activeMenu === 'contact' ? null : 'contact')
-            }
             onKeyDown={(e) => handleKeyDown(e, 'contact')}
           >
             <Contact className="h-4 w-4 mr-2" aria-hidden="true" />

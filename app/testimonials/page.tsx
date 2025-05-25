@@ -1,6 +1,10 @@
+import type { Metadata } from 'next';
+import { testimonialsMetadata } from '../metadata';
 import { TestimonialsSection } from '@/components/sections/testimonials-section';
 import { Header } from '@/components/layout/header';
 import { ContactSection } from '@/components/sections/contact-section';
+
+export const metadata: Metadata = testimonialsMetadata;
 
 export default function TestimonialsPage() {
   return (

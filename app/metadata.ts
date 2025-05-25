@@ -305,66 +305,34 @@ export const blogMetadata: Metadata = {
   },
 };
 
-// Add structured data for the homepage
-export const homePageStructuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'LegalService',
-  name: 'Proficient Legal',
+// Metadata for the Testimonials page
+export const testimonialsMetadata: Metadata = {
+  title: 'Proficient Legal | Client Testimonials | Trusted Legal Services',
   description:
-    'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
-  url: 'https://proficientlegal.com.au',
-  logo: 'https://proficientlegal.com.au/logo.png',
-  address: [
-    {
-      '@type': 'PostalAddress',
-      streetAddress: '123 Legal Street',
-      addressLocality: 'Sydney',
-      addressRegion: 'NSW',
-      postalCode: '2000',
-      addressCountry: 'AU',
-    },
-    {
-      '@type': 'PostalAddress',
-      streetAddress: '456 Law Avenue',
-      addressLocality: 'Melbourne',
-      addressRegion: 'VIC',
-      postalCode: '3000',
-      addressCountry: 'AU',
-    },
-    {
-      '@type': 'PostalAddress',
-      streetAddress: '789 Justice Road',
-      addressLocality: 'Brisbane',
-      addressRegion: 'QLD',
-      postalCode: '4000',
-      addressCountry: 'AU',
-    },
-  ],
-  telephone: '+61-2-1234-5678',
-  email: 'contact@proficientlegal.com.au',
-  sameAs: [
-    'https://www.facebook.com/proficientlegal',
-    'https://www.linkedin.com/company/proficientlegal',
-    'https://twitter.com/proficientlegal',
-  ],
-  areaServed: ['AU-NSW', 'AU-VIC', 'AU-QLD'],
-  priceRange: '$$$',
-  openingHours: 'Mo-Fr 09:00-17:00',
-  hasMap: 'https://proficientlegal.com.au/locations',
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: -33.8688,
-    longitude: 151.2093,
+    'Read client testimonials and reviews about Proficient Legal. Hear from our satisfied clients about our expert legal services in family, property, and immigration law.',
+  keywords:
+    'client testimonials, legal reviews, law firm reviews, family law testimonials, property law reviews, immigration law testimonials, trusted legal services',
+  alternates: {
+    canonical: '/testimonials',
   },
-  availableLanguage: ['en', 'zh', 'hi', 'ar'],
-  paymentAccepted: ['Credit Card', 'Debit Card', 'Bank Transfer'],
-  serviceArea: {
-    '@type': 'GeoCircle',
-    geoMidpoint: {
-      '@type': 'GeoCoordinates',
-      latitude: -33.8688,
-      longitude: 151.2093,
-    },
-    geoRadius: '100km',
+  openGraph: {
+    title: 'Proficient Legal | Client Testimonials | Trusted Legal Services',
+    description:
+      'Read client testimonials and reviews about Proficient Legal. Hear from our satisfied clients about our expert legal services in family, property, and immigration law.',
+    url: 'https://proficientlegal.com.au/testimonials',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/testimonials-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Client Testimonials',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Proficient Legal | Client Testimonials | Trusted Legal Services',
+    description:
+      'Read client testimonials and reviews about Proficient Legal. Hear from our satisfied clients about our expert legal services in family, property, and immigration law.',
+    images: ['https://proficientlegal.com.au/testimonials-twitter.jpg'],
   },
 };
