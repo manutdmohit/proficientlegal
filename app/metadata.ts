@@ -10,7 +10,7 @@ export const defaultMetadata: Metadata = {
   description:
     'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
   keywords:
-    'law firm, family law, property law, immigration law, legal services, Sydney lawyers, Melbourne lawyers, Australian law firm',
+    'law firm, family law, property law, immigration law, legal services, Sydney lawyers, Melbourne lawyers, Australian law firm, legal consultation, legal advice, legal representation',
   authors: [{ name: 'Proficient Legal' }],
   creator: 'Proficient Legal',
   publisher: 'Proficient Legal',
@@ -64,6 +64,12 @@ export const defaultMetadata: Metadata = {
     yandex: 'yandex-verification-code',
   },
   category: 'Legal Services',
+  other: {
+    'geo.region': 'AU',
+    'geo.placename': 'Sydney',
+    'geo.position': '-33.8688;151.2093',
+    ICBM: '-33.8688, 151.2093',
+  },
 };
 
 // Metadata for the Family Law page
@@ -200,5 +206,40 @@ export const aboutUsMetadata: Metadata = {
     description:
       'Learn about Proficient Legal, a distinguished law firm providing comprehensive legal services in property, family, and immigration law across Australia.',
     images: ['https://proficientlegal.com.au/about-us-twitter.jpg'],
+  },
+};
+
+// Add structured data for the homepage
+export const homePageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Proficient Legal',
+  description:
+    'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
+  url: 'https://proficientlegal.com.au',
+  logo: 'https://proficientlegal.com.au/logo.png',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '123 Legal Street',
+    addressLocality: 'Sydney',
+    addressRegion: 'NSW',
+    postalCode: '2000',
+    addressCountry: 'AU',
+  },
+  telephone: '+61-2-1234-5678',
+  email: 'contact@proficientlegal.com.au',
+  sameAs: [
+    'https://www.facebook.com/proficientlegal',
+    'https://www.linkedin.com/company/proficientlegal',
+    'https://twitter.com/proficientlegal',
+  ],
+  areaServed: 'AU',
+  priceRange: '$$$',
+  openingHours: 'Mo-Fr 09:00-17:00',
+  hasMap: 'https://proficientlegal.com.au/locations',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -33.8688,
+    longitude: 151.2093,
   },
 };
