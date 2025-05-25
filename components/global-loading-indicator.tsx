@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
-import { useEffect, useState, Suspense } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
-import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useState, Suspense } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /**
  * Global loading indicator for client-side transitions
@@ -12,58 +12,38 @@ import { motion, AnimatePresence } from "framer-motion"
  * libraries like NProgress but implemented with Framer Motion.
  */
 function LoadingIndicator() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const [isLoading, setIsLoading] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  // Reset loading state when route changes
+  // Handle route changes
   useEffect(() => {
-    setIsLoading(false)
-    setProgress(0)
-  }, [pathname, searchParams])
+    // Start loading when navigation begins
+    requestAnimationFrame(() => {
+      setIsLoading(true);
+      setProgress(20);
+    });
 
-  // Simulate progress for client-side transitions
-  useEffect(() => {
-    if (isLoading) {
-      // Start with initial progress
-      setProgress(20)
+    // Simulate progress
+    const timer1 = setTimeout(() => setProgress(40), 100);
+    const timer2 = setTimeout(() => setProgress(60), 200);
+    const timer3 = setTimeout(() => setProgress(80), 400);
 
-      // Simulate progress increments
-      const timer1 = setTimeout(() => setProgress(40), 100)
-      const timer2 = setTimeout(() => setProgress(60), 200)
-      const timer3 = setTimeout(() => setProgress(80), 400)
+    // Complete loading when navigation finishes
+    const timer4 = setTimeout(() => {
+      setProgress(100);
+      setTimeout(() => setIsLoading(false), 200);
+    }, 500);
 
-      // Cleanup timers
-      return () => {
-        clearTimeout(timer1)
-        clearTimeout(timer2)
-        clearTimeout(timer3)
-      }
-    }
-  }, [isLoading])
-
-  // Listen for route change start/end events
-  useEffect(() => {
-    const handleRouteChangeStart = () => {
-      setIsLoading(true)
-    }
-
-    const handleRouteChangeComplete = () => {
-      setProgress(100)
-      // Small delay before hiding to show completion
-      setTimeout(() => setIsLoading(false), 200)
-    }
-
-    // Add event listeners for route changes
-    window.addEventListener("beforeunload", handleRouteChangeStart)
-    window.addEventListener("load", handleRouteChangeComplete)
-
+    // Cleanup timers
     return () => {
-      window.removeEventListener("beforeunload", handleRouteChangeStart)
-      window.removeEventListener("load", handleRouteChangeComplete)
-    }
-  }, [])
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearTimeout(timer4);
+    };
+  }, [pathname, searchParams]); // Re-run effect when route changes
 
   return (
     <AnimatePresence>
@@ -74,11 +54,11 @@ function LoadingIndicator() {
           animate={{ scaleX: progress / 100, opacity: 1 }}
           exit={{ scaleX: 1, opacity: 0 }}
           transition={{ duration: 0.2 }}
-          style={{ transformOrigin: "0%" }}
+          style={{ transformOrigin: '0%' }}
         />
       )}
     </AnimatePresence>
-  )
+  );
 }
 
 export function GlobalLoadingIndicator() {
@@ -86,5 +66,5 @@ export function GlobalLoadingIndicator() {
     <Suspense fallback={null}>
       <LoadingIndicator />
     </Suspense>
-  )
+  );
 }

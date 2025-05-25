@@ -274,6 +274,33 @@ export const locationsMetadata: Metadata = {
 };
 
 // Metadata for the Blog page
+// Homepage structured data for SEO
+export const homePageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Proficient Legal',
+  description:
+    'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
+  url: 'https://proficientlegal.com.au',
+  logo: 'https://proficientlegal.com.au/proficient-legal-logo.png',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Sydney',
+    addressRegion: 'NSW',
+    addressCountry: 'AU',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '-33.8688',
+    longitude: '151.2093',
+  },
+  areaServed: ['Sydney', 'Melbourne', 'Brisbane'],
+  serviceType: ['Family Law', 'Property Law', 'Immigration Law'],
+  telephone: '+61 1300 011 581',
+  email: 'info@proficientlegal.com.au',
+  openingHours: 'Mo-Fr 09:00-17:00',
+};
+
 export const blogMetadata: Metadata = {
   title: 'Proficient Legal | Legal Insights & Updates | Law Blog',
   description:

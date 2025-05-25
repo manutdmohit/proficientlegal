@@ -12,7 +12,7 @@ import { CTASection } from '@/components/sections/cta-section';
 import { LocationsSection } from '@/components/sections/locations-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { GoogleReviewsSlider } from '@/components/reviews/google-reviews-slider';
-import ChatButton from '@/components/chat/chat-button';
+import FloatingCTAButton from '@/components/floating-cta-button';
 
 /**
  * Home page component serving as the main landing page for the law firm website.
@@ -168,7 +168,7 @@ export default function Home() {
       </main>
 
       {/* Floating chat button for immediate assistance */}
-      <ChatButton />
+      <FloatingCTAButton />
     </div>
   );
 }

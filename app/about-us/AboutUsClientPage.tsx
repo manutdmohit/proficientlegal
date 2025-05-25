@@ -19,7 +19,7 @@ import {
   Briefcase,
 } from 'lucide-react';
 import AnimationWrapper from '@/components/animation-wrapper';
-import ChatButton from '@/components/chat/chat-button';
+import FloatingCTAButton from '@/components/floating-cta-button';
 import { CTASection } from '@/components/sections/cta-section';
 import { ContactSection } from '@/components/sections/contact-section';
 
@@ -376,7 +376,7 @@ export default function AboutUsClientPage() {
         <ContactSection />
       </main>
 
-      <ChatButton />
+      <FloatingCTAButton />
     </div>
   );
 }
