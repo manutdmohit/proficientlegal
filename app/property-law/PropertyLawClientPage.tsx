@@ -1,12 +1,12 @@
-"use client"
+'use client';
 
-import { useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Header } from "@/components/layout/header"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Header } from '@/components/layout/header';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Home,
   Building2,
@@ -20,12 +20,12 @@ import {
   CheckCircle,
   HelpCircle,
   MapPin,
-} from "lucide-react"
-import AnimationWrapper from "@/components/animation-wrapper"
-import ChatButton from "@/components/chat/chat-button"
-import { CTASection } from "@/components/sections/cta-section"
-import { ContactSection } from "@/components/sections/contact-section"
-import FaqAccordion from "@/components/faq-accordion"
+} from 'lucide-react';
+import AnimationWrapper from '@/components/animation-wrapper';
+import ChatButton from '@/components/chat/chat-button';
+import { CTASection } from '@/components/sections/cta-section';
+import { ContactSection } from '@/components/sections/contact-section';
+import FaqAccordion from '@/components/faq-accordion';
 
 /**
  * Property Law page component
@@ -37,17 +37,19 @@ export default function PropertyLawClientPage() {
   // Implement smooth scrolling for anchor links
   useEffect(() => {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault()
-        const href = (e.currentTarget as HTMLAnchorElement).getAttribute("href")
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const href = (e.currentTarget as HTMLAnchorElement).getAttribute(
+          'href'
+        );
         if (href) {
           document.querySelector(href)?.scrollIntoView({
-            behavior: "smooth",
-          })
+            behavior: 'smooth',
+          });
         }
-      })
-    })
-  }, [])
+      });
+    });
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -84,7 +86,10 @@ export default function PropertyLawClientPage() {
                 Property Law & Real Estate Services in ACT & NSW
               </h1>
               <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
-                Proficient Legal provides expert legal guidance for all your property transactions and real estate matters in ACT and NSW. Our experienced property lawyers ensure your interests are protected from contract to settlement.
+                Proficient Legal provides expert legal guidance for all your
+                property transactions and real estate matters in ACT and NSW.
+                Our experienced property lawyers ensure your interests are
+                protected from contract to settlement.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
@@ -92,9 +97,9 @@ export default function PropertyLawClientPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <Link href="/contact#free-enquiry">
+                  <Link href="/book-consultation">
                     <Button className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-3 font-medium">
-                      Free Consultation
+                      Book Consultation
                     </Button>
                   </Link>
                 </motion.div>
@@ -140,20 +145,35 @@ export default function PropertyLawClientPage() {
                     Comprehensive Property Law Solutions
                   </h2>
                   <p className="text-gray-600 mb-4">
-                    Proficient Legal's Property Division specializes in providing comprehensive legal support for property-related matters in the ACT and NSW regions. Our experienced team guides you through every step of your property transaction with expertise and attention to detail.
+                    Proficient Legal's Property Division specializes in
+                    providing comprehensive legal support for property-related
+                    matters in the ACT and NSW regions. Our experienced team
+                    guides you through every step of your property transaction
+                    with expertise and attention to detail.
                   </p>
                   <p className="text-gray-600 mb-4">
-                    Whether you're buying your first home, investing in commercial property, or developing real estate, our property lawyers ensure your interests are protected and the process runs smoothly from contract to settlement.
+                    Whether you're buying your first home, investing in
+                    commercial property, or developing real estate, our property
+                    lawyers ensure your interests are protected and the process
+                    runs smoothly from contract to settlement.
                   </p>
                   <p className="text-gray-600 mb-6">
-                    With our fixed-fee approach and commitment to clear communication, you'll have complete transparency throughout your property transaction, allowing you to make informed decisions with confidence.
+                    With our fixed-fee approach and commitment to clear
+                    communication, you'll have complete transparency throughout
+                    your property transaction, allowing you to make informed
+                    decisions with confidence.
                   </p>
                   <div className="flex items-center text-[#0056a8]">
                     <Phone className="h-5 w-5 mr-2" />
                     <span className="font-medium">1300 123 456</span>
                   </div>
                   <div className="mt-6">
-                    <Link href="/family-law" className="text-[#0056a8] underline font-medium">Learn more about our Family Law services</Link>
+                    <Link
+                      href="/family-law"
+                      className="text-[#0056a8] underline font-medium"
+                    >
+                      Learn more about our Family Law services
+                    </Link>
                   </div>
                 </div>
               </AnimationWrapper>
@@ -170,7 +190,9 @@ export default function PropertyLawClientPage() {
                   Our Property Law & Real Estate Services
                 </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Comprehensive legal support tailored to your property needs in ACT and NSW, including residential conveyancing, commercial property, leasing, and property disputes.
+                  Comprehensive legal support tailored to your property needs in
+                  ACT and NSW, including residential conveyancing, commercial
+                  property, leasing, and property disputes.
                 </p>
               </div>
             </AnimationWrapper>
@@ -184,12 +206,14 @@ export default function PropertyLawClientPage() {
                     <div className="h-12 w-12 rounded-full bg-[#0056a8]/10 flex items-center justify-center mb-2">
                       <Home className="h-6 w-6 text-[#0056a8]" />
                     </div>
-                    <CardTitle className="text-xl">Residential Conveyancing</CardTitle>
+                    <CardTitle className="text-xl">
+                      Residential Conveyancing
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 mb-4">
-                      Assistance with residential property transactions, ensuring a smooth process from contract to
-                      settlement.
+                      Assistance with residential property transactions,
+                      ensuring a smooth process from contract to settlement.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start">
@@ -217,12 +241,15 @@ export default function PropertyLawClientPage() {
                     <div className="h-12 w-12 rounded-full bg-[#0056a8]/10 flex items-center justify-center mb-2">
                       <Building2 className="h-6 w-6 text-[#0056a8]" />
                     </div>
-                    <CardTitle className="text-xl">Commercial Conveyancing</CardTitle>
+                    <CardTitle className="text-xl">
+                      Commercial Conveyancing
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 mb-4">
-                      Legal guidance for buying or selling commercial properties, protecting clients' interests
-                      throughout the transaction.
+                      Legal guidance for buying or selling commercial
+                      properties, protecting clients' interests throughout the
+                      transaction.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start">
@@ -250,12 +277,14 @@ export default function PropertyLawClientPage() {
                     <div className="h-12 w-12 rounded-full bg-[#0056a8]/10 flex items-center justify-center mb-2">
                       <FileContract className="h-6 w-6 text-[#0056a8]" />
                     </div>
-                    <CardTitle className="text-xl">Off-the-Plan Contracts</CardTitle>
+                    <CardTitle className="text-xl">
+                      Off-the-Plan Contracts
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 mb-4">
-                      Support in navigating off-the-plan contracts, providing clarity and assurance in this area of
-                      property law.
+                      Support in navigating off-the-plan contracts, providing
+                      clarity and assurance in this area of property law.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start">
@@ -283,12 +312,14 @@ export default function PropertyLawClientPage() {
                     <div className="h-12 w-12 rounded-full bg-[#0056a8]/10 flex items-center justify-center mb-2">
                       <Package className="h-6 w-6 text-[#0056a8]" />
                     </div>
-                    <CardTitle className="text-xl">House and Land Packages</CardTitle>
+                    <CardTitle className="text-xl">
+                      House and Land Packages
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 mb-4">
-                      Strategic advice on house and land packages, safeguarding clients' interests in significant
-                      transactions.
+                      Strategic advice on house and land packages, safeguarding
+                      clients' interests in significant transactions.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start">
@@ -316,12 +347,14 @@ export default function PropertyLawClientPage() {
                     <div className="h-12 w-12 rounded-full bg-[#0056a8]/10 flex items-center justify-center mb-2">
                       <FileEdit className="h-6 w-6 text-[#0056a8]" />
                     </div>
-                    <CardTitle className="text-xl">Variations to Crown Leases</CardTitle>
+                    <CardTitle className="text-xl">
+                      Variations to Crown Leases
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 mb-4">
-                      Expertise in handling variations to crown leases, ensuring a streamlined process tailored to
-                      specific requirements.
+                      Expertise in handling variations to crown leases, ensuring
+                      a streamlined process tailored to specific requirements.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start">
@@ -349,12 +382,15 @@ export default function PropertyLawClientPage() {
                     <div className="h-12 w-12 rounded-full bg-[#0056a8]/10 flex items-center justify-center mb-2">
                       <ClipboardList className="h-6 w-6 text-[#0056a8]" />
                     </div>
-                    <CardTitle className="text-xl">Development Applications</CardTitle>
+                    <CardTitle className="text-xl">
+                      Development Applications
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 mb-4">
-                      Assistance in preparing and navigating development applications, guiding clients through the
-                      regulatory landscape for compliance and efficiency.
+                      Assistance in preparing and navigating development
+                      applications, guiding clients through the regulatory
+                      landscape for compliance and efficiency.
                     </p>
                     <ul className="space-y-2">
                       <li className="flex items-start">
@@ -382,9 +418,12 @@ export default function PropertyLawClientPage() {
           <div className="container">
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">Our Property Law Process</h2>
+                <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+                  Our Property Law Process
+                </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  We guide you through every step of your property transaction with expertise and clarity.
+                  We guide you through every step of your property transaction
+                  with expertise and clarity.
                 </p>
               </div>
             </AnimationWrapper>
@@ -410,10 +449,13 @@ export default function PropertyLawClientPage() {
                         <span className="text-sm">1</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">Initial Consultation</h3>
+                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">
+                          Initial Consultation
+                        </h3>
                         <p className="text-gray-600">
-                          We discuss your property needs, explain our process, and provide a clear fee structure with no
-                          hidden costs.
+                          We discuss your property needs, explain our process,
+                          and provide a clear fee structure with no hidden
+                          costs.
                         </p>
                       </div>
                     </div>
@@ -425,10 +467,13 @@ export default function PropertyLawClientPage() {
                         <span className="text-sm">2</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">Contract Review</h3>
+                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">
+                          Contract Review
+                        </h3>
                         <p className="text-gray-600">
-                          Our property lawyers thoroughly review all contracts, identifying potential issues and
-                          explaining key terms in plain language.
+                          Our property lawyers thoroughly review all contracts,
+                          identifying potential issues and explaining key terms
+                          in plain language.
                         </p>
                       </div>
                     </div>
@@ -440,10 +485,13 @@ export default function PropertyLawClientPage() {
                         <span className="text-sm">3</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">Due Diligence</h3>
+                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">
+                          Due Diligence
+                        </h3>
                         <p className="text-gray-600">
-                          We conduct comprehensive searches and investigations to ensure there are no unexpected issues
-                          with the property.
+                          We conduct comprehensive searches and investigations
+                          to ensure there are no unexpected issues with the
+                          property.
                         </p>
                       </div>
                     </div>
@@ -455,10 +503,13 @@ export default function PropertyLawClientPage() {
                         <span className="text-sm">4</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">Settlement Preparation</h3>
+                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">
+                          Settlement Preparation
+                        </h3>
                         <p className="text-gray-600">
-                          We prepare all necessary documentation and coordinate with all parties to ensure a smooth
-                          settlement process.
+                          We prepare all necessary documentation and coordinate
+                          with all parties to ensure a smooth settlement
+                          process.
                         </p>
                       </div>
                     </div>
@@ -470,10 +521,13 @@ export default function PropertyLawClientPage() {
                         <span className="text-sm">5</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">Settlement & Post-Settlement</h3>
+                        <h3 className="text-xl font-semibold text-[#003b73] mb-2">
+                          Settlement & Post-Settlement
+                        </h3>
                         <p className="text-gray-600">
-                          We attend settlement on your behalf and handle all post-settlement matters, including
-                          registration of transfer and notification to relevant authorities.
+                          We attend settlement on your behalf and handle all
+                          post-settlement matters, including registration of
+                          transfer and notification to relevant authorities.
                         </p>
                       </div>
                     </div>
@@ -493,7 +547,8 @@ export default function PropertyLawClientPage() {
                   Why Choose Our Property Law Services
                 </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Experience the difference with Proficient Legal's dedicated property team.
+                  Experience the difference with Proficient Legal's dedicated
+                  property team.
                 </p>
               </div>
             </AnimationWrapper>
@@ -504,9 +559,12 @@ export default function PropertyLawClientPage() {
                   <div className="rounded-full bg-[#0056a8]/10 p-3 w-fit mb-4">
                     <MapPin className="h-6 w-6 text-[#0056a8]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#003b73] mb-3">Local Expertise</h3>
+                  <h3 className="text-xl font-semibold text-[#003b73] mb-3">
+                    Local Expertise
+                  </h3>
                   <p className="text-gray-600">
-                    Our team has extensive knowledge of ACT and NSW property markets and regulations, providing you with
+                    Our team has extensive knowledge of ACT and NSW property
+                    markets and regulations, providing you with
                     location-specific advice that matters.
                   </p>
                 </div>
@@ -531,10 +589,13 @@ export default function PropertyLawClientPage() {
                       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[#003b73] mb-3">Fixed-Fee Structure</h3>
+                  <h3 className="text-xl font-semibold text-[#003b73] mb-3">
+                    Fixed-Fee Structure
+                  </h3>
                   <p className="text-gray-600">
-                    We offer transparent, fixed-fee services so you know exactly what you're paying for with no surprise
-                    costs or hidden charges.
+                    We offer transparent, fixed-fee services so you know exactly
+                    what you're paying for with no surprise costs or hidden
+                    charges.
                   </p>
                 </div>
               </AnimationWrapper>
@@ -558,10 +619,13 @@ export default function PropertyLawClientPage() {
                       <path d="m9 12 2 2 4-4" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[#003b73] mb-3">Risk Management</h3>
+                  <h3 className="text-xl font-semibold text-[#003b73] mb-3">
+                    Risk Management
+                  </h3>
                   <p className="text-gray-600">
-                    Our proactive approach identifies and addresses potential issues before they become problems,
-                    protecting your investment and peace of mind.
+                    Our proactive approach identifies and addresses potential
+                    issues before they become problems, protecting your
+                    investment and peace of mind.
                   </p>
                 </div>
               </AnimationWrapper>
@@ -575,10 +639,13 @@ export default function PropertyLawClientPage() {
             <div className="bg-[#0056a8] rounded-xl p-8 md:p-12 shadow-lg text-white">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h2 className="text-3xl font-bold mb-4 tracking-slight">Ready to Discuss Your Property Matter?</h2>
+                  <h2 className="text-3xl font-bold mb-4 tracking-slight">
+                    Ready to Discuss Your Property Matter?
+                  </h2>
                   <p className="mb-6 text-white/90">
-                    Our team of experienced property lawyers are here to help. Contact us today for a confidential
-                    consultation and take the first step toward a smooth property transaction.
+                    Our team of experienced property lawyers are here to help.
+                    Contact us today for a confidential consultation and take
+                    the first step toward a smooth property transaction.
                   </p>
                   <div className="space-y-4 mb-8">
                     <div className="flex items-center">
@@ -592,12 +659,14 @@ export default function PropertyLawClientPage() {
                       <Mail className="h-6 w-6 mr-4" />
                       <div>
                         <h3 className="font-semibold text-lg">Email Us</h3>
-                        <p className="text-white/90">info@proficientlegal.com.au</p>
+                        <p className="text-white/90">
+                          info@proficientlegal.com.au
+                        </p>
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link href="/contact#free-enquiry">
+                    <Link href="/book-consultation">
                       <Button className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-3 font-medium">
                         <Calendar className="h-5 w-5 mr-2" />
                         Book a Consultation
@@ -633,9 +702,12 @@ export default function PropertyLawClientPage() {
           <div className="container">
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+                  Frequently Asked Questions
+                </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Find answers to common questions about property law and our services.
+                  Find answers to common questions about property law and our
+                  services.
                 </p>
               </div>
             </AnimationWrapper>
@@ -645,27 +717,31 @@ export default function PropertyLawClientPage() {
                 <FaqAccordion
                   items={[
                     {
-                      question: "How long does a typical property settlement take?",
+                      question:
+                        'How long does a typical property settlement take?',
                       answer:
-                        "In ACT and NSW, a standard property settlement typically takes 4-6 weeks from contract exchange to completion. However, this timeline can vary depending on the complexity of the transaction, financing arrangements, and whether there are any special conditions in the contract. Our team works efficiently to ensure the process moves as quickly as possible while maintaining thoroughness.",
+                        'In ACT and NSW, a standard property settlement typically takes 4-6 weeks from contract exchange to completion. However, this timeline can vary depending on the complexity of the transaction, financing arrangements, and whether there are any special conditions in the contract. Our team works efficiently to ensure the process moves as quickly as possible while maintaining thoroughness.',
                     },
                     {
-                      question: "What costs are involved in buying or selling property?",
+                      question:
+                        'What costs are involved in buying or selling property?',
                       answer:
-                        "Beyond our fixed legal fees, property transactions involve government charges such as stamp duty (for buyers), registration fees, and potentially mortgage registration fees. There may also be costs for property searches, council rates adjustments, and water service charges. We provide a comprehensive breakdown of all potential costs during our initial consultation so you can budget accordingly.",
+                        'Beyond our fixed legal fees, property transactions involve government charges such as stamp duty (for buyers), registration fees, and potentially mortgage registration fees. There may also be costs for property searches, council rates adjustments, and water service charges. We provide a comprehensive breakdown of all potential costs during our initial consultation so you can budget accordingly.',
                     },
                     {
-                      question: "What's the difference between exchange and settlement?",
+                      question:
+                        "What's the difference between exchange and settlement?",
                       answer:
-                        "Exchange is when signed contracts are swapped between buyer and seller, and the deposit is paid. This creates a legally binding agreement. Settlement is the final stage when the balance of the purchase price is paid, ownership is transferred, and keys are handed over. The period between exchange and settlement allows time for financing arrangements and final property inspections.",
+                        'Exchange is when signed contracts are swapped between buyer and seller, and the deposit is paid. This creates a legally binding agreement. Settlement is the final stage when the balance of the purchase price is paid, ownership is transferred, and keys are handed over. The period between exchange and settlement allows time for financing arrangements and final property inspections.',
                     },
                     {
-                      question: "What searches do you conduct during conveyancing?",
+                      question:
+                        'What searches do you conduct during conveyancing?',
                       answer:
-                        "We conduct a comprehensive range of searches tailored to your specific property, which may include title searches, planning certificates, land tax certificates, strata reports (for apartments), building and pest inspection reviews, and checks for government proposals that might affect the property. These searches help identify any issues that could affect your ownership or use of the property.",
+                        'We conduct a comprehensive range of searches tailored to your specific property, which may include title searches, planning certificates, land tax certificates, strata reports (for apartments), building and pest inspection reviews, and checks for government proposals that might affect the property. These searches help identify any issues that could affect your ownership or use of the property.',
                     },
                     {
-                      question: "Can you help with off-the-plan purchases?",
+                      question: 'Can you help with off-the-plan purchases?',
                       answer:
                         "Yes, we specialize in off-the-plan purchases, which involve unique considerations. We'll review the contract thoroughly, paying special attention to sunset clauses, completion timelines, specifications, and potential variations. We'll explain your rights and obligations, and help protect you from potential risks specific to off-the-plan purchases.",
                     },
@@ -694,5 +770,5 @@ export default function PropertyLawClientPage() {
 
       <ChatButton />
     </div>
-  )
+  );
 }
