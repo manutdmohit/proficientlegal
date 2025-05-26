@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import HeroTextAnimation from "@/components/hero-text-animation"
-import Link from "next/link"
-import { MessageSquare, Briefcase } from "lucide-react"
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import HeroTextAnimation from '@/components/hero-text-animation';
+import Link from 'next/link';
+import { MessageSquare, Briefcase } from 'lucide-react';
 
 /**
  * Hero section component displayed at the top of the homepage.
@@ -29,12 +29,12 @@ export function HeroSection() {
       <div className="relative h-[700px]">
         <Image
           src="/sydney-opera-house-hq.png"
-          alt="Sydney Opera House - Unified Lawyers headquarters location"
+          alt="Best Lawyers in Sydney - Proficient Legal's headquarters in Sydney CBD, offering expert legal services in family law, property law, and immigration law"
           fill
           className="object-cover"
-          priority // Load this image with high priority as it's above the fold
-          quality={100} // Use maximum quality for hero image
-          sizes="100vw" // Image will always be full viewport width
+          priority
+          quality={100}
+          sizes="100vw"
         />
       </div>
 
@@ -43,7 +43,7 @@ export function HeroSection() {
         <div className="max-w-3xl text-white drop-shadow-lg">
           {/* Animated heading with word-by-word reveal effect */}
           <HeroTextAnimation
-            text="Pioneering Excellence in Family, Property, and Immigration Law"
+            text="Best Lawyers in Australia | Expert Legal Services Sydney & Melbourne"
             className="text-4xl md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
           />
 
@@ -54,7 +54,9 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 1.5 }}
             className="text-xl mb-8 text-shadow subtitle text-white/90 leading-relaxed tracking-wide"
           >
-            Your trusted partner for legal solutions. Expert advice with a client-focused approach.
+            Australia's leading law firm offering expert legal services in
+            family law, property law, and immigration law. Find the best lawyers
+            in Sydney, Melbourne, and across Australia.
           </motion.p>
 
           {/* Call-to-action buttons with staggered animations */}
@@ -64,10 +66,13 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.8 }}
             >
-              <Link href="/book-consultation" aria-label="Request a free legal enquiry">
+              <Link
+                href="/book-consultation"
+                aria-label="Book a free consultation with our expert lawyers in Sydney and Melbourne"
+              >
                 <Button className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-6 btn-hover-effect">
                   <MessageSquare className="h-5 w-5 mr-2" aria-hidden="true" />
-                Book Consultation
+                  Book Free Consultation
                 </Button>
               </Link>
             </motion.div>
@@ -77,13 +82,16 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 2 }}
             >
-              <Link href="/#services" aria-label="View our legal services">
+              <Link
+                href="/#services"
+                aria-label="Explore our comprehensive legal services in Sydney and Melbourne"
+              >
                 <Button
                   variant="outline"
                   className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-6 btn-hover-effect"
                 >
                   <Briefcase className="h-5 w-5 mr-2" aria-hidden="true" />
-                  Our Services
+                  Our Legal Services
                 </Button>
               </Link>
             </motion.div>
@@ -91,5 +99,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

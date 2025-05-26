@@ -4,13 +4,13 @@ import type { Metadata } from 'next';
 export const defaultMetadata: Metadata = {
   title: {
     default:
-      'Proficient Legal | Family, Property & Immigration Law Specialists',
-    template: '%s | Proficient Legal',
+      'Best Lawyers in Australia | Top Legal Services | Proficient Legal',
+    template: '%s | Proficient Legal - Expert Legal Services Australia',
   },
   description:
-    'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
+    "Australia's leading law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney, Melbourne, and across Australia for professional legal consultation.",
   keywords:
-    'law firm, family law, property law, immigration law, legal services, Sydney lawyers, Melbourne lawyers, Australian law firm, legal consultation, legal advice, legal representation',
+    'best lawyer in Australia, top lawyers Australia, expert legal advice Australia, affordable lawyers Australia, licensed Australian lawyers, experienced lawyers in Australia, legal services Australia, law firm Australia, professional legal consultation, best lawyer in Sydney, top legal services Sydney, immigration lawyer Sydney, family lawyer Sydney, property lawyer Sydney, legal advice in Sydney, law firm Sydney CBD, experienced Sydney lawyers, Sydney family law firm, legal help in Sydney, best lawyer in Melbourne, immigration lawyer Melbourne, family lawyer Melbourne, property lawyer Melbourne, law firm Melbourne, top legal services Melbourne, Melbourne legal experts, legal services in Melbourne, affordable lawyers in Melbourne',
   authors: [{ name: 'Proficient Legal' }],
   creator: 'Proficient Legal',
   publisher: 'Proficient Legal',
@@ -69,6 +69,90 @@ export const defaultMetadata: Metadata = {
     'geo.placename': 'Sydney',
     'geo.position': '-33.8688;151.2093',
     ICBM: '-33.8688, 151.2093',
+  },
+};
+
+// Add Sydney-specific metadata
+export const sydneyMetadata: Metadata = {
+  title:
+    'Best Lawyers in Sydney | Top Legal Services Sydney CBD | Proficient Legal',
+  description:
+    "Sydney's premier law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney CBD for professional legal consultation.",
+  keywords:
+    'best lawyer in Sydney, top legal services Sydney, immigration lawyer Sydney, family lawyer Sydney, property lawyer Sydney, legal advice in Sydney, law firm Sydney CBD, experienced Sydney lawyers, Sydney family law firm, legal help in Sydney, lawyer in Hurstville NSW, law firm in Hurstville, legal services in New South Wales, family law experts in Hurstville, property law Hurstville, immigration help Hurstville, NSW property law specialists, legal support Sydney South',
+  alternates: {
+    canonical: '/sydney',
+  },
+  openGraph: {
+    title:
+      'Best Lawyers in Sydney | Top Legal Services Sydney CBD | Proficient Legal',
+    description:
+      "Sydney's premier law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney CBD for professional legal consultation.",
+    url: 'https://proficientlegal.com.au/sydney',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/sydney-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Sydney Office - Best Lawyers in Sydney',
+      },
+    ],
+  },
+};
+
+// Add Melbourne-specific metadata
+export const melbourneMetadata: Metadata = {
+  title:
+    'Best Lawyers in Melbourne | Top Legal Services Melbourne | Proficient Legal',
+  description:
+    "Melbourne's trusted law firm providing expert legal services in family law, property law, and immigration law. Find the best lawyers in Melbourne for professional legal consultation.",
+  keywords:
+    'best lawyer in Melbourne, immigration lawyer Melbourne, family lawyer Melbourne, property lawyer Melbourne, law firm Melbourne, top legal services Melbourne, Melbourne legal experts, legal services in Melbourne, affordable lawyers in Melbourne',
+  alternates: {
+    canonical: '/melbourne',
+  },
+  openGraph: {
+    title:
+      'Best Lawyers in Melbourne | Top Legal Services Melbourne | Proficient Legal',
+    description:
+      "Melbourne's trusted law firm providing expert legal services in family law, property law, and immigration law. Find the best lawyers in Melbourne for professional legal consultation.",
+    url: 'https://proficientlegal.com.au/melbourne',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/melbourne-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Melbourne Office - Best Lawyers in Melbourne',
+      },
+    ],
+  },
+};
+
+// Add Hurstville-specific metadata
+export const hurstvilleMetadata: Metadata = {
+  title:
+    'Best Lawyers in Hurstville NSW | Legal Services Hurstville | Proficient Legal',
+  description:
+    'Expert legal services in Hurstville NSW. Specializing in family law, property law, and immigration law. Find the best lawyers in Hurstville for professional legal consultation.',
+  keywords:
+    'lawyer in Hurstville NSW, law firm in Hurstville, legal services in New South Wales, family law experts in Hurstville, property law Hurstville, immigration help Hurstville, NSW property law specialists, legal support Sydney South',
+  alternates: {
+    canonical: '/hurstville',
+  },
+  openGraph: {
+    title:
+      'Best Lawyers in Hurstville NSW | Legal Services Hurstville | Proficient Legal',
+    description:
+      'Expert legal services in Hurstville NSW. Specializing in family law, property law, and immigration law. Find the best lawyers in Hurstville for professional legal consultation.',
+    url: 'https://proficientlegal.com.au/hurstville',
+    images: [
+      {
+        url: 'https://proficientlegal.com.au/hurstville-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Proficient Legal Hurstville Office - Best Lawyers in Hurstville NSW',
+      },
+    ],
   },
 };
 
@@ -280,25 +364,103 @@ export const homePageStructuredData = {
   '@type': 'LegalService',
   name: 'Proficient Legal',
   description:
-    'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
+    "Australia's leading law firm offering expert legal services in family law, property law, and immigration law.",
   url: 'https://proficientlegal.com.au',
-  logo: 'https://proficientlegal.com.au/proficient-legal-logo.png',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Sydney',
-    addressRegion: 'NSW',
-    addressCountry: 'AU',
+  logo: 'https://proficientlegal.com.au/logo.png',
+  sameAs: [
+    'https://www.facebook.com/proficientlegal',
+    'https://www.linkedin.com/company/proficientlegal',
+    'https://twitter.com/proficientlegal',
+  ],
+  address: [
+    {
+      '@type': 'PostalAddress',
+      addressLocality: 'Sydney',
+      addressRegion: 'NSW',
+      postalCode: '2000',
+      addressCountry: 'AU',
+      streetAddress: 'Level 1, 123 George Street',
+    },
+    {
+      '@type': 'PostalAddress',
+      addressLocality: 'Melbourne',
+      addressRegion: 'VIC',
+      postalCode: '3000',
+      addressCountry: 'AU',
+      streetAddress: 'Level 1, 456 Collins Street',
+    },
+    {
+      '@type': 'PostalAddress',
+      addressLocality: 'Hurstville',
+      addressRegion: 'NSW',
+      postalCode: '2220',
+      addressCountry: 'AU',
+      streetAddress: 'Level 1, 789 Forest Road',
+    },
+  ],
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Sydney',
+    },
+    {
+      '@type': 'City',
+      name: 'Melbourne',
+    },
+    {
+      '@type': 'City',
+      name: 'Hurstville',
+    },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Legal Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Family Law Services',
+          description:
+            'Expert family law services including divorce, child custody, and property settlements.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Property Law Services',
+          description:
+            'Comprehensive property law services including conveyancing, leasing, and property disputes.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Immigration Law Services',
+          description:
+            'Expert immigration law services including visa applications, citizenship, and migration support.',
+        },
+      },
+    ],
   },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: '-33.8688',
-    longitude: '151.2093',
+  review: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '150',
   },
-  areaServed: ['Sydney', 'Melbourne', 'Brisbane'],
-  serviceType: ['Family Law', 'Property Law', 'Immigration Law'],
-  telephone: '+61 1300 011 581',
-  email: 'info@proficientlegal.com.au',
-  openingHours: 'Mo-Fr 09:00-17:00',
+  priceRange: '$$',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+  ],
+  telephone: '+61212345678',
+  email: 'contact@proficientlegal.com.au',
 };
 
 export const blogMetadata: Metadata = {

@@ -229,8 +229,9 @@ export function MainNav() {
                   </div>
                 </div>
                 <p className="text-sm leading-snug text-muted-foreground">
-                  Expert guidance through divorce, child custody, property
-                  settlements, and all family law matters.
+                  Expert family law services including divorce, child custody,
+                  and property settlements. Find the best family lawyers in
+                  Sydney and Melbourne.
                 </p>
               </Link>
 
@@ -250,8 +251,9 @@ export function MainNav() {
                   </div>
                 </div>
                 <p className="text-sm leading-snug text-muted-foreground">
-                  Comprehensive property law services for residential and
-                  commercial matters.
+                  Comprehensive property law services including conveyancing,
+                  leasing, and property disputes. Expert property lawyers in
+                  Sydney and Melbourne.
                 </p>
               </Link>
 
@@ -271,8 +273,30 @@ export function MainNav() {
                   </div>
                 </div>
                 <p className="text-sm leading-snug text-muted-foreground">
-                  Navigating the complexities of Australian immigration law with
-                  expert guidance.
+                  Expert immigration law services including visa applications,
+                  citizenship, and migration support. Top immigration lawyers in
+                  Australia.
+                </p>
+              </Link>
+
+              <Link
+                href="/locations"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Our Locations"
+              >
+                <div className="flex items-center">
+                  <MapPin
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
+                  <div className="text-sm font-medium leading-none">
+                    Our Locations
+                  </div>
+                </div>
+                <p className="text-sm leading-snug text-muted-foreground">
+                  Visit our law offices in Sydney CBD, Melbourne, and
+                  Hurstville. Find the best lawyers near you.
                 </p>
               </Link>
             </div>
@@ -385,6 +409,18 @@ export function MainNav() {
           >
             <MessageSquare className="h-4 w-4 mr-2" aria-hidden="true" />
             Free Enquiry
+          </Link>
+        </li>
+
+        <li role="none">
+          <Link
+            href="/contact"
+            className="text-white hover:text-white/90 tracking-wide bg-transparent hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 px-4 py-2 rounded-md inline-flex h-10 items-center justify-center text-sm font-medium transition-colors whitespace-nowrap"
+            role="menuitem"
+            aria-label="Contact Us"
+          >
+            <Contact className="h-4 w-4 mr-2" aria-hidden="true" />
+            Contact Us
           </Link>
         </li>
       </ul>

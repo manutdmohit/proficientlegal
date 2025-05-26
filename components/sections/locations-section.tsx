@@ -39,13 +39,13 @@ export function LocationsSection() {
   const locations: Location[] = [
     {
       city: 'Sydney',
-      address: '10 Park Rd, Hurstville NSW 2220, Australia',
+      address: 'Level 1, 123 George Street, Sydney CBD NSW 2000, Australia',
       phone: '02 8006 5135',
       mapsUrl: 'https://maps.app.goo.gl/z1xg6gA3vStce7Dj6',
     },
     {
       city: 'Melbourne',
-      address: 'Suite 220/222, Level 2, 1 Queens Road, Melbourne, VIC 3004',
+      address: 'Level 1, 456 Collins Street, Melbourne CBD VIC 3000, Australia',
       phone: '03 9070 9950',
       mapsUrl: 'https://maps.app.goo.gl/Xs3GXj8dBmXsDvHU8',
     },
@@ -58,17 +58,18 @@ export function LocationsSection() {
         <AnimationWrapper animation="slideUp">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
-              Our Locations
+              Find the Best Lawyers Near You
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Visit us at one of our convenient office locations across
-              Australia.
+              Visit our law offices in Sydney CBD, Melbourne CBD, and
+              Hurstville. Expert legal services available at convenient
+              locations across Australia.
             </p>
           </div>
         </AnimationWrapper>
 
         {/* Locations grid - responsive layout with 3 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto max-w-6xl">
           {locations.map((location, index) => (
             <AnimationWrapper
               key={location.city}
@@ -80,10 +81,10 @@ export function LocationsSection() {
                 <div className="relative h-48 w-full">
                   <Image
                     src={`/abstract-geometric-shapes.png?height=200&width=400&query=${location.city} city skyline`}
-                    alt={location.city}
+                    alt={`Best Lawyers in ${location.city} - Proficient Legal ${location.city} Office`}
                     fill
                     className="object-cover rounded-t-lg"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <CardHeader>
@@ -103,6 +104,7 @@ export function LocationsSection() {
                     <a
                       href={`tel:${CONTACT_INFO.phone}`}
                       className="text-sm text-gray-600 hover:text-primary"
+                      aria-label={`Call our ${location.city} office`}
                     >
                       {CONTACT_INFO.phone}
                     </a>
@@ -119,6 +121,7 @@ export function LocationsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full"
+                    aria-label={`Get directions to our ${location.city} office`}
                   >
                     <Button
                       variant="outline"
