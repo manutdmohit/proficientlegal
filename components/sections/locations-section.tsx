@@ -58,18 +58,22 @@ export function LocationsSection() {
         <AnimationWrapper animation="slideUp">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
-              Find the Best Lawyers Near You
+              Expert Legal Consultation Services in Sydney & Melbourne
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              Visit our law offices in Sydney CBD, Melbourne CBD, and
-              Hurstville. Expert legal services available at convenient
-              locations across Australia.
+              Visit our leading law offices in Sydney CBD and Melbourne CBD. We
+              provide comprehensive legal consultation services, including
+              expert advice on family law, property law, and immigration
+              matters. Our experienced lawyers offer personalized legal
+              solutions and strategic guidance for your case. Book your
+              consultation with our expert lawyers today for professional legal
+              assistance.
             </p>
           </div>
         </AnimationWrapper>
 
         {/* Locations grid - responsive layout with 3 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-4xl">
           {locations.map((location, index) => (
             <AnimationWrapper
               key={location.city}
@@ -81,15 +85,15 @@ export function LocationsSection() {
                 <div className="relative h-48 w-full">
                   <Image
                     src={`/abstract-geometric-shapes.png?height=200&width=400&query=${location.city} city skyline`}
-                    alt={`Best Lawyers in ${location.city} - Proficient Legal ${location.city} Office`}
+                    alt={`Top Legal Consultation Services in ${location.city} - Proficient Legal ${location.city} Office - Expert Lawyers & Legal Advice`}
                     fill
                     className="object-cover rounded-t-lg"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 <CardHeader>
                   <CardTitle className="text-xl">
-                    {location.city} Office
+                    {location.city} Legal Consultation Office
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2 flex-grow">
@@ -104,7 +108,7 @@ export function LocationsSection() {
                     <a
                       href={`tel:${CONTACT_INFO.phone}`}
                       className="text-sm text-gray-600 hover:text-primary"
-                      aria-label={`Call our ${location.city} office`}
+                      aria-label={`Call our ${location.city} legal consultation office`}
                     >
                       {CONTACT_INFO.phone}
                     </a>
@@ -114,6 +118,26 @@ export function LocationsSection() {
                     <Clock className="h-5 w-5 text-[#0056a8] mr-2" />
                     <p className="text-gray-600">Mon-Fri: 9am-5pm</p>
                   </div>
+                  {/* Consultation services */}
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <p className="text-sm font-semibold text-[#003b73]">
+                      Professional Legal Consultation Services:
+                    </p>
+                    <ul className="mt-2 space-y-1 text-sm text-gray-600">
+                      <li>• Expert Legal Case Assessment & Strategy</li>
+                      <li>• Family Law Consultation & Advice</li>
+                      <li>• Property Law & Conveyancing Services</li>
+                      <li>• Immigration Law Consultation</li>
+                      <li>• Document Review & Legal Analysis</li>
+                      <li>• Court Representation & Litigation Support</li>
+                    </ul>
+                    <p className="mt-3 text-sm text-gray-600">
+                      Our experienced lawyers provide personalized legal
+                      solutions and strategic guidance for your specific case.
+                      Book a consultation today for professional legal
+                      assistance.
+                    </p>
+                  </div>
                 </CardContent>
                 <CardFooter className="mt-auto">
                   <a
@@ -121,7 +145,7 @@ export function LocationsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full"
-                    aria-label={`Get directions to our ${location.city} office`}
+                    aria-label={`Get directions to our ${location.city} legal consultation office`}
                   >
                     <Button
                       variant="outline"
