@@ -44,7 +44,7 @@ export function HeroSection() {
           {/* Animated heading with word-by-word reveal effect */}
           <HeroTextAnimation
             text="Best Lawyers in Australia | Expert Legal Services Sydney & Melbourne"
-            className="text-2xl mt-5 md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
+            className="text-xl mt-5 md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
           />
 
           {/* Subtitle with delayed entrance animation */}
