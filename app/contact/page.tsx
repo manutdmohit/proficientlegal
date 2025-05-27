@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useContactForm } from '@/hooks/useContactForm';
 import { Button } from '@/components/ui/button';
 import {
@@ -24,10 +24,23 @@ export default function ContactPage() {
   const { register, handleSubmit, errors, isSubmitting } =
     useContactForm('contact');
   const [activeTab, setActiveTab] = useState('contact');
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [paddingTop, setPaddingTop] = useState(80); // fallback value
+
+  useEffect(() => {
+    function updatePadding() {
+      if (headerRef.current) {
+        setPaddingTop(headerRef.current.offsetHeight);
+      }
+    }
+    updatePadding();
+    window.addEventListener('resize', updatePadding);
+    return () => window.removeEventListener('resize', updatePadding);
+  }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50 pt-[80px] md:pt-[120px] contact-mobile-padding">
-      <Header />
+    <main className="min-h-screen bg-gray-50" style={{ paddingTop }}>
+      <Header headerRef={headerRef} />
 
       {/* Hero section */}
       <section className="relative py-20 bg-[#003b73] text-white overflow-hidden">

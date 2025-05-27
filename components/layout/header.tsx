@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MainNav } from '@/components/main-nav';
@@ -16,12 +17,14 @@ import { FloatingContactPanel } from '@/components/floating-contact-panel';
  * 1. Top info bar with contact details
  * 2. Main navigation bar with logo and menu
  */
-export function Header() {
+export function Header({
+  headerRef,
+}: { headerRef?: React.RefObject<HTMLDivElement> } = {}) {
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100]">
+    <div ref={headerRef} className="fixed top-0 left-0 right-0 z-[100]">
       {/* Top info bar - Contains contact information and business hours */}
       <div className="bg-[#003b73] text-white py-2 w-full">
-        <div className="container px-4 md:px-6 mx-auto w-full">
+        <div className="container px-4 md:px-6 mmx-auto w-full">
           {/* Remove mobile view from header - it will be in the floating panel */}
           <div className="hidden">
             {/* This content is moved to the floating panel */}
