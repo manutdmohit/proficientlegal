@@ -18,7 +18,7 @@ import { FloatingContactPanel } from '@/components/floating-contact-panel';
  */
 export function Header() {
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-[100]">
       {/* Top info bar - Contains contact information and business hours */}
       <div className="bg-[#003b73] text-white py-2 w-full">
         <div className="container px-4 md:px-6 mx-auto w-full">
@@ -75,12 +75,12 @@ export function Header() {
         </div>
       </div>
 
-      {/* Main navigation header - Sticky positioned for persistent access */}
+      {/* Main navigation header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
-        className="bg-[#0056a8] py-4 sticky top-0 z-50 w-full"
+        className="bg-[#0056a8] py-4 w-full shadow-md"
       >
         <div className="container px-4 md:px-6 mx-auto w-full flex items-center">
           {/* Logo section - Left aligned */}
@@ -117,6 +117,6 @@ export function Header() {
       <div className="fixed left-6 bottom-6 md:left-10 z-50 md:hidden">
         <FloatingContactPanel />
       </div>
-    </>
+    </div>
   );
 }

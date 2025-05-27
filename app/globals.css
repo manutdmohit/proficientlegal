@@ -96,7 +96,8 @@ input,
 textarea,
 select,
 li {
-  font-family: var(--font-gt-walsheim), var(--font-montserrat), system-ui, sans-serif;
+  font-family: var(--font-gt-walsheim), var(--font-montserrat), system-ui,
+    sans-serif;
 }
 
 /* Letter spacing for different text elements */
@@ -286,7 +287,8 @@ html {
 
 .btn-hover-effect:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Card animations */
@@ -296,7 +298,8 @@ html {
 
 .card-hover-effect:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Navigation dropdown animations */
@@ -403,5 +406,11 @@ body {
 @media (min-width: 1536px) {
   .container {
     max-width: 1536px;
+  }
+}
+
+@media (max-width: 532px) {
+  .contact-mobile-padding {
+    padding-top: 56px !important;
   }
 }

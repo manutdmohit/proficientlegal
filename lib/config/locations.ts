@@ -4,9 +4,9 @@ export const LOCATIONS_CONFIG: LocationConfig = {
   locations: {
     sydney: {
       city: 'Sydney',
-      address: 'Level 1, 123 George Street, Sydney CBD NSW 2000, Australia',
-      phone: '02 8006 5135',
-      mapsUrl: 'https://maps.app.goo.gl/z1xg6gA3vStce7Dj6',
+      address: '10 Park Rd, Hurstville NSW 2220, Australia',
+      phone: '1300 011 581',
+      mapsUrl: 'https://maps.app.goo.gl/mvtu7xboXdY27LZZ7',
       services: [
         'Expert Legal Case Assessment & Strategy',
         'Family Law Consultation & Advice',
@@ -18,9 +18,9 @@ export const LOCATIONS_CONFIG: LocationConfig = {
     },
     melbourne: {
       city: 'Melbourne',
-      address: 'Level 1, 456 Collins Street, Melbourne CBD VIC 3000, Australia',
-      phone: '03 9070 9950',
-      mapsUrl: 'https://maps.app.goo.gl/Xs3GXj8dBmXsDvHU8',
+      address: 'Suite 220/222, Level 2/1 Queens Road, Melbourne, VIC 3004',
+      phone: '1300 011 581',
+      mapsUrl: 'https://maps.app.goo.gl/rRvh8ptwdhRbyuKw9',
       services: [
         'Expert Legal Case Assessment & Strategy',
         'Family Law Consultation & Advice',
