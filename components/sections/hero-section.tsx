@@ -72,7 +72,7 @@ export function HeroSection() {
               >
                 <Button className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-6 btn-hover-effect">
                   <MessageSquare className="h-5 w-5 mr-2" aria-hidden="true" />
-                  Book Free Consultation
+                  Book a Consultation
                 </Button>
               </Link>
             </motion.div>
