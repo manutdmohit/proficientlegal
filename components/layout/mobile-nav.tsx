@@ -145,7 +145,12 @@ export function MobileNav() {
                             className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Building className="h-4 w-4 mr-3" />
-                            <span>About Proficient Legal</span>
+                            <span>
+                              <span className="sm:hidden">About</span>
+                              <span className="hidden sm:inline">
+                                About Proficient Legal
+                              </span>
+                            </span>
                           </button>
                         </li>
                         <li>
