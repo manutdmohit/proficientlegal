@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import type { GoogleReview } from '@/types/google-reviews';
-import { StarRating } from './star-rating';
+import { Star } from 'lucide-react';
 import { formatReviewDate } from '@/services/google-reviews-service';
 
 interface ReviewCardProps {
@@ -31,10 +31,10 @@ export function ReviewCard({ review }: ReviewCardProps) {
   // Mobile optimized version
   if (isMobile) {
     return (
-      <div className="bg-white rounded-lg p-4 flex flex-col items-start text-left w-full shadow">
-        {/* Reviewer info in a row layout for mobile */}
-        <div className="flex items-center mb-3 w-full">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gray-200 mr-2 flex-shrink-0">
+      <div className="bg-white border border-gray-200 rounded-xl shadow-md p-5 flex flex-col h-full">
+        {/* Header: Profile, Name, Stars, Date, Google icon */}
+        <div className="flex items-center mb-3">
+          <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 mr-4">
             <Image
               src={review.reviewer.profilePhotoUrl || '/placeholder.svg'}
               alt={review.reviewer.displayName}
@@ -43,33 +43,49 @@ export function ReviewCard({ review }: ReviewCardProps) {
               priority
             />
           </div>
-          <div className="flex flex-col flex-1 min-w-0">
-            <h4 className="font-semibold text-gray-800 text-sm leading-tight truncate">
+
+          <div className="flex-1 min-w-0">
+            <div className="font-semibold text-gray-900 truncate">
               {review.reviewer.displayName}
-            </h4>
-            <div className="flex items-center mt-0.5">
-              <StarRating
-                rating={review.starRating}
-                size="sm"
-                className="mr-1"
-              />
-              <span className="text-xs text-gray-500">
+            </div>
+            <div className="flex items-center space-x-1">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className={`w-4 h-4 ${
+                    i < review.starRating
+                      ? 'text-yellow-400 fill-yellow-400'
+                      : 'text-gray-300'
+                  }`}
+                  fill={i < review.starRating ? 'currentColor' : 'none'}
+                />
+              ))}
+              <span className="text-xs text-gray-500 ml-2">
                 {formatReviewDate(review.createTime)}
               </span>
             </div>
           </div>
+          {/* Google G icon */}
+          <div className="ml-2">
+            <Image src="/google-g.svg" alt="Google" width={20} height={20} />
+          </div>
         </div>
-        {/* Review content */}
-        <p className="text-gray-700 text-sm leading-relaxed w-full break-words">
+        {/* Review Text */}
+        <div className="text-gray-700 text-base leading-relaxed mb-2 flex-grow">
           {review.comment}
-        </p>
+        </div>
+        {/* Footer */}
+        <div className="border-t pt-2 mt-auto flex items-center justify-end">
+          <span className="text-xs text-gray-500 mr-1">Posted on</span>
+          <Image src="/google-g.svg" alt="Google" width={16} height={16} />
+        </div>
       </div>
     );
   }
 
   // Desktop version
   return (
-    <div className="bg-white rounded-lg shadow-md p-5 flex flex-col w-full min-w-0">
+    <div className="bg-white rounded-lg shadow-md p-5 flex flex-col w-full min-w-0 h-full">
       {/* Reviewer information and rating */}
       <div className="flex items-start mb-3 min-w-0">
         <div className="relative w-10 h-10 rounded-full overflow-hidden mr-3 border border-gray-200 flex-shrink-0">
@@ -86,8 +102,20 @@ export function ReviewCard({ review }: ReviewCardProps) {
             {review.reviewer.displayName}
           </h4>
           <div className="flex flex-wrap items-center min-w-0">
-            <StarRating rating={review.starRating} size="sm" className="mr-2" />
-            <span className="text-xs text-gray-500">
+            <div className="flex items-center space-x-1">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className={`w-4 h-4 ${
+                    i < review.starRating
+                      ? 'text-yellow-400 fill-yellow-400'
+                      : 'text-gray-300'
+                  }`}
+                  fill={i < review.starRating ? 'currentColor' : 'none'}
+                />
+              ))}
+            </div>
+            <span className="text-xs text-gray-500 ml-2">
               {formatReviewDate(review.createTime)}
             </span>
           </div>
