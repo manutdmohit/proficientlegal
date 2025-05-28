@@ -23,7 +23,7 @@ export function Header({
   return (
     <div ref={headerRef} className="fixed top-0 left-0 right-0 z-[100]">
       {/* Top info bar - Contains contact information and business hours */}
-      <div className="bg-[#003b73] text-white py-2 w-full">
+      <div className="hidden md:flex bg-[#003b73] text-white py-2 w-full">
         <div className="container px-4 md:px-6 mmx-auto w-full">
           {/* Remove mobile view from header - it will be in the floating panel */}
           <div className="hidden">
