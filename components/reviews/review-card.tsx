@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import type { GoogleReview } from "@/types/google-reviews"
-import { StarRating } from "./star-rating"
-import { formatReviewDate } from "@/services/google-reviews-service"
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import type { GoogleReview } from '@/types/google-reviews';
+import { StarRating } from './star-rating';
+import { formatReviewDate } from '@/services/google-reviews-service';
 
 interface ReviewCardProps {
-  review: GoogleReview
+  review: GoogleReview;
 }
 
 /**
@@ -31,23 +31,31 @@ export function ReviewCard({ review }: ReviewCardProps) {
   // Mobile optimized version
   if (isMobile) {
     return (
-      <div className="bg-white rounded-lg p-3 flex flex-col items-start text-left w-full shadow">
+      <div className="bg-white rounded-lg p-4 flex flex-col items-start text-left w-full shadow">
         {/* Reviewer info in a row layout for mobile */}
-        <div className="flex items-center mb-2 w-full">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gray-200 mr-2">
+        <div className="flex items-center mb-3 w-full">
+          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-gray-200 mr-2 flex-shrink-0">
             <Image
-              src={review.reviewer.profilePhotoUrl || "/placeholder.svg"}
+              src={review.reviewer.profilePhotoUrl || '/placeholder.svg'}
               alt={review.reviewer.displayName}
               fill
               className="object-cover"
               priority
             />
           </div>
-          <div className="flex flex-col flex-1">
-            <h4 className="font-semibold text-gray-800 text-sm leading-tight">{review.reviewer.displayName}</h4>
+          <div className="flex flex-col flex-1 min-w-0">
+            <h4 className="font-semibold text-gray-800 text-sm leading-tight truncate">
+              {review.reviewer.displayName}
+            </h4>
             <div className="flex items-center mt-0.5">
-              <StarRating rating={review.starRating} size="sm" className="mr-1" />
-              <span className="text-xs text-gray-500">{formatReviewDate(review.createTime)}</span>
+              <StarRating
+                rating={review.starRating}
+                size="sm"
+                className="mr-1"
+              />
+              <span className="text-xs text-gray-500">
+                {formatReviewDate(review.createTime)}
+              </span>
             </div>
           </div>
         </div>
@@ -61,12 +69,12 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
   // Desktop version
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 sm:p-5 h-auto flex flex-col w-full min-w-0">
+    <div className="bg-white rounded-lg shadow-md p-5 flex flex-col w-full min-w-0">
       {/* Reviewer information and rating */}
-      <div className="flex items-start mb-2 sm:mb-3 min-w-0">
-        <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden mr-2 sm:mr-3 border border-gray-200 min-w-0">
+      <div className="flex items-start mb-3 min-w-0">
+        <div className="relative w-10 h-10 rounded-full overflow-hidden mr-3 border border-gray-200 flex-shrink-0">
           <Image
-            src={review.reviewer.profilePhotoUrl || "/placeholder.svg"}
+            src={review.reviewer.profilePhotoUrl || '/placeholder.svg'}
             alt={review.reviewer.displayName}
             fill
             className="object-cover"
@@ -74,24 +82,34 @@ export function ReviewCard({ review }: ReviewCardProps) {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <h4 className="font-semibold text-gray-800 text-xs sm:text-sm min-w-0">{review.reviewer.displayName}</h4>
+          <h4 className="font-semibold text-gray-800 text-sm truncate">
+            {review.reviewer.displayName}
+          </h4>
           <div className="flex flex-wrap items-center min-w-0">
             <StarRating rating={review.starRating} size="sm" className="mr-2" />
-            <span className="text-xs text-gray-500">{formatReviewDate(review.createTime)}</span>
+            <span className="text-xs text-gray-500">
+              {formatReviewDate(review.createTime)}
+            </span>
           </div>
         </div>
       </div>
-      
+
       {/* Review content with quote styling */}
-      <div className="flex-grow mb-3 sm:mb-4 w-full min-w-0">
-        <p className="text-gray-600 italic text-sm leading-relaxed w-full break-words whitespace-pre-line min-w-0">"{review.comment}"</p>
-      </div>
-      
+      <p className="text-gray-600 italic text-sm leading-relaxed w-full break-words whitespace-pre-line min-w-0 mb-3">
+        "{review.comment}"
+      </p>
+
       {/* Google logo footer */}
-      <div className="mt-auto pt-1 sm:pt-2 border-t border-gray-100 min-w-0">
-        <div className="flex justify-end items-center text-[10px] sm:text-xs text-gray-400 min-w-0">
-          <span className="mr-1 hidden xs:inline">Posted on</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 92" width="50" height="16" className="sm:w-[60px] sm:h-[20px]">
+      <div className="mt-auto pt-2 border-t border-gray-100 min-w-0">
+        <div className="flex justify-end items-center text-xs text-gray-400 min-w-0">
+          <span className="mr-1">Posted on</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 272 92"
+            width="60"
+            height="20"
+            className="flex-shrink-0"
+          >
             <path
               fill="#EA4335"
               d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"

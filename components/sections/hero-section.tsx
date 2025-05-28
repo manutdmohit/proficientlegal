@@ -44,7 +44,7 @@ export function HeroSection() {
           {/* Animated heading with word-by-word reveal effect */}
           <HeroTextAnimation
             text="Best Lawyers in Australia | Expert Legal Services Sydney & Melbourne"
-            className="text-2xl mt-5 md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
+            className="text-xl mt-5 md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
           />
 
           {/* Subtitle with delayed entrance animation */}
@@ -52,7 +52,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5 }}
-            className="text-xl mb-8 text-shadow subtitle text-white/90 leading-relaxed tracking-wide"
+            className="text-base md:text-xl mb-8 text-shadow subtitle text-white/90 leading-relaxed tracking-wide"
           >
             Australia's leading law firm offering expert legal services in
             family law, property law, and immigration law. Find the best lawyers

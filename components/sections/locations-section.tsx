@@ -106,7 +106,7 @@ export function LocationsSection() {
       <section id="locations" className="py-16" aria-label="Office Locations">
         <div className="container">
           {/* Breadcrumb Navigation */}
-          <Breadcrumb items={breadcrumbItems} />
+          {/* <Breadcrumb items={breadcrumbItems} /> */}
 
           {/* Section heading with animation */}
           <AnimationWrapper animation="slideUp">
