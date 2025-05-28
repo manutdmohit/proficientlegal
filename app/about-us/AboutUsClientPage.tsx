@@ -61,7 +61,7 @@ export default function AboutUsClientPage() {
           ></motion.div>
 
           {/* Background image container with fixed height */}
-          <div className="relative h-[500px]">
+          <div className="relative h-[600px]">
             <Image
               src="/sydney-opera-house-hq.png"
               alt="Sydney Opera House"

@@ -50,7 +50,7 @@ export default function FamilyLawPageClient() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col pt-[88px]">
       <Header />
 
       <main>
@@ -65,7 +65,7 @@ export default function FamilyLawPageClient() {
           ></motion.div>
 
           {/* Background image container with fixed height */}
-          <div className="relative h-[600px]">
+          <div className="relative h-[700px]">
             <Image
               src="/family-law-hero.png"
               alt="Family law consultation in Sydney, Melbourne, and Brisbane"
@@ -79,7 +79,7 @@ export default function FamilyLawPageClient() {
 
           {/* Content overlay positioned absolutely over the background image */}
           <div className="container absolute inset-0 flex items-center z-20">
-            <div className="max-w-3xl text-white drop-shadow-lg">
+            <div className="max-w-3xl text-white drop-shadow-lg]">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
                 Family Law Services in Sydney, Melbourne & Brisbane
               </h1>

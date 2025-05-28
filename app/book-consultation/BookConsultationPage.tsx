@@ -226,7 +226,7 @@ export default function BookConsultationPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-white pt-[88px]">
       <Header />
       <main className="flex-grow">
         {/* Hero Section */}

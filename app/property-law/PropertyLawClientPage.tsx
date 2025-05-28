@@ -52,7 +52,7 @@ export default function PropertyLawClientPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col pt-[88px]">
       <Header />
 
       <main>
@@ -67,7 +67,7 @@ export default function PropertyLawClientPage() {
           ></motion.div>
 
           {/* Background image container with fixed height */}
-          <div className="relative h-[600px]">
+          <div className="relative h-[700px]">
             <Image
               src="/modern-real-estate-city.png"
               alt="Property law and real estate services in ACT and NSW"

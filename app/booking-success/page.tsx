@@ -58,7 +58,7 @@ export default function BookingSuccess() {
   }, [session, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50 px-4 pt-[88px]">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100">
         <div className="flex justify-center mb-4">
           <span className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100">

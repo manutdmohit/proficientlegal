@@ -57,7 +57,7 @@ export default function ImmigrationLawPageClient() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col pt-[88px]">
       <Header />
 
       <main>
@@ -72,7 +72,7 @@ export default function ImmigrationLawPageClient() {
           ></motion.div>
 
           {/* Background image container with fixed height */}
-          <div className="relative h-[600px]">
+          <div className="relative h-[700px]">
             <Image
               src="/immigration-hero.png"
               alt="Immigration Law Services"
