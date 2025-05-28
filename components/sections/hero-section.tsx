@@ -40,11 +40,11 @@ export function HeroSection() {
 
       {/* Content overlay positioned absolutely over the background image */}
       <div className="container absolute inset-0 flex items-center z-20">
-        <div className="max-w-3xl text-white drop-shadow-lg">
+        <div className="max-w-xl text-white drop-shadow-lg mt-[88px]">
           {/* Animated heading with word-by-word reveal effect */}
           <HeroTextAnimation
             text="Best Lawyers in Australia | Expert Legal Services Sydney & Melbourne"
-            className="text-xl mt-5 md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
+            className="text-2xl mt-5 md:text-5xl font-bold mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
           />
 
           {/* Subtitle with delayed entrance animation */}
