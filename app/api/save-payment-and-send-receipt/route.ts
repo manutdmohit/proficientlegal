@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       consultationName: body.consultationName,
       consultationDate: body.consultationDate,
       consultationTime: body.consultationTime,
-      paymentId: body.paymentId,
+      paymentId: body.paymentId || body.stripePaymentId,
     });
 
     return NextResponse.json({ success: true });

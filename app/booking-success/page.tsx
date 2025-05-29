@@ -17,6 +17,7 @@ export default function BookingSuccess() {
         .then((data) => {
           setSession(data);
           if (data.payment_status === 'paid') {
+            // Save payment and send receipt
             fetch('/api/save-payment-and-send-receipt', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -38,10 +39,30 @@ export default function BookingSuccess() {
                 consultationTime: data.metadata?.time,
                 message: data.metadata?.message,
                 description: `Payment for ${data.metadata?.consultationName} on ${data.metadata?.date} at ${data.metadata?.time}`,
+                paymentId: data.payment_intent,
               }),
-            }).catch((error) =>
-              console.error('Error saving payment or sending receipt:', error)
-            );
+            }).catch((error) => {
+              console.error('Error saving payment or sending receipt:', error);
+            });
+
+            // Send Telegram notification
+            fetch('/api/telegram-booking', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: data.metadata?.name,
+                email: data.customer_email || data.metadata?.email,
+                phone: data.metadata?.phone,
+                date: data.metadata?.date,
+                time: data.metadata?.time,
+                consultationType: data.metadata?.consultationType,
+                consultationName: data.metadata?.consultationName,
+                consultationDuration: data.metadata?.consultationDuration,
+                message: data.metadata?.message,
+              }),
+            }).catch((error) => {
+              console.error('Error sending Telegram notification:', error);
+            });
           }
         });
     }
