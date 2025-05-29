@@ -89,87 +89,87 @@ export async function fetchGoogleReviews(
   if (!res.ok) throw new Error('Failed to fetch Google reviews');
   const data = await res.json();
 
-  // const reviews = (data.reviews || [])
-  //   .slice(0, limit)
-  //   .map((review: any, idx: number) => ({
-  //     name: `reviews/${idx + 1}`,
-  //     reviewId: review.time?.toString() || `${idx + 1}`,
-  //     reviewer: {
-  //       displayName: review.author_name,
-  //       profilePhotoUrl: review.profile_photo_url,
-  //     },
-  //     starRating: review.rating,
-  //     comment: review.text,
-  //     createTime: new Date(review.time * 1000).toISOString(),
-  //     updateTime: new Date(review.time * 1000).toISOString(),
-  //   }));
+  const reviews = (data.reviews || [])
+    .slice(0, limit)
+    .map((review: any, idx: number) => ({
+      name: `reviews/${idx + 1}`,
+      reviewId: review.time?.toString() || `${idx + 1}`,
+      reviewer: {
+        displayName: review.author_name,
+        profilePhotoUrl: review.profile_photo_url,
+      },
+      starRating: review.rating,
+      comment: review.text,
+      createTime: new Date(review.time * 1000).toISOString(),
+      updateTime: new Date(review.time * 1000).toISOString(),
+    }));
 
-  const reviews = [
-    {
-      name: 'reviews/1',
-      reviewId: '1716900000',
-      reviewer: {
-        displayName: 'Alice Johnson',
-        profilePhotoUrl: '',
-      },
-      starRating: 5,
-      comment:
-        'Outstanding service! Very professional and supportive throughout the entire process.',
-      createTime: new Date(1716900000 * 1000).toISOString(),
-      updateTime: new Date(1716900000 * 1000).toISOString(),
-    },
-    {
-      name: 'reviews/2',
-      reviewId: '1716800000',
-      reviewer: {
-        displayName: 'Mark Thompson',
-        profilePhotoUrl: '',
-      },
-      starRating: 4,
-      comment:
-        'Very helpful and knowledgeable. I would definitely recommend their services.',
-      createTime: new Date(1716800000 * 1000).toISOString(),
-      updateTime: new Date(1716800000 * 1000).toISOString(),
-    },
-    {
-      name: 'reviews/3',
-      reviewId: '1716700000',
-      reviewer: {
-        displayName: 'Sophia Lee',
-        profilePhotoUrl: '',
-      },
-      starRating: 5,
-      comment:
-        'They made everything easy to understand. Great experience overall!',
-      createTime: new Date(1716700000 * 1000).toISOString(),
-      updateTime: new Date(1716700000 * 1000).toISOString(),
-    },
-    {
-      name: 'reviews/4',
-      reviewId: '1716600000',
-      reviewer: {
-        displayName: 'James Nguyen',
-        profilePhotoUrl: '',
-      },
-      starRating: 3,
-      comment: 'Service was okay, but I expected faster responses.',
-      createTime: new Date(1716600000 * 1000).toISOString(),
-      updateTime: new Date(1716600000 * 1000).toISOString(),
-    },
-    {
-      name: 'reviews/5',
-      reviewId: '1716500000',
-      reviewer: {
-        displayName: 'Emily Davis',
-        profilePhotoUrl: '',
-      },
-      starRating: 5,
-      comment:
-        'Absolutely excellent. Highly responsive and truly cared about my case.',
-      createTime: new Date(1716500000 * 1000).toISOString(),
-      updateTime: new Date(1716500000 * 1000).toISOString(),
-    },
-  ];
+  // const reviews = [
+  //   {
+  //     name: 'reviews/1',
+  //     reviewId: '1716900000',
+  //     reviewer: {
+  //       displayName: 'Alice Johnson',
+  //       profilePhotoUrl: '',
+  //     },
+  //     starRating: 5,
+  //     comment:
+  //       'Outstanding service! Very professional and supportive throughout the entire process.',
+  //     createTime: new Date(1716900000 * 1000).toISOString(),
+  //     updateTime: new Date(1716900000 * 1000).toISOString(),
+  //   },
+  //   {
+  //     name: 'reviews/2',
+  //     reviewId: '1716800000',
+  //     reviewer: {
+  //       displayName: 'Mark Thompson',
+  //       profilePhotoUrl: '',
+  //     },
+  //     starRating: 4,
+  //     comment:
+  //       'Very helpful and knowledgeable. I would definitely recommend their services.',
+  //     createTime: new Date(1716800000 * 1000).toISOString(),
+  //     updateTime: new Date(1716800000 * 1000).toISOString(),
+  //   },
+  //   {
+  //     name: 'reviews/3',
+  //     reviewId: '1716700000',
+  //     reviewer: {
+  //       displayName: 'Sophia Lee',
+  //       profilePhotoUrl: '',
+  //     },
+  //     starRating: 5,
+  //     comment:
+  //       'They made everything easy to understand. Great experience overall!',
+  //     createTime: new Date(1716700000 * 1000).toISOString(),
+  //     updateTime: new Date(1716700000 * 1000).toISOString(),
+  //   },
+  //   {
+  //     name: 'reviews/4',
+  //     reviewId: '1716600000',
+  //     reviewer: {
+  //       displayName: 'James Nguyen',
+  //       profilePhotoUrl: '',
+  //     },
+  //     starRating: 3,
+  //     comment: 'Service was okay, but I expected faster responses.',
+  //     createTime: new Date(1716600000 * 1000).toISOString(),
+  //     updateTime: new Date(1716600000 * 1000).toISOString(),
+  //   },
+  //   {
+  //     name: 'reviews/5',
+  //     reviewId: '1716500000',
+  //     reviewer: {
+  //       displayName: 'Emily Davis',
+  //       profilePhotoUrl: '',
+  //     },
+  //     starRating: 5,
+  //     comment:
+  //       'Absolutely excellent. Highly responsive and truly cared about my case.',
+  //     createTime: new Date(1716500000 * 1000).toISOString(),
+  //     updateTime: new Date(1716500000 * 1000).toISOString(),
+  //   },
+  // ];
 
   return {
     reviews,
