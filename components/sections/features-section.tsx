@@ -34,25 +34,31 @@ export function FeaturesSection() {
   // Data for features - extracted from JSX for better maintainability
   const features: Feature[] = [
     {
-      icon: <HeartHandshake className="h-12 w-12 text-[#0056a8] mb-2" />,
+      icon: (
+        <HeartHandshake className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2" />
+      ),
       title: 'Client-Focused Approach',
       description:
         'We put your needs first, providing personalized legal solutions tailored to your specific situation.',
     },
     {
-      icon: <GraduationCap className="h-12 w-12 text-[#0056a8] mb-2" />,
+      icon: (
+        <GraduationCap className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2" />
+      ),
       title: 'Experienced Specialists',
       description:
         'Our team consists of highly experienced legal specialists with proven track records in their fields.',
     },
     {
-      icon: <MessageSquare className="h-12 w-12 text-[#0056a8] mb-2" />,
+      icon: (
+        <MessageSquare className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2" />
+      ),
       title: 'Clear Communication',
       description:
         'We explain complex legal matters in simple terms, keeping you informed throughout the process.',
     },
     {
-      icon: <Trophy className="h-12 w-12 text-[#0056a8] mb-2" />,
+      icon: <Trophy className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2" />,
       title: 'Exceptional Service',
       description:
         'Recognized for excellence in legal services across Australia with guaranteed client satisfaction.',

@@ -47,7 +47,7 @@ export function PracticeAreasSection() {
     {
       icon: (
         <UserSquare2
-          className="h-12 w-12 text-[#0056a8] mb-2"
+          className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2"
           aria-hidden="true"
         />
       ),
@@ -66,7 +66,7 @@ export function PracticeAreasSection() {
     {
       icon: (
         <Building2
-          className="h-12 w-12 text-[#0056a8] mb-2"
+          className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2"
           aria-hidden="true"
         />
       ),
@@ -85,7 +85,7 @@ export function PracticeAreasSection() {
     {
       icon: (
         <Passport
-          className="h-12 w-12 text-[#0056a8] mb-2"
+          className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2"
           aria-hidden="true"
         />
       ),
