@@ -157,8 +157,6 @@ export function GoogleReviewsSlider() {
             ))}
           </div>
           <div className="swiper-pagination"></div>
-          <div className="swiper-button-prev"></div>
-          <div className="swiper-button-next"></div>
           <div className="swiper-progress">
             <div ref={progressRef} className="swiper-progress-bar"></div>
           </div>
