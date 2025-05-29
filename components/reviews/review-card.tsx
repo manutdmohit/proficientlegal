@@ -31,7 +31,15 @@ export function ReviewCard({ review }: ReviewCardProps) {
   // Mobile optimized version
   if (isMobile) {
     return (
-      <div className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg p-5 flex flex-col h-64 transition-transform hover:scale-105">
+      <div
+        className="relative rounded-xl p-5 flex flex-col h-64 transition-transform hover:scale-105 border border-white/60 shadow-2xl backdrop-blur-2xl"
+        style={{
+          background:
+            'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)',
+          boxShadow:
+            '0 8px 32px 0 rgba(31, 38, 135, 0.18), inset 0 1.5px 8px 0 rgba(255,255,255,0.25)',
+        }}
+      >
         {/* Header: Profile, Name, Stars, Date, Google icon */}
         <div className="flex items-center mb-3">
           <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 mr-4">
@@ -95,7 +103,15 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
   // Desktop version
   return (
-    <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-5 flex flex-col w-full min-w-0 h-64 transition-transform hover:scale-105">
+    <div
+      className="relative rounded-lg p-5 flex flex-col w-full min-w-0 h-64 transition-transform hover:scale-105 border border-white/60 shadow-2xl backdrop-blur-2xl"
+      style={{
+        background:
+          'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%)',
+        boxShadow:
+          '0 8px 32px 0 rgba(31, 38, 135, 0.18), inset 0 1.5px 8px 0 rgba(255,255,255,0.25)',
+      }}
+    >
       {/* Reviewer information and rating */}
       <div className="flex items-start mb-3 min-w-0">
         <div className="relative w-10 h-10 rounded-full overflow-hidden mr-3 border border-gray-200 flex-shrink-0">

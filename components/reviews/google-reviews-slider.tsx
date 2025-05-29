@@ -11,6 +11,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { StarRating } from './star-rating';
 
 export function GoogleReviewsSlider() {
   const [reviewsData, setReviewsData] = useState<GoogleReviewsResponse | null>(
@@ -130,6 +131,7 @@ export function GoogleReviewsSlider() {
   if (!reviewsData) return null;
 
   const reviews = reviewsData.reviews || [];
+  const averageRating = reviewsData.averageRating || 0;
 
   const SectionHeader = () => (
     <div className="text-center mb-8">
@@ -138,8 +140,21 @@ export function GoogleReviewsSlider() {
         legal services.
       </p>
       <div className="flex justify-center mt-2">
-        <img src="/google-g.svg" alt="Google" className="h-6 w-6 mr-2" />
+        <img
+          src="/images/logos/google.svg"
+          alt="Google"
+          className="h-6 w-6 mr-2"
+        />
         <span className="text-sm text-gray-500">Reviewed on Google</span>
+      </div>
+      <div className="mt-2 flex flex-col items-center justify-center">
+        <div className="flex items-center gap-2">
+          <StarRating rating={averageRating} size="lg" />
+          <span className="text-xl font-bold text-yellow-600">
+            {averageRating.toFixed(1)}
+          </span>
+        </div>
+        <span className="text-sm text-gray-500">Average Rating</span>
       </div>
     </div>
   );
@@ -159,6 +174,16 @@ export function GoogleReviewsSlider() {
           <div className="swiper-pagination"></div>
           <div className="swiper-progress">
             <div ref={progressRef} className="swiper-progress-bar"></div>
+          </div>
+          <div className="text-center mt-4">
+            <a
+              href="https://www.google.com/maps/place/Proficient+Legal/@-33.9666143,151.1061199,17z/data=!3m1!5s0x6b12b9bd39ec2569:0xe4c8e07a66af9297!4m8!3m7!1s0x6b12b918c915886d:0x831b87d7b3b73802!8m2!3d-33.9666143!4d151.1061199!9m1!1b1!16s%2Fg%2F11vj2k95fc?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#0056a8] hover:bg-[#003b73] text-white font-semibold py-2 px-4 rounded"
+            >
+              View All Reviews
+            </a>
           </div>
         </div>
       </div>

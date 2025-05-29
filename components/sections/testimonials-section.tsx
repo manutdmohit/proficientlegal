@@ -44,47 +44,54 @@ export function TestimonialsSection() {
   ];
 
   return (
-    <section id="testimonials" className="py-16 bg-[#003b73] text-white">
-      <div className="container">
+    <section id="testimonials" className="py-12 bg-[#003b73] text-white">
+      <div className="container px-2 md:px-4">
         {/* Section heading with animation */}
         <AnimationWrapper animation="slideUp">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-slight">
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 md:mb-4 tracking-slight">
               What Our Clients Say
             </h2>
-            <p className="text-sm md:text-base max-w-3xl mx-auto opacity-80">
+            <p className="text-xs sm:text-sm md:text-base max-w-2xl md:max-w-3xl mx-auto opacity-80">
               Read testimonials from our satisfied clients.
             </p>
           </div>
         </AnimationWrapper>
 
         {/* Testimonials grid - responsive layout with 3 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
             <AnimationWrapper
               key={testimonial.name}
               animation="slideUp"
               delay={0.2 * index}
             >
-              {/* Semi-transparent card with backdrop blur for modern glass effect */}
-              <Card className="h-[300px] w-full bg-white/10 backdrop-blur border-none text-white flex flex-col">
-                <CardHeader className="flex-none">
+              {/* Responsive card with improved font sizes and padding */}
+              <Card className="h-[260px] sm:h-[280px] md:h-[300px] w-full bg-white/10 backdrop-blur border-none text-white flex flex-col px-4 py-5 sm:px-6 sm:py-6 md:px-8 md:py-7">
+                <CardHeader className="flex-none pb-2 md:pb-3">
                   {/* 5-star rating display */}
-                  <div className="flex text-yellow-400 mb-2">
+                  <div className="flex text-yellow-400 mb-1 md:mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-current" />
+                      <Star
+                        key={i}
+                        className="h-4 w-4 sm:h-5 sm:w-5 fill-current"
+                      />
                     ))}
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow flex flex-col">
                   {/* Testimonial quote with italic styling */}
-                  <p className="mb-4 italic tracking-normal relative pl-6 flex-grow">
-                    <Quote className="h-5 w-5 text-white/40 absolute left-0 top-0" />
+                  <p className="mb-2 md:mb-4 italic tracking-normal relative pl-6 flex-grow text-xs sm:text-sm md:text-base">
+                    <Quote className="h-4 w-4 sm:h-5 sm:w-5 text-white/40 absolute left-0 top-0" />
                     "{testimonial.text}"
                   </p>
                   <div className="mt-auto">
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm opacity-80">{testimonial.location}</p>
+                    <p className="font-semibold text-xs sm:text-sm md:text-base">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-xs sm:text-sm opacity-80">
+                      {testimonial.location}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
