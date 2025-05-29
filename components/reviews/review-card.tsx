@@ -31,7 +31,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
   // Mobile optimized version
   if (isMobile) {
     return (
-      <div className="bg-white border border-gray-200 rounded-xl shadow-md p-5 flex flex-col h-full">
+      <div className="bg-white/80 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg p-5 flex flex-col h-64 transition-transform hover:scale-105">
         {/* Header: Profile, Name, Stars, Date, Google icon */}
         <div className="flex items-center mb-3">
           <div className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 mr-4">
@@ -45,7 +45,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="font-semibold text-gray-900 truncate">
+            <div className="font-semibold text-gray-900 truncate text-lg">
               {review.reviewer.displayName}
             </div>
             <div className="flex items-center space-x-1">
@@ -67,17 +67,27 @@ export function ReviewCard({ review }: ReviewCardProps) {
           </div>
           {/* Google G icon */}
           <div className="ml-2">
-            <Image src="/google-g.svg" alt="Google" width={20} height={20} />
+            <Image
+              src="/images/logos/google.svg"
+              alt="Google"
+              width={20}
+              height={20}
+            />
           </div>
         </div>
         {/* Review Text */}
-        <div className="text-gray-700 text-base leading-relaxed mb-2 flex-grow">
+        <div className="text-gray-700 text-base leading-relaxed mb-2 flex-grow overflow-y-auto">
           {review.comment}
         </div>
         {/* Footer */}
         <div className="border-t pt-2 mt-auto flex items-center justify-end">
           <span className="text-xs text-gray-500 mr-1">Posted on</span>
-          <Image src="/google-g.svg" alt="Google" width={16} height={16} />
+          <Image
+            src="/images/logos/google.svg"
+            alt="Google"
+            width={16}
+            height={16}
+          />
         </div>
       </div>
     );
@@ -85,7 +95,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
   // Desktop version
   return (
-    <div className="bg-white rounded-lg shadow-md p-5 flex flex-col w-full min-w-0 h-full">
+    <div className="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-5 flex flex-col w-full min-w-0 h-64 transition-transform hover:scale-105">
       {/* Reviewer information and rating */}
       <div className="flex items-start mb-3 min-w-0">
         <div className="relative w-10 h-10 rounded-full overflow-hidden mr-3 border border-gray-200 flex-shrink-0">
@@ -98,7 +108,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <h4 className="font-semibold text-gray-800 text-sm truncate">
+          <h4 className="font-semibold text-gray-800 text-sm truncate text-lg">
             {review.reviewer.displayName}
           </h4>
           <div className="flex flex-wrap items-center min-w-0">
@@ -123,7 +133,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
       </div>
 
       {/* Review content with quote styling */}
-      <p className="text-gray-600 italic text-sm leading-relaxed w-full break-words whitespace-pre-line min-w-0 mb-3">
+      <p className="text-gray-600 italic text-sm leading-relaxed w-full break-words whitespace-pre-line min-w-0 mb-3 overflow-y-auto">
         "{review.comment}"
       </p>
 

@@ -6,6 +6,11 @@ import type { GoogleReviewsResponse } from '@/types/google-reviews';
 import { fetchGoogleReviews } from '@/services/google-reviews-service';
 import { ReviewCard } from './review-card';
 import { Button } from '@/components/ui/button';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export function GoogleReviewsSlider() {
   const [reviewsData, setReviewsData] = useState<GoogleReviewsResponse | null>(
@@ -13,11 +18,8 @@ export function GoogleReviewsSlider() {
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
-  const [autoScroll, setAutoScroll] = useState(true);
-  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const swiperRef = useRef<Swiper | null>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getReviews = async () => {
@@ -37,71 +39,53 @@ export function GoogleReviewsSlider() {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleCount(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleCount(2);
-      } else {
-        setVisibleCount(3);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    // Clear any existing interval
-    if (autoScrollIntervalRef.current) {
-      clearInterval(autoScrollIntervalRef.current);
+    if (reviewsData?.reviews) {
+      swiperRef.current = new Swiper('.swiper-container', {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+        on: {
+          slideChange: () => {
+            if (progressRef.current) {
+              progressRef.current.style.width = '0%';
+              progressRef.current.style.transition = 'width 5s linear';
+              progressRef.current.style.width = '100%';
+            }
+          },
+        },
+      });
     }
 
-    // Set up auto scroll interval if conditions met
-    if (reviewsData?.reviews && autoScroll) {
-      autoScrollIntervalRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          if (prevIndex >= reviewsData.reviews.length - visibleCount) {
-            return 0;
-          }
-          return prevIndex + 1;
-        });
-      }, 5000);
-    }
-
-    // Cleanup on unmount or dependency change
     return () => {
-      if (autoScrollIntervalRef.current) {
-        clearInterval(autoScrollIntervalRef.current);
+      if (swiperRef.current) {
+        swiperRef.current.destroy();
       }
     };
-  }, [reviewsData, autoScroll, visibleCount]);
-
-  const prevSlide = () => {
-    if (!reviewsData?.reviews) return;
-    setAutoScroll(false);
-    if (autoScrollIntervalRef.current) {
-      clearInterval(autoScrollIntervalRef.current);
-    }
-    setCurrentIndex((prevIndex) => {
-      if (prevIndex === 0)
-        return Math.max(0, reviewsData.reviews.length - visibleCount);
-      return Math.max(0, prevIndex - 1);
-    });
-  };
-
-  const nextSlide = () => {
-    if (!reviewsData?.reviews) return;
-    setAutoScroll(false);
-    if (autoScrollIntervalRef.current) {
-      clearInterval(autoScrollIntervalRef.current);
-    }
-    setCurrentIndex((prevIndex) => {
-      const maxIndex = Math.max(0, reviewsData.reviews.length - visibleCount);
-      return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-    });
-  };
+  }, [reviewsData]);
 
   if (isLoading) {
     return (
@@ -146,7 +130,6 @@ export function GoogleReviewsSlider() {
   if (!reviewsData) return null;
 
   const reviews = reviewsData.reviews || [];
-  const reviewCount = reviews.length;
 
   const SectionHeader = () => (
     <div className="text-center mb-8">
@@ -165,34 +148,19 @@ export function GoogleReviewsSlider() {
     <section className="py-12 bg-gray-50">
       <div className="container px-4 mx-auto">
         <SectionHeader />
-        <div className="relative">
-          <div className="flex justify-between mb-4">
-            <Button onClick={prevSlide} variant="ghost">
-              <ChevronLeft />
-            </Button>
-            <Button onClick={nextSlide} variant="ghost">
-              <ChevronRight />
-            </Button>
+        <div className="swiper-container">
+          <div className="swiper-wrapper">
+            {reviews.map((review) => (
+              <div className="swiper-slide" key={review.reviewId}>
+                <ReviewCard review={review} />
+              </div>
+            ))}
           </div>
-          <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out gap-6"
-              style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / visibleCount)
-                }%)`,
-                // width: `${(reviews.length / visibleCount) * 100}%`,
-              }}
-            >
-              {reviews.map((review) => (
-                <div
-                  className="min-w-full sm:min-w-[320px] h-auto overflow-visible"
-                  key={review.reviewId}
-                >
-                  <ReviewCard review={review} />
-                </div>
-              ))}
-            </div>
+          <div className="swiper-pagination"></div>
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
+          <div className="swiper-progress">
+            <div ref={progressRef} className="swiper-progress-bar"></div>
           </div>
         </div>
       </div>
