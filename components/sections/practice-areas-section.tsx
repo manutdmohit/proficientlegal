@@ -104,15 +104,15 @@ export function PracticeAreasSection() {
   ];
 
   return (
-    <section id="services" className="py-16 bg-white">
-      <div className="container">
+    <section id="services" className="py-8 md:py-16 bg-white">
+      <div className="container px-4 md:px-6">
         {/* Section heading with animation */}
         <AnimationWrapper animation="slideUp">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#003b73] mb-3 md:mb-4 tracking-slight">
               Expert Legal Services in Sydney & Melbourne
             </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-600 max-w-3xl mx-auto text-sm md:text-base">
               Find the best lawyers in Australia for family law, property law,
               and immigration law. Professional legal services in Sydney CBD,
               Melbourne, and across Australia.
@@ -121,7 +121,7 @@ export function PracticeAreasSection() {
         </AnimationWrapper>
 
         {/* Practice area cards grid - responsive layout with 3 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
           {practiceAreas.map((practice, index) => (
             <AnimationWrapper
               key={practice.title}
@@ -134,22 +134,31 @@ export function PracticeAreasSection() {
               >
                 {/* Colored accent bar at top of card */}
                 <div className="bg-[#0056a8] h-2 w-full"></div>
-                <CardHeader className="pb-2">
-                  {practice.icon}
-                  <CardTitle className="text-xl card-title">
-                    {practice.title}
-                  </CardTitle>
+                <CardHeader className="pb-2 px-4 md:px-6 pt-4 md:pt-6">
+                  <div className="flex items-center gap-3">
+                    <div className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8]">
+                      {practice.icon}
+                    </div>
+                    <CardTitle className="text-lg md:text-xl card-title">
+                      {practice.title}
+                    </CardTitle>
+                  </div>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-gray-600 mb-4">{practice.description}</p>
+                <CardContent className="flex-grow px-4 md:px-6">
+                  <p className="text-gray-600 mb-4 text-sm md:text-base">
+                    {practice.description}
+                  </p>
                   <ul
-                    className="space-y-2 mb-6"
+                    className="space-y-1.5 md:space-y-2 mb-4 md:mb-6"
                     aria-label={`${practice.title} services`}
                   >
                     {practice.items.map((item) => (
-                      <li key={item} className="flex items-start">
+                      <li
+                        key={item}
+                        className="flex items-start text-sm md:text-base"
+                      >
                         <ChevronRight
-                          className="h-5 w-5 text-[#0056a8] mr-2 flex-shrink-0 mt-0.5"
+                          className="h-4 w-4 md:h-5 md:w-5 text-[#0056a8] mr-2 flex-shrink-0 mt-0.5"
                           aria-hidden="true"
                         />
                         <span>{item}</span>
@@ -157,12 +166,13 @@ export function PracticeAreasSection() {
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter className="mt-auto">
+                <CardFooter className="mt-auto px-4 md:px-6 pb-4 md:pb-6">
                   <Link
                     href={`/${practice.id}`}
                     aria-label={`Learn more about our ${practice.title} services in Sydney and Melbourne`}
+                    className="w-full"
                   >
-                    <Button className="w-full bg-[#0056a8] hover:bg-[#003b73] text-white btn-hover-effect">
+                    <Button className="w-full bg-[#0056a8] hover:bg-[#003b73] text-white text-sm md:text-base py-2 md:py-3 btn-hover-effect">
                       Learn More About {practice.title}
                     </Button>
                   </Link>

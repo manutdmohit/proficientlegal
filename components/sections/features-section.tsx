@@ -60,12 +60,12 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container">
+    <section className="py-8 md:py-16 bg-gray-50">
+      <div className="container px-4 md:px-6">
         {/* Section heading with animation */}
         <AnimationWrapper animation="slideUp">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#003b73] mb-3 md:mb-4 tracking-slight">
               Why Choose Proficient Legal
             </h2>
             <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
@@ -76,7 +76,7 @@ export function FeaturesSection() {
         </AnimationWrapper>
 
         {/* Features grid - responsive layout with 4 columns on large screens */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {features.map((feature, index) => (
             <AnimationWrapper
               key={feature.title}
@@ -84,12 +84,20 @@ export function FeaturesSection() {
               delay={0.1 * index}
             >
               <Card className="h-full shadow-lg flex flex-col">
-                <CardHeader className="pb-2">
-                  {feature.icon}
-                  <CardTitle>{feature.title}</CardTitle>
+                <CardHeader className="pb-2 px-4 md:px-6 pt-4 md:pt-6">
+                  <div className="flex items-center gap-3">
+                    <div className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8]">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="text-lg md:text-xl">
+                      {feature.title}
+                    </CardTitle>
+                  </div>
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-gray-600">{feature.description}</p>
+                <CardContent className="flex-grow px-4 md:px-6 pb-4 md:pb-6">
+                  <p className="text-gray-600 text-sm md:text-base">
+                    {feature.description}
+                  </p>
                 </CardContent>
               </Card>
             </AnimationWrapper>
