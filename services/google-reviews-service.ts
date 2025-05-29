@@ -3,6 +3,18 @@ import type {
   GoogleReviewsResponse,
 } from '@/types/google-reviews';
 
+// Cache duration in milliseconds (15 minutes)
+const CACHE_DURATION = 900 * 1000;
+
+// Client-side cache
+let clientCache: {
+  data: GoogleReviewsResponse | null;
+  timestamp: number;
+} = {
+  data: null,
+  timestamp: 0,
+};
+
 /**
  * Mock Google Reviews data
  * This simulates the response we would get from the Google Business API
@@ -85,6 +97,12 @@ const mockReviews: GoogleReview[] = [
 export async function fetchGoogleReviews(
   limit = 5
 ): Promise<GoogleReviewsResponse> {
+  // Check if we have valid cached data
+  const now = Date.now();
+  if (clientCache.data && now - clientCache.timestamp < CACHE_DURATION) {
+    return clientCache.data;
+  }
+
   const res = await fetch('/api/reviews');
   if (!res.ok) throw new Error('Failed to fetch Google reviews');
   const data = await res.json();
@@ -171,11 +189,19 @@ export async function fetchGoogleReviews(
   //   },
   // ];
 
-  return {
+  const responseData: GoogleReviewsResponse = {
     reviews,
     averageRating: data.averageRating || 0,
     totalReviewCount: data.totalRatings || 0,
   };
+
+  // Update client cache
+  clientCache = {
+    data: responseData,
+    timestamp: now,
+  };
+
+  return responseData;
 }
 
 /**
