@@ -68,7 +68,7 @@ export default function FamilyLawPageClient() {
           <div className="relative h-[700px]">
             <Image
               src="/family-law-hero.png"
-              alt="Family law consultation in Sydney, Melbourne, and Brisbane"
+              alt="Family law consultation in Sydney & Melbourne"
               fill
               className="object-cover"
               priority
@@ -81,13 +81,13 @@ export default function FamilyLawPageClient() {
           <div className="container absolute inset-0 flex items-center z-20">
             <div className="max-w-3xl text-white drop-shadow-lg]">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
-                Family Law Services in Sydney, Melbourne & Brisbane
+                Family Law Services in Sydney & Melbourne
               </h1>
               <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
                 Proficient Legal specializes in family law, including divorce,
                 child custody, and property settlements. Our experienced family
-                lawyers in Sydney, Melbourne, and Brisbane provide compassionate
-                guidance for all family law matters.
+                lawyers in Sydney & Melbourne provide compassionate guidance for
+                all family law matters.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
