@@ -13,6 +13,7 @@ import {
   Send,
 } from 'lucide-react';
 import { useContactForm } from '@/hooks/useContactForm';
+import { CONTACT_INFO } from '@/lib/constants';
 
 /**
  * Call-to-Action section component with a contact form.
@@ -51,13 +52,16 @@ export function CTASection() {
                       Book a Consultation
                     </Button>
                   </Link>
-                  <Link href="tel:1300123456" className="w-full sm:w-auto">
+                  <Link
+                    href={`tel:${CONTACT_INFO.phone}`}
+                    className="w-full sm:w-auto"
+                  >
                     <Button
                       variant="outline"
                       className="w-full sm:w-auto border-[#003b73] text-[#003b73] hover:bg-[#003b73] hover:text-white text-base md:text-lg px-6 md:px-8 py-3 md:py-4 btn-hover-effect"
                     >
                       <Phone className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                      Call 1300 123 456
+                      Call {CONTACT_INFO.phone}
                     </Button>
                   </Link>
                 </div>

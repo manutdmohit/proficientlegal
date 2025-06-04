@@ -26,6 +26,7 @@ import FloatingCTAButton from '@/components/floating-cta-button';
 import { CTASection } from '@/components/sections/cta-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import FaqAccordion from '@/components/faq-accordion';
+import { CONTACT_INFO } from '@/lib/constants';
 
 /**
  * Property Law page component
@@ -83,13 +84,13 @@ export default function PropertyLawClientPage() {
           <div className="container absolute inset-0 flex items-center z-20">
             <div className="max-w-3xl text-white drop-shadow-lg">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
-                Property Law & Real Estate Services in ACT & NSW
+                Property Law & Real Estate Services in ACT, NSW, QLD & VIC
               </h1>
               <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
                 Proficient Legal provides expert legal guidance for all your
-                property transactions and real estate matters in ACT and NSW.
-                Our experienced property lawyers ensure your interests are
-                protected from contract to settlement.
+                property transactions and real estate matters across ACT, NSW,
+                Queensland and Victoria. Our experienced property lawyers ensure
+                your interests are protected from contract to settlement.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.div
@@ -147,9 +148,9 @@ export default function PropertyLawClientPage() {
                   <p className="text-gray-600 mb-4">
                     Proficient Legal's Property Division specializes in
                     providing comprehensive legal support for property-related
-                    matters in the ACT and NSW regions. Our experienced team
-                    guides you through every step of your property transaction
-                    with expertise and attention to detail.
+                    matters across ACT, NSW, Queensland and Victoria. Our
+                    experienced team guides you through every step of your
+                    property transaction with expertise and attention to detail.
                   </p>
                   <p className="text-gray-600 mb-4">
                     Whether you're buying your first home, investing in
@@ -165,15 +166,7 @@ export default function PropertyLawClientPage() {
                   </p>
                   <div className="flex items-center text-[#0056a8]">
                     <Phone className="h-5 w-5 mr-2" />
-                    <span className="font-medium">1300 123 456</span>
-                  </div>
-                  <div className="mt-6">
-                    <Link
-                      href="/family-law"
-                      className="text-[#0056a8] underline font-medium"
-                    >
-                      Learn more about our Family Law services
-                    </Link>
+                    <span className="font-medium">{CONTACT_INFO.phone}</span>
                   </div>
                 </div>
               </AnimationWrapper>
@@ -190,9 +183,10 @@ export default function PropertyLawClientPage() {
                   Our Property Law & Real Estate Services
                 </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto">
-                  Comprehensive legal support tailored to your property needs in
-                  ACT and NSW, including residential conveyancing, commercial
-                  property, leasing, and property disputes.
+                  Comprehensive legal support tailored to your property needs
+                  across ACT, NSW, Queensland and Victoria, including
+                  residential conveyancing, commercial property, leasing, and
+                  property disputes.
                 </p>
               </div>
             </AnimationWrapper>
@@ -652,7 +646,7 @@ export default function PropertyLawClientPage() {
                       <Phone className="h-6 w-6 mr-4" />
                       <div>
                         <h3 className="font-semibold text-lg">Call Us</h3>
-                        <p className="text-white/90">1300 123 456</p>
+                        <p className="text-white/90">{CONTACT_INFO.phone}</p>
                       </div>
                     </div>
                     <div className="flex items-center">
@@ -672,7 +666,7 @@ export default function PropertyLawClientPage() {
                         Book a Consultation
                       </Button>
                     </Link>
-                    <Link href="tel:1300123456">
+                    <Link href={`tel:${CONTACT_INFO.phone}`}>
                       <Button
                         variant="outline"
                         className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-3 font-medium"
