@@ -164,14 +164,6 @@ export default function FamilyLawPageClient() {
                     <Phone className="h-5 w-5 mr-2" />
                     <span className="font-medium">1300 011 581</span>
                   </div>
-                  <div className="mt-6">
-                    <Link
-                      href="/property-law"
-                      className="text-[#0056a8] underline font-medium"
-                    >
-                      Learn more about our Property Law services
-                    </Link>
-                  </div>
                 </div>
               </AnimationWrapper>
             </div>
@@ -368,13 +360,6 @@ export default function FamilyLawPageClient() {
                       </li>
                     </ul>
                   </div>
-
-                  <Link href="/family-law/process">
-                    <Button className="bg-[#0056a8] hover:bg-[#003b73] btn-hover-effect">
-                      <FileText className="h-5 w-5 mr-2" />
-                      Learn More About Our Process
-                    </Button>
-                  </Link>
                 </div>
               </AnimationWrapper>
 
