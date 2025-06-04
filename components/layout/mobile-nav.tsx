@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Sheet } from '@/components/ui/sheet';
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -231,12 +232,34 @@ export function MobileNav() {
                         </li>
                         <li>
                           <button
-                            onClick={() => handleNavigation('/immigration-law')}
+                            onClick={() => handleNavigation('/criminal-law')}
                             className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
-                            <Globe className="h-4 w-4 mr-3" />
-                            <span>Immigration Law</span>
+                            <Scale className="h-4 w-4 mr-3" />
+                            <span>Criminal Law</span>
                           </button>
+                        </li>
+                        <li>
+                          <button
+                            onClick={() => handleNavigation('/commercial-law')}
+                            className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
+                          >
+                            <Building className="h-4 w-4 mr-3" />
+                            <span>Commercial Law</span>
+                          </button>
+                        </li>
+                        <li>
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-start text-lg font-medium"
+                            onClick={() => {
+                              router.push('/immigration-law');
+                              setIsOpen(false);
+                            }}
+                          >
+                            <Globe className="mr-2 h-5 w-5" />
+                            Immigration Law
+                          </Button>
                         </li>
                       </motion.ul>
                     )}

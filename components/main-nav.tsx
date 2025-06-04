@@ -252,8 +252,49 @@ export function MainNav() {
                 </div>
                 <p className="text-sm leading-snug text-muted-foreground">
                   Comprehensive property law services including conveyancing,
-                  leasing, and property disputes. Expert property lawyers in
-                  Sydney and Melbourne.
+                  leasing, and property disputes.
+                </p>
+              </Link>
+
+              <Link
+                href="/criminal-law"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Criminal Law Services"
+              >
+                <div className="flex items-center">
+                  <Scale
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
+                  <div className="text-sm font-medium leading-none">
+                    Criminal Law
+                  </div>
+                </div>
+                <p className="text-sm leading-snug text-muted-foreground">
+                  Expert criminal defense services including bail applications,
+                  court representation, and legal advice.
+                </p>
+              </Link>
+
+              <Link
+                href="/commercial-law"
+                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
+                role="menuitem"
+                aria-label="Commercial Law Services"
+              >
+                <div className="flex items-center">
+                  <Building
+                    className="h-6 w-6 text-[#0056a8] mr-3"
+                    aria-hidden="true"
+                  />
+                  <div className="text-sm font-medium leading-none">
+                    Commercial Law
+                  </div>
+                </div>
+                <p className="text-sm leading-snug text-muted-foreground">
+                  Comprehensive commercial legal services including business
+                  formation, contracts, and dispute resolution.
                 </p>
               </Link>
 
@@ -276,27 +317,6 @@ export function MainNav() {
                   Expert immigration law services including visa applications,
                   citizenship, and migration support. Top immigration lawyers in
                   Australia.
-                </p>
-              </Link>
-
-              <Link
-                href="/locations"
-                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-[#0056a8]/50"
-                role="menuitem"
-                aria-label="Our Locations"
-              >
-                <div className="flex items-center">
-                  <MapPin
-                    className="h-6 w-6 text-[#0056a8] mr-3"
-                    aria-hidden="true"
-                  />
-                  <div className="text-sm font-medium leading-none">
-                    Our Locations
-                  </div>
-                </div>
-                <p className="text-sm leading-snug text-muted-foreground">
-                  Visit our law offices in Sydney CBD, Melbourne, and
-                  Hurstville. Find the best lawyers near you.
                 </p>
               </Link>
             </div>
