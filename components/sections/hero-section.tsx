@@ -43,7 +43,7 @@ export function HeroSection() {
         <div className="max-w-xl text-white drop-shadow-lg mt-[60px] md:mt-[88px]">
           {/* Animated heading with word-by-word reveal effect */}
           <HeroTextAnimation
-            text="Best Lawyers in Australia | Expert Legal Services Sydney & Melbourne"
+            text="Experience, Expertise, Excellence | Family, Immigration and Commercial Lawyers"
             className="text-lg sm:text-xl md:text-5xl font-bold mb-4 md:mb-6 text-shadow-lg hero-heading leading-tight tracking-tight text-white"
           />
 
