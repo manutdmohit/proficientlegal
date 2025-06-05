@@ -131,6 +131,27 @@ export function ContactSection() {
                       <Scale className="h-4 w-4 mr-2" />
                       Property Law
                     </Link>
+                    <Link
+                      href="/immigration-law"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Scale className="h-4 w-4 mr-2" />
+                      Immigration Law
+                    </Link>
+                    <Link
+                      href="/criminal-law"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Scale className="h-4 w-4 mr-2" />
+                      Criminal Law
+                    </Link>
+                    <Link
+                      href="/commercial-law"
+                      className="flex items-center text-white/80 hover:text-white transition-colors"
+                    >
+                      <Scale className="h-4 w-4 mr-2" />
+                      Commercial Law
+                    </Link>
                   </div>
                 </div>
               </div>

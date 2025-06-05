@@ -15,6 +15,8 @@ import {
   Building2,
   StampIcon as Passport,
   ChevronRight,
+  Shield,
+  BriefcaseBusinessIcon,
 } from 'lucide-react';
 import AnimationWrapper from '@/components/animation-wrapper';
 import Link from 'next/link';
@@ -99,6 +101,44 @@ export function PracticeAreasSection() {
         'Citizenship Applications',
         'Partner Visas',
         'Business Migration',
+      ],
+    },
+    {
+      icon: (
+        <Shield
+          className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2"
+          aria-hidden="true"
+        />
+      ),
+      title: 'Criminal Law',
+      id: 'criminal-law',
+      description:
+        'Expert criminal law services in Sydney and Melbourne. Specializing in criminal defense, drug offenses, and white-collar crimes. Top criminal lawyers in Australia.',
+      items: [
+        'Criminal Defense',
+        'Drug Offenses',
+        'White-Collar Crimes',
+        'Criminal Appeals',
+        'Criminal Law Mediation',
+      ],
+    },
+    {
+      icon: (
+        <BriefcaseBusinessIcon
+          className="h-8 w-8 md:h-12 md:w-12 text-[#0056a8] mb-2"
+          aria-hidden="true"
+        />
+      ),
+      title: 'Commercial Law ',
+      id: 'commercial-law',
+      description:
+        'Expert commercial law services in Sydney and Melbourne. Specializing in business contracts, corporate disputes, and commercial litigation. Leading commercial lawyers in Australia.',
+      items: [
+        'Business Contracts',
+        'Corporate Disputes',
+        'Commercial Litigation',
+        'Mergers & Acquisitions',
+        'Commercial Law Mediation',
       ],
     },
   ];
