@@ -1,14 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface AddCommentProps {
   postId: string;
   onCommentAdded?: () => void;
+  onRefresh?: () => void;
 }
 
 export default function AddComment({
   postId,
   onCommentAdded,
+  onRefresh,
 }: AddCommentProps) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -16,6 +18,16 @@ export default function AddComment({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  // Clear success message after 3 seconds
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,8 +49,10 @@ export default function AddComment({
       setEmail('');
       setComment('');
       if (onCommentAdded) onCommentAdded();
+      if (onRefresh) onRefresh();
     } else {
-      setError('Failed to add comment.');
+      const errorData = await res.json();
+      setError(errorData.error || 'Failed to add comment.');
     }
     setSubmitting(false);
   }

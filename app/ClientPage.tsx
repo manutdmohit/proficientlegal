@@ -82,7 +82,7 @@ export default function Home() {
           addressLocality: 'Melbourne',
           addressRegion: 'VIC',
           postalCode: '3004',
-          streetAddress: 'Suite 220/222, Level 2, 1 Queens Road',
+          streetAddress: 'Suite 220 1 Queens Road, Melbourne, VIC 3004',
         },
       ],
       telephone: '1300 011 581',

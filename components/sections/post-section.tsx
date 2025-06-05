@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Post {
   _id: string;
@@ -38,15 +39,16 @@ export default function PostSection() {
           return (
             <div
               key={post._id}
-              className="flex flex-col bg-white rounded-xl shadow-lg p-6"
+              className="flex flex-col items-center bg-white rounded-xl shadow-lg p-6"
             >
-              {post.imageUrl && (
-                <img
-                  src={post.imageUrl}
-                  alt={post.title}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-              )}
+              <Image
+                src="/visa-approved.jpg"
+                alt={post.title}
+                className="w-full h-96 object-cover rounded-lg mb-4 mx-auto"
+                width={500}
+                height={500}
+              />
+
               <h3 className="text-2xl font-bold text-[#003b73] mb-2">
                 {post.title}
               </h3>
