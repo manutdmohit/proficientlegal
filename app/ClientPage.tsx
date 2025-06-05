@@ -13,6 +13,7 @@ import { LocationsSection } from '@/components/sections/locations-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { GoogleReviewsSlider } from '@/components/reviews/google-reviews-slider';
 import FloatingCTAButton from '@/components/floating-cta-button';
+import PostSection from '@/components/sections/post-section';
 
 /**
  * Home page component serving as the main landing page for the law firm website.
@@ -163,6 +164,7 @@ export default function Home() {
         <GoogleReviewsSlider />
         <TeamSection />
         <CTASection />
+        <PostSection />
         <LocationsSection />
         <ContactSection />
       </main>

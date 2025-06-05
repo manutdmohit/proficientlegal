@@ -73,6 +73,7 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.56.4",
+    "react-markdown": "^10.1.0",
     "react-quill": "^2.0.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.3",
