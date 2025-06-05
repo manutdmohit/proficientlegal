@@ -18,9 +18,9 @@ export const LOCATIONS_CONFIG: LocationConfig = {
     },
     melbourne: {
       city: 'Melbourne',
-      address: 'Suite 220/222, Level 2/1 Queens Road, Melbourne, VIC 3004',
+      address: 'Suite 220 1 Queens Road, Melbourne, VIC 3004',
       phone: '1300 011 581',
-      mapsUrl: 'https://maps.app.goo.gl/rRvh8ptwdhRbyuKw9',
+      mapsUrl: 'https://maps.app.goo.gl/msDBUndEnjdGv8j47',
       services: [
         'Expert Legal Case Assessment & Strategy',
         'Family Law Consultation & Advice',
