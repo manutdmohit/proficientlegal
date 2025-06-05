@@ -77,8 +77,7 @@ export default async function PostSlugPage({
 }) {
   // Fetch post data
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
-    { next: { revalidate: 3600 } }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`
   );
   if (!res.ok) notFound();
 
