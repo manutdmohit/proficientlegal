@@ -112,16 +112,15 @@ export function LocationsSection() {
           <AnimationWrapper animation="slideUp">
             <div className="text-center mb-12">
               <h1 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
-                Expert Legal Consultation Services in Sydney & Melbourne
+                Expert Legal Services in Sydney & Melbourne
               </h1>
               <p className="text-gray-600 max-w-3xl mx-auto">
                 Visit our leading law offices in Sydney CBD and Melbourne CBD.
-                We provide comprehensive legal consultation services, including
-                expert advice on family law, property law, and immigration
-                matters. Our experienced lawyers offer personalized legal
-                solutions and strategic guidance for your case. Book your
-                consultation with our expert lawyers today for professional
-                legal assistance.
+                We provide comprehensive legal services, including expert advice
+                on family law, property law, and immigration matters. Our
+                experienced lawyers offer personalized legal solutions and
+                strategic guidance for your case. Book your consultation with
+                our expert lawyers today for professional legal assistance.
               </p>
             </div>
           </AnimationWrapper>

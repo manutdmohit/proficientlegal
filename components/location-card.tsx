@@ -50,15 +50,13 @@ export const LocationCard: React.FC<LocationCardProps> = ({
         />
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">
-          {location.city} Legal Consultation Office
-        </CardTitle>
+        <CardTitle className="text-xl">{location.city} Office</CardTitle>
       </CardHeader>
       <CardContent className="space-y-2 flex-grow">
         {/* Address with icon */}
         <div className="flex items-start">
           <MapPin className="h-5 w-5 text-[#0056a8] mr-2 mt-0.5 flex-shrink-0" />
-          <p className="text-gray-600">{location.address}</p>
+          <p className="text-gray-600 text-sm">{location.address}</p>
         </div>
         {/* Phone with icon */}
         <div className="flex items-center gap-3">
@@ -66,7 +64,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
           <a
             href={`tel:${LOCATIONS_CONFIG.contactInfo.phone}`}
             className="text-sm text-gray-600 hover:text-primary"
-            aria-label={`Call our ${location.city} legal consultation office`}
+            aria-label={`Call our ${location.city}  office`}
           >
             {LOCATIONS_CONFIG.contactInfo.phone}
           </a>
@@ -81,7 +79,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
         {/* Consultation services */}
         <div className="mt-4 pt-4 border-t border-gray-200">
           <p className="text-sm font-semibold text-[#003b73]">
-            Professional Legal Consultation Services:
+            Professional Legal Services:
           </p>
           <ul className="mt-2 space-y-1 text-sm text-gray-600">
             {location.services?.map((service, idx) => (

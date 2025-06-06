@@ -557,8 +557,8 @@ export default function PropertyLawClientPage() {
                     Local Expertise
                   </h3>
                   <p className="text-gray-600">
-                    Our team has extensive knowledge of ACT and NSW property
-                    markets and regulations, providing you with
+                    Our team has extensive knowledge of ACT, NSW, QLD and VIC
+                    property markets and regulations, providing you with
                     location-specific advice that matters.
                   </p>
                 </div>
@@ -714,7 +714,7 @@ export default function PropertyLawClientPage() {
                       question:
                         'How long does a typical property settlement take?',
                       answer:
-                        'In ACT and NSW, a standard property settlement typically takes 4-6 weeks from contract exchange to completion. However, this timeline can vary depending on the complexity of the transaction, financing arrangements, and whether there are any special conditions in the contract. Our team works efficiently to ensure the process moves as quickly as possible while maintaining thoroughness.',
+                        'In ACT, NSW, QLD and VIC, a standard property settlement typically takes 4-6 weeks from contract exchange to completion. However, this timeline can vary depending on the complexity of the transaction, financing arrangements, and whether there are any special conditions in the contract. Our team works efficiently to ensure the process moves as quickly as possible while maintaining thoroughness.',
                     },
                     {
                       question:
