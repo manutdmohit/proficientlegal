@@ -22,6 +22,7 @@ type TeamMember = {
   name: string;
   role: string;
   bio: string;
+  image: string;
 };
 
 /**
@@ -37,16 +38,19 @@ export function TeamSection() {
       name: 'Nischal Pokharel',
       role: 'Principal Solicitor / Director',
       bio: 'Leading our legal team with extensive experience in various areas of law and a strong commitment to client success.',
+      image: '/images/teams/nischal-pokharel.jpg',
     },
     {
       name: 'Steven Stefanic',
       role: 'Principal Director / Director',
       bio: "Bringing strategic leadership and deep legal expertise to drive our firm's vision and client-focused approach.",
+      image: '/images/teams/steven-stefanic.jpg',
     },
     {
       name: 'Darren Ho',
       role: 'Solicitor',
       bio: 'Dedicated legal professional providing expert counsel and representation across a range of legal matters.',
+      image: '/images/teams/darren-ho.jpg',
     },
   ];
 
@@ -73,14 +77,15 @@ export function TeamSection() {
               animation="slideUp"
               delay={0.2 * index}
             >
-              <Card className="h-full shadow-lg overflow-hidden flex flex-col">
+              <Card className="shadow-lg overflow-hidden flex flex-col">
                 {/* Team member photo */}
-                <div className="relative h-64">
+                <div className="relative w-full aspect-[3/4]">
                   <Image
-                    src={`/smiling-woman-curly-brown-hair-headshot.png?height=300&width=300&query=professional headshot of ${member.name} lawyer`}
+                    src={member.image}
                     alt={member.name}
                     fill
-                    className="object-cover"
+                    style={{ objectFit: 'cover', objectPosition: 'top 40%' }}
+                    priority
                   />
                 </div>
                 <CardHeader>
