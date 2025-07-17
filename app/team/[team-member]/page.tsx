@@ -45,8 +45,34 @@ export const teamMembers = [
   },
   {
     name: 'Steven Stefanic',
-    role: 'Principal Director / Director',
-    bio: "Bringing strategic leadership and deep legal expertise to drive our firm's vision and client-focused approach.",
+    role: 'Principal Solicitor / Director',
+    bio: `
+      <section>
+        <h2>About Steven</h2>
+        <p>Steven is a Principal of Proficient Legal with a focus on commercial litigation, business and corporate law, dispute resolution, property and family law.</p>
+        <br>
+        <h3>Education</h3>
+        <ul>
+          <li>Master of Laws, University of Sydney</li>
+          <li>Graduate Diploma in Applied Finance and Investment, Securities Institute of Australia</li>
+          <li>Graduate Diploma of Legal Practice and admitted as a Solicitor of the Supreme Court of NSW (1992)</li>
+          <li>Bachelor of Laws (with Honours), University of Sydney</li>
+          <li>Bachelor of Economics, University of Sydney</li>
+        </ul>
+        <br>
+        <h3>Experience</h3>
+        <p>Steven has held senior management positions with Australian and international banking institutions including Deutsche Bank, ING Bank, Commonwealth Bank, and Macquarie Bank advising on their finance and structuring activities both in Australia and offshore. After leaving the banking sector he decided to move into the legal services space. He assists clients on a broad range of financial and legal issues including commercial litigation, dispute resolution, business and commercial law and also family law.</p>
+        <br>
+        <h3>Key Competence and Capabilities</h3>
+        <ul>
+          <li>Strong communication and negotiation skills</li>
+          <li>Diverse expertise in legal and financial matters</li>
+          <li>Guides clients through highly complex issues in a simple and understandable manner</li>
+          <li>Results orientated and client focussed</li>
+          <li>Delivers legal and financial solutions that are cost effective, practical and within tight deadlines</li>
+        </ul>
+      </section>
+    `,
     image: '/images/teams/steven-stefanic.jpg',
   },
   {
@@ -120,14 +146,14 @@ export default function TeamMemberPage({
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, type: 'spring' }}
           >
-            <div className="relative w-72 h-72 rounded-full overflow-hidden bg-gradient-to-br from-[#6366f1] to-[#60a5fa] p-1 shadow-xl">
-              <div className="rounded-full overflow-hidden w-full h-full bg-white">
+            <div className="relative w-72 h-72 rounded-2xl overflow-hidden bg-gradient-to-br from-[#6366f1] to-[#60a5fa] p-1 shadow-xl">
+              <div className="rounded-2xl overflow-hidden w-full h-full bg-white">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
                   style={{ objectFit: 'cover', objectPosition: 'top' }}
-                  className="rounded-full shadow-lg"
+                  className="rounded-2xl shadow-lg"
                   priority
                   suppressHydrationWarning={true}
                 />
