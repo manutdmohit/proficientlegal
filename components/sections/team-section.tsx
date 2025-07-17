@@ -112,6 +112,15 @@ export function TeamSection() {
             </AnimationWrapper>
           ))}
         </div>
+        {/* View More button */}
+        <div className="flex justify-center mt-10">
+          <a
+            href="/teams"
+            className="inline-block px-6 py-3 rounded-full bg-[#003b73] text-white font-semibold shadow-md hover:bg-[#0056a8] transition-colors duration-200"
+          >
+            View More
+          </a>
+        </div>
       </div>
     </section>
   );
