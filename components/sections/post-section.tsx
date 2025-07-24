@@ -41,13 +41,14 @@ export default function PostSection() {
               key={post._id}
               className="flex flex-col items-center bg-white rounded-xl shadow-lg p-6"
             >
-              <Image
-                src="/visa-approved.jpg"
-                alt={post.title}
-                className="w-full h-96 object-cover rounded-lg mb-4 mx-auto"
-                width={500}
-                height={500}
-              />
+              <div className="w-full h-[400px] relative rounded-lg mb-4 overflow-hidden">
+                <Image
+                  src="/images/teams/darren-ho.jpg"
+                  alt={post.title}
+                  fill
+                  className="object-cover object-[center_20%]"
+                />
+              </div>
 
               <h3 className="text-2xl font-bold text-[#003b73] mb-2">
                 {post.title}

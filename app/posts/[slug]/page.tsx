@@ -53,7 +53,7 @@ export async function generateMetadata({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
       images: [
         {
-          url: post.heroImage || '/visa-approved.jpg',
+          url: post.heroImage || '/images/teams/darren-ho.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -89,7 +89,7 @@ export default async function PostSlugPage({
       <ArticleSchema
         title={post.title}
         description={post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || ''}
-        image={post.heroImage || '/visa-approved.jpg'}
+        image="/images/teams/darren-ho.jpg"
         datePublished={post.date || new Date().toISOString()}
         dateModified={post.date || new Date().toISOString()}
         authorName={post.author?.name || 'Proficient Legal'}

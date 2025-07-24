@@ -38,24 +38,24 @@ export default function PostPageClient({
   post,
   shareUrl,
 }: PostPageClientProps) {
-  // Clean content for description
   const cleanContent =
     post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || '';
 
   return (
     <section className="bg-gradient-to-b from-[#eaf4fb] to-white min-h-screen py-12">
-      <div className="pt-[88px]">
-        <div className="max-w-3xl mx-auto mb-8">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 pt-[100px]">
+        {/* IMAGE SECTION */}
+        <div className="relative w-full h-[450px] md:h-[550px] rounded-xl overflow-hidden">
           <Image
-            src={post.heroImage || '/visa-approved.jpg'}
-            alt={post.title || 'Post Image'}
-            className="w-96 h-96 object-cover rounded-xl shadow-lg mx-auto"
-            width={1000}
-            height={1000}
+            src="/images/teams/darren-ho.jpg"
+            alt={post.title}
+            fill
+            className="object-cover object-[center_20%]"
             priority
           />
         </div>
 
+        {/* CONTENT SECTION */}
         <div className="max-w-3xl mx-auto">
           <div className="mb-8 text-center">
             {post.date && (
@@ -64,13 +64,14 @@ export default function PostPageClient({
               </p>
             )}
           </div>
+
           <div className="bg-white rounded-xl shadow-xl p-8 mb-12">
             <div
               className="prose prose-lg prose-blue max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content || '' }}
             />
 
-            {/* Social Share Buttons */}
+            {/* SOCIAL SHARE BUTTONS */}
             <div className="mt-8 flex items-center gap-4">
               <span className="text-gray-600 font-medium">
                 Share this post:
@@ -94,17 +95,18 @@ export default function PostPageClient({
             </div>
           </div>
 
+          {/* COMMENTS SECTION */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold mb-4">Comments</h2>
             <AddComment postId={post._id} />
             <div className="space-y-4">
               {(post.comments ?? [])
                 .sort(
-                  (a: Comment, b: Comment) =>
+                  (a, b) =>
                     new Date(b.createdAt).getTime() -
                     new Date(a.createdAt).getTime()
                 )
-                .map((comment: Comment, idx: number) => (
+                .map((comment, idx) => (
                   <div
                     key={
                       (comment.createdAt || '') + (comment.email || '') + idx
