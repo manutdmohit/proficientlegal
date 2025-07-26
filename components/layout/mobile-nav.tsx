@@ -156,7 +156,7 @@ export function MobileNav() {
                         </li>
                         <li>
                           <button
-                            onClick={() => handleNavigation('/teams')}
+                            onClick={() => handleNavigation('/ourteam')}
                             className="flex items-center w-full text-white/90 py-2 px-4 rounded-md hover:bg-white/10"
                           >
                             <Users className="h-4 w-4 mr-3" />
