@@ -56,7 +56,7 @@ export function MobileNav({
               About Proficient Legal
             </Link>
             <Link
-              href="/teams"
+              href="/ourteam"
               className="block text-white hover:text-white/90"
               onClick={onClose}
             >
