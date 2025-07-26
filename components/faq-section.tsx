@@ -14,7 +14,7 @@ const faqItems: FAQItem[] = [
   {
     question: 'What legal services do you offer?',
     answer:
-      'We offer comprehensive legal services including family law, property law, and immigration law consultations. Our expert lawyers provide personalized solutions for all your legal needs.',
+      'We offer comprehensive legal services including family law, property law, criminal law, commercial law and immigration law consultations. Our expert lawyers provide personalized solutions for all your legal needs',
   },
   {
     question: 'Where are your offices located?',
@@ -39,7 +39,7 @@ const faqItems: FAQItem[] = [
   {
     question: 'What languages do you support?',
     answer:
-      'We provide legal services in English, Mandarin, and Cantonese to better serve our diverse client base.',
+      'Our team primarily provides legal services in English, Nepali, and Hindi. If you require assistance in another language, we are happy to arrange a professional interpreter to ensure clear and effective communication.',
   },
   {
     question: 'How long does a typical consultation last?',

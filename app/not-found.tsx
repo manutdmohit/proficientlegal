@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 import { Header } from '@/components/layout/header';
+import { ContactSection } from '@/components/sections/contact-section';
 
 const NotFoundPage = () => {
   return (
@@ -96,10 +97,10 @@ const NotFoundPage = () => {
                 <p className="text-xs sm:text-sm text-gray-600">
                   Need immediate assistance? Call our helpline at{' '}
                   <a
-                    href="tel:1300456789"
+                    href="tel:1300011581"
                     className="font-semibold text-[#0056a8]"
                   >
-                    1300 456 789
+                    1300 011 581
                   </a>
                 </p>
               </div>
@@ -109,31 +110,7 @@ const NotFoundPage = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between">
-            <div className="mb-6 md:mb-0">
-              <h3 className="text-xl font-semibold mb-4">Proficient Legal</h3>
-              <p className="text-gray-300">
-                Your trusted partner for legal solutions across Australia.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-medium mb-3">Contact Us</h4>
-              <p className="text-gray-300">Phone: 1300 456 789</p>
-              <p className="text-gray-300">
-                Email: info@proficientlegal.com.au
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
-            <p>
-              © {new Date().getFullYear()} Proficient Legal. All rights
-              reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <ContactSection />
     </div>
   );
 };

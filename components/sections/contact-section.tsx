@@ -70,7 +70,9 @@ export function ContactSection() {
                   <div>
                     <h3 className="font-semibold text-lg">Email Us</h3>
                     <p className="text-white/80">info@proficientlegal.com.au</p>
-                    <p className="text-white/80">We respond within 24 hours</p>
+                    <p className="text-white/80">
+                      We generally respond within 24 hours
+                    </p>
                   </div>
                 </div>
                 {/* Office locations information */}
@@ -90,7 +92,7 @@ export function ContactSection() {
                   <h3 className="font-semibold text-lg mb-4">Useful Links</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <Link
-                      href="/teams"
+                      href="/ourteam"
                       className="flex items-center text-white/80 hover:text-white transition-colors"
                     >
                       <Users className="h-4 w-4 mr-2" />
@@ -187,7 +189,7 @@ export function ContactSection() {
                   <div>
                     <label
                       htmlFor="contact-name"
-                      className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                      className="text-sm font-medium text-gray-700 mb-1 flex items-center"
                     >
                       <User className="h-4 w-4 mr-1 text-[#0056a8]" />
                       Full Name
@@ -207,7 +209,7 @@ export function ContactSection() {
                   <div>
                     <label
                       htmlFor="contact-phone"
-                      className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                      className="text-sm font-medium text-gray-700 mb-1 flex items-center"
                     >
                       <Phone className="h-4 w-4 mr-1 text-[#0056a8]" />
                       Phone Number
@@ -228,7 +230,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="contact-email"
-                    className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                    className="text-sm font-medium text-gray-700 mb-1 flex items-center"
                   >
                     <Mail className="h-4 w-4 mr-1 text-[#0056a8]" />
                     Email Address
@@ -248,7 +250,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="contact-subject"
-                    className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                    className="text-sm font-medium text-gray-700 mb-1 flex items-center"
                   >
                     <FileText className="h-4 w-4 mr-1 text-[#0056a8]" />
                     Subject
@@ -268,7 +270,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="contact-message"
-                    className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                    className="text-sm font-medium text-gray-700 mb-1 flex items-center"
                   >
                     <MessageSquare className="h-4 w-4 mr-1 text-[#0056a8]" />
                     Message
