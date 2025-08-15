@@ -33,7 +33,7 @@ const paymentSchema = new mongoose.Schema({
   },
   consultationType: {
     type: String,
-    enum: ['comprehensive', 'targeted'],
+    enum: ['comprehensive', 'targeted', 'fast'],
     required: true,
   },
   consultationName: {
@@ -87,5 +87,13 @@ paymentSchema.pre('save', function (next) {
   next();
 });
 
-export default mongoose.models.Payment ||
-  mongoose.model('Payment', paymentSchema);
+// Function to get the Payment model with updated schema
+function getPaymentModel() {
+  // Force model recreation to ensure schema updates are applied
+  if (mongoose.models.Payment) {
+    delete mongoose.models.Payment;
+  }
+  return mongoose.model('Payment', paymentSchema);
+}
+
+export default getPaymentModel();

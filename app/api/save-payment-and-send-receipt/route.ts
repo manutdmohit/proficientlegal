@@ -6,6 +6,12 @@ import { sendPaymentReceiptEmail } from '@/app/utils/sendgrid';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    console.log('Payment data received:', {
+      consultationType: body.consultationType,
+      consultationName: body.consultationName,
+      amount: body.amount,
+    });
+
     await connectDB();
 
     // Save payment to DB
@@ -28,6 +34,17 @@ export async function POST(req: NextRequest) {
       message: body.message,
       description: body.description,
     });
+
+    // Validate the payment object before saving
+    const validationError = payment.validateSync();
+    if (validationError) {
+      console.error('Payment validation error:', validationError);
+      return NextResponse.json(
+        { error: `Payment validation failed: ${validationError.message}` },
+        { status: 400 }
+      );
+    }
+
     await payment.save();
 
     // Send payment receipt email
@@ -45,8 +62,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error saving payment or sending receipt:', error);
+    console.error('Error details:', {
+      name: error instanceof Error ? error.name : 'Unknown',
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     return NextResponse.json(
-      { error: 'Failed to save payment or send receipt' },
+      {
+        error: `Failed to save payment or send receipt: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      },
       { status: 500 }
     );
   }

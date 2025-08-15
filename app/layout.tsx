@@ -42,7 +42,7 @@ export default function RootLayout({
         <meta name="geo.position" content="-33.8688;151.2093" />
         <meta name="ICBM" content="-33.8688, 151.2093" />
       </head>
-      <body className={gtWalsheim.className}>
+      <body className={gtWalsheim.className} suppressHydrationWarning>
         <Suspense fallback={<LoadingSpinner />}>
           <ClientLayout>{children}</ClientLayout>
         </Suspense>

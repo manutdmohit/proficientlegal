@@ -34,10 +34,19 @@ const OPTIONS = [
     type: 'targeted',
     name: 'Targeted Consultation',
     duration: '30 mins',
+    price: 330,
+    stripeAmount: 33000,
+    description:
+      'A focused 30-minute session for specific questions or a second opinion on your legal issue.',
+  },
+  {
+    type: 'fast',
+    name: 'Fast Consultation',
+    duration: '10 mins',
     price: 110,
     stripeAmount: 11000,
     description:
-      'A focused 30-minute session for specific questions or a second opinion on your legal issue.',
+      'A quick consultation for urgent legal questions that need immediate guidance and direction.',
   },
 ];
 
@@ -109,6 +118,27 @@ export default function BookConsultationPage() {
     return day === 0 || day === 6; // 0 is Sunday, 6 is Saturday
   };
 
+  // Function to validate Australian phone numbers
+  const validateAustralianPhone = (phone: string) => {
+    // Remove all non-digit characters for validation
+    const digitsOnly = phone.replace(/\D/g, '');
+
+    // Australian phone number patterns:
+    // Mobile: 04XX XXX XXX (10 digits starting with 04)
+    // Landline: 0X XXXX XXXX (10 digits starting with 02, 03, 07, 08)
+    // International format: +61 X XXXX XXXX (11 digits starting with 61)
+
+    if (digitsOnly.length === 10) {
+      // Australian domestic format
+      return /^0[23478]\d{8}$/.test(digitsOnly);
+    } else if (digitsOnly.length === 11 && digitsOnly.startsWith('61')) {
+      // International format (+61)
+      return /^61[23478]\d{8}$/.test(digitsOnly);
+    }
+
+    return false;
+  };
+
   const validateForm = () => {
     const newErrors = {
       name: !form.name ? 'Name is required' : '',
@@ -119,8 +149,8 @@ export default function BookConsultationPage() {
         : '',
       phone: !form.phone
         ? 'Phone number is required'
-        : !/^\+?[\d\s-]{8,}$/.test(form.phone)
-        ? 'Invalid phone number'
+        : !validateAustralianPhone(form.phone)
+        ? 'Please enter a valid Australian phone number (e.g., 0412 345 678 or +61 412 345 678)'
         : '',
       date: !form.date ? 'Date is required' : '',
       time: !form.time ? 'Time is required' : '',
@@ -322,7 +352,7 @@ export default function BookConsultationPage() {
                     className={`mt-1.5 focus:ring-2 focus:ring-blue-500 ${
                       errors.phone ? 'border-red-500' : ''
                     }`}
-                    placeholder="+1 (555) 555-5555"
+                    placeholder="0412 345 678 or +61 412 345 678"
                   />
                   {errors.phone && (
                     <p className="text-red-500 text-sm mt-1">{errors.phone}</p>

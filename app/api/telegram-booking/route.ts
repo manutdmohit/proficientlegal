@@ -56,7 +56,7 @@ ${message || 'No additional information provided'}
 ⏰ Booking Time: ${new Date().toLocaleString()}
     `.trim();
 
-    // Send to individual chat
+    // Send to individual chat with timeout
     const individualResponse = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
       {
@@ -70,10 +70,11 @@ ${message || 'No additional information provided'}
           parse_mode: 'MarkdownV2',
           disable_web_page_preview: true,
         }),
+        signal: AbortSignal.timeout(15000), // 15 second timeout
       }
     );
 
-    // Send to group
+    // Send to group with timeout
     const groupResponse = await fetch(
       `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_GROUP_ID}&text=${encodeURIComponent(
         telegramMessage
@@ -83,12 +84,17 @@ ${message || 'No additional information provided'}
         headers: {
           'Content-Type': 'application/json',
         },
+        signal: AbortSignal.timeout(15000), // 15 second timeout
       }
     );
 
     if (!individualResponse.ok || !groupResponse.ok) {
-      const individualError = await individualResponse.json();
-      const groupError = await groupResponse.json();
+      const individualError = await individualResponse
+        .json()
+        .catch(() => ({ description: 'Unknown error' }));
+      const groupError = await groupResponse
+        .json()
+        .catch(() => ({ description: 'Unknown error' }));
       throw new Error(
         `Telegram API errors: Individual: ${
           individualError.description || 'Unknown error'
