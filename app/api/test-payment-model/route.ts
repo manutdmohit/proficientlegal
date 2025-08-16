@@ -6,25 +6,25 @@ export async function GET(req: NextRequest) {
   try {
     await connectDB();
 
-    // Test creating a payment object with 'fast' consultation type
+    // Test creating a payment object with 'after-hours' consultation type
     const testPayment = new Payment({
       userId: '000000000000000000000000', // Test user ID
-      amount: 110,
+      amount: 550,
       currency: 'AUD',
       status: 'completed',
       paymentMethod: 'card',
       stripePaymentId: 'test_payment_id',
       stripeSessionId: 'test_session_id',
-      consultationType: 'fast',
-      consultationName: 'Fast Consultation',
-      consultationDuration: '10 mins',
+      consultationType: 'after-hours',
+      consultationName: 'After Hours Consultation',
+      consultationDuration: '1 hr',
       consultationDate: new Date(),
-      consultationTime: '10:00',
+      consultationTime: '17:30',
       customerName: 'Test Customer',
       customerEmail: 'test@example.com',
       customerPhone: '1234567890',
       message: 'Test message',
-      description: 'Test payment for Fast Consultation',
+      description: 'Test payment for After Hours Consultation',
     });
 
     // Validate without saving
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Payment model accepts "fast" consultation type',
+      message: 'Payment model accepts "after-hours" consultation type',
       paymentData: {
         consultationType: testPayment.consultationType,
         consultationName: testPayment.consultationName,
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error.message,
+        error: error instanceof Error ? error.message : String(error),
       },
       { status: 500 }
     );

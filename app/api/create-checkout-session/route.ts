@@ -54,7 +54,11 @@ export async function POST(req: NextRequest) {
               description:
                 consultationType === 'comprehensive'
                   ? 'A full hour with a senior lawyer to discuss your matter in detail, review documents, and provide tailored legal advice.'
-                  : 'A focused 30-minute session for specific questions or a second opinion on your legal issue.',
+                  : consultationType === 'after-hours'
+                  ? 'For urgent consultations outside of regular business hours. Available M-F 5:30 PM - 9:00 PM and 9:00 AM - 12:00 PM Saturday and Sunday.'
+                  : consultationType === 'targeted'
+                  ? 'A focused 30-minute session for specific questions or a second opinion on your legal issue.'
+                  : 'A quick consultation for urgent legal questions that need immediate guidance and direction.',
             },
             unit_amount: stripeAmount || 10000, // fallback to $100
           },

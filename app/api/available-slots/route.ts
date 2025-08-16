@@ -31,13 +31,23 @@ export async function GET(req: NextRequest) {
       // Add the booked time slot
       bookedTimeSlots.add(slot.consultationTime);
 
-      // If it's a comprehensive consultation (1 hour), also block the next hour
+      // If it's a comprehensive consultation or after-hours consultation (1 hour), also block the next 30-minute slot
       if (slot.consultationDuration === '1 hr') {
         const [hours, minutes] = slot.consultationTime.split(':');
-        const nextHour = `${(parseInt(hours) + 1)
-          .toString()
-          .padStart(2, '0')}:${minutes}`;
-        bookedTimeSlots.add(nextHour);
+        let nextSlot;
+
+        if (minutes === '00') {
+          // If it's on the hour, block the next 30-minute slot
+          nextSlot = `${hours}:30`;
+        } else if (minutes === '30') {
+          // If it's on the half hour, block the next hour
+          const nextHour = (parseInt(hours) + 1).toString().padStart(2, '0');
+          nextSlot = `${nextHour}:00`;
+        }
+
+        if (nextSlot) {
+          bookedTimeSlots.add(nextSlot);
+        }
       }
     });
 

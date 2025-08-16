@@ -33,7 +33,7 @@ const paymentSchema = new mongoose.Schema({
   },
   consultationType: {
     type: String,
-    enum: ['comprehensive', 'targeted', 'fast'],
+    enum: ['comprehensive', 'targeted', 'fast', 'after-hours'],
     required: true,
   },
   consultationName: {
