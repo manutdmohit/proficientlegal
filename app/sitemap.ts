@@ -1,146 +1,80 @@
 import { MetadataRoute } from 'next';
 
-// This would typically come from your database or CMS
-async function getBlogPosts() {
-  // Implement your blog post fetching logic here
-  // For now, returning an empty array as placeholder
-  return [];
-}
-
-// This would typically come from your database or CMS
-async function getServicePages() {
-  return [
-    {
-      url: '/family-law',
-      lastModified: new Date(),
-      images: [
-        {
-          url: '/family-law-hero.png',
-          title: 'Family Law Services',
-        },
-        {
-          url: '/family-consultation.png',
-          title: 'Family Law Consultation',
-        },
-      ],
-    },
-    {
-      url: '/property-law',
-      lastModified: new Date(),
-      images: [
-        {
-          url: '/property-law-process.png',
-          title: 'Property Law Process',
-        },
-        {
-          url: '/property-lawyer-consultation.png',
-          title: 'Property Law Consultation',
-        },
-      ],
-    },
-    {
-      url: '/immigration-law',
-      lastModified: new Date(),
-      images: [
-        {
-          url: '/immigration-hero.png',
-          title: 'Immigration Law Services',
-        },
-        {
-          url: '/immigration-consultation.png',
-          title: 'Immigration Consultation',
-        },
-      ],
-    },
-  ];
-}
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://proficientlegal.com.au';
 
-  // Get dynamic blog posts
-  const blogPosts = await getBlogPosts();
-  const servicePages = await getServicePages();
-
-  // Define static routes with their priorities
-  const staticRoutes = [
+  return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'weekly',
       priority: 1,
     },
     {
       url: `${baseUrl}/about-us`,
       lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/book-consultation`,
+      url: `${baseUrl}/family-law`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/free-enquiry`,
+      url: `${baseUrl}/property-law`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/testimonials`,
+      url: `${baseUrl}/immigration-law`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/criminal-law`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/commercial-law`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/locations`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/teams`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/testimonials`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/team`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/locations`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
   ];
-
-  // Map service pages to sitemap format
-  const serviceRoutes = servicePages.map((page) => ({
-    url: `${baseUrl}${page.url}`,
-    lastModified: page.lastModified,
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-    // Add images to sitemap
-    images: page.images.map((image) => ({
-      url: `${baseUrl}${image.url}`,
-      title: image.title,
-    })),
-  }));
-
-  // Map blog posts to sitemap format (when implemented)
-  const blogRoutes = blogPosts.map((post: any) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.lastModified,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-    images: post.images
-      ? post.images.map((image: any) => ({
-          url: `${baseUrl}${image.url}`,
-          title: image.title,
-        }))
-      : [],
-  }));
-
-  // Combine all routes
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
 }

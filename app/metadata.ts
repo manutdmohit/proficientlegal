@@ -8,9 +8,9 @@ export const defaultMetadata: Metadata = {
     template: '%s | Proficient Legal - Expert Legal Services Australia',
   },
   description:
-    "Australia's leading law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney, Melbourne, and across Australia for professional legal consultation.",
-  keywords:
-    'best lawyer in Australia, top lawyers Australia, expert legal advice Australia, affordable lawyers Australia, licensed Australian lawyers, experienced lawyers in Australia, legal services Australia, law firm Australia, professional legal consultation, best lawyer in Sydney, top legal services Sydney, immigration lawyer Sydney, family lawyer Sydney, property lawyer Sydney, legal advice in Sydney, law firm Sydney CBD, experienced Sydney lawyers, Sydney family law firm, legal help in Sydney, best lawyer in Melbourne, immigration lawyer Melbourne, family lawyer Melbourne, property lawyer Melbourne, law firm Melbourne, top legal services Melbourne, Melbourne legal experts, legal services in Melbourne, affordable lawyers in Melbourne',
+    "Australia's leading law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney, Melbourne, and across Australia for professional legal consultation. Multilingual lawyers including Nepali-speaking legal professionals.",
+  // Note: Meta keywords are ignored by Google since 2009
+  // Focus on title, description, and content optimization instead
   authors: [{ name: 'Proficient Legal' }],
   creator: 'Proficient Legal',
   publisher: 'Proficient Legal',
@@ -30,7 +30,7 @@ export const defaultMetadata: Metadata = {
     siteName: 'Proficient Legal',
     title: 'Proficient Legal | Family, Property & Immigration Law Specialists',
     description:
-      'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia.',
+      'Pioneering excellence in family, property, and immigration law. Your trusted partner for legal solutions across Australia. Multilingual lawyers including Nepali-speaking legal professionals.',
     images: [
       {
         url: 'https://proficientlegal.com.au/og-image.jpg',
@@ -69,6 +69,16 @@ export const defaultMetadata: Metadata = {
     'geo.placename': 'Sydney',
     'geo.position': '-33.8688;151.2093',
     ICBM: '-33.8688, 151.2093',
+    language: 'en, ne, hi, ur, bn',
+    audience: 'Nepali community, multicultural communities, legal services',
+    'target-audience': 'Nepali speakers, immigrants, multicultural families',
+    'revisit-after': '7 days',
+    distribution: 'global',
+    rating: 'general',
+    expires: 'never',
+    'cache-control': 'public, max-age=31536000',
+    'content-language': 'en-AU',
+    'content-type': 'text/html; charset=utf-8',
   },
 };
 
@@ -77,9 +87,8 @@ export const sydneyMetadata: Metadata = {
   title:
     'Best Lawyers in Sydney | Top Legal Services Sydney CBD | Proficient Legal',
   description:
-    "Sydney's premier law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney CBD for professional legal consultation.",
-  keywords:
-    'best lawyer in Sydney, top legal services Sydney, immigration lawyer Sydney, family lawyer Sydney, property lawyer Sydney, legal advice in Sydney, law firm Sydney CBD, experienced Sydney lawyers, Sydney family law firm, legal help in Sydney, lawyer in Hurstville NSW, law firm in Hurstville, legal services in New South Wales, family law experts in Hurstville, property law Hurstville, immigration help Hurstville, NSW property law specialists, legal support Sydney South',
+    "Sydney's premier law firm offering expert legal services in family law, property law, and immigration law. Find the best lawyers in Sydney CBD for professional legal consultation. Expert Nepali-speaking lawyers available for the Nepali community.",
+  // Meta keywords removed - focus on content optimization
   alternates: {
     canonical: '/sydney',
   },
@@ -105,9 +114,8 @@ export const melbourneMetadata: Metadata = {
   title:
     'Best Lawyers in Melbourne | Top Legal Services Melbourne | Proficient Legal',
   description:
-    "Melbourne's trusted law firm providing expert legal services in family law, property law, and immigration law. Find the best lawyers in Melbourne for professional legal consultation.",
-  keywords:
-    'best lawyer in Melbourne, immigration lawyer Melbourne, family lawyer Melbourne, property lawyer Melbourne, law firm Melbourne, top legal services Melbourne, Melbourne legal experts, legal services in Melbourne, affordable lawyers in Melbourne',
+    "Melbourne's trusted law firm providing expert legal services in family law, property law, and immigration law. Find the best lawyers in Melbourne for professional legal consultation. Expert Nepali-speaking lawyers available for the Nepali community.",
+  // Meta keywords removed - focus on content optimization
   alternates: {
     canonical: '/melbourne',
   },
@@ -364,7 +372,7 @@ export const homePageStructuredData = {
   '@type': 'LegalService',
   name: 'Proficient Legal',
   description:
-    "Australia's leading law firm offering expert legal services in family law, property law, and immigration law.",
+    "Australia's leading law firm offering expert legal services in family law, property law, and immigration law. Multilingual lawyers including Nepali-speaking legal professionals.",
   url: 'https://proficientlegal.com.au',
   logo: 'https://proficientlegal.com.au/logo.png',
   sameAs: [
@@ -422,7 +430,7 @@ export const homePageStructuredData = {
           '@type': 'Service',
           name: 'Family Law Services',
           description:
-            'Expert family law services including divorce, child custody, and property settlements.',
+            'Expert family law services including divorce, child custody, and property settlements. Available in English, Nepali, Hindi, Urdu, and Bengali.',
         },
       },
       {
@@ -431,7 +439,7 @@ export const homePageStructuredData = {
           '@type': 'Service',
           name: 'Property Law Services',
           description:
-            'Comprehensive property law services including conveyancing, leasing, and property disputes.',
+            'Comprehensive property law services including conveyancing, leasing, and property disputes. Available in English, Nepali, Hindi, Urdu, and Bengali.',
         },
       },
       {
@@ -440,7 +448,16 @@ export const homePageStructuredData = {
           '@type': 'Service',
           name: 'Immigration Law Services',
           description:
-            'Expert immigration law services including visa applications, citizenship, and migration support.',
+            'Expert immigration law services including visa applications, citizenship, and migration support. Available in English, Nepali, Hindi, Urdu, and Bengali.',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Nepali Legal Services',
+          description:
+            'Specialized legal services for the Nepali community in Australia, including family law, immigration law, and property law consultations in Nepali language.',
         },
       },
     ],
@@ -461,6 +478,16 @@ export const homePageStructuredData = {
   ],
   telephone: '+61212345678',
   email: 'contact@proficientlegal.com.au',
+  availableLanguage: ['English', 'Nepali', 'Hindi', 'Urdu', 'Bengali'],
+  serviceArea: {
+    '@type': 'GeoCircle',
+    geoMidpoint: {
+      '@type': 'GeoCoordinates',
+      latitude: -33.8688,
+      longitude: 151.2093,
+    },
+    geoRadius: '1000000',
+  },
 };
 
 export const blogMetadata: Metadata = {
