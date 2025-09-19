@@ -24,6 +24,7 @@ interface Post {
   comments: Comment[];
   date?: string;
   heroImage?: string;
+  result?: string;
   author?: {
     name: string;
   };
@@ -70,6 +71,26 @@ export default function PostPageClient({
               className="prose prose-lg prose-blue max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content || '' }}
             />
+
+            {/* RESULT IMAGE */}
+            {post.result && (
+              <div className="mt-8 p-4 md:p-6 bg-green-50 rounded-lg border border-green-200">
+                <h3 className="text-lg md:text-xl font-semibold text-green-800 mb-4">
+                  Case Result
+                </h3>
+                <div className="relative w-full rounded-lg overflow-hidden">
+                  <Image
+                    src={post.result}
+                    alt="Case Result"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-contain"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                  />
+                </div>
+              </div>
+            )}
 
             {/* SOCIAL SHARE BUTTONS */}
             <div className="mt-8 flex items-center gap-4">

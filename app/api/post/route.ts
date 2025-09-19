@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   try {
     await connectDB();
 
-    const posts = await Post.find({});
+    const posts = await Post.find({}).sort({ createdAt: -1 });
 
     const response = NextResponse.json(posts);
 

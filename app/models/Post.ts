@@ -4,6 +4,7 @@ const postSchema = new mongoose.Schema({
   title: String,
   slug: String,
   content: String,
+  result: String,
   comments: [
     {
       name: String,
