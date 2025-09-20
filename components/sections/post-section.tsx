@@ -19,6 +19,7 @@ interface Post {
   createdAt: string;
   comments: Comment[];
   imageUrl?: string;
+  postImage?: string;
   result?: string;
 }
 
@@ -95,7 +96,7 @@ export default function PostSection() {
             >
               <div className="w-full h-[300px] relative rounded-lg mb-4 overflow-hidden">
                 <Image
-                  src="/images/teams/darren-ho.jpg"
+                  src={post.postImage || '/images/teams/darren-ho.jpg'}
                   alt={post.title}
                   fill
                   className="object-cover object-[center_20%]"

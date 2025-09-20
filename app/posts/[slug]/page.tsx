@@ -19,6 +19,7 @@ interface Post {
   comments: Comment[];
   date?: string;
   heroImage?: string;
+  postImage?: string;
   author?: {
     name: string;
   };
@@ -53,7 +54,8 @@ export async function generateMetadata({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
       images: [
         {
-          url: post.heroImage || '/images/teams/darren-ho.jpg',
+          url:
+            post.postImage || post.heroImage || '/images/teams/darren-ho.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -64,7 +66,9 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: cleanContent,
-      images: [post.heroImage || '/visa-approved.jpg'],
+      images: [
+        post.postImage || post.heroImage || '/images/teams/darren-ho.jpg',
+      ],
     },
   };
 }

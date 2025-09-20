@@ -24,6 +24,7 @@ interface Post {
   comments: Comment[];
   date?: string;
   heroImage?: string;
+  postImage?: string;
   result?: string;
   author?: {
     name: string;
@@ -48,7 +49,7 @@ export default function PostPageClient({
         {/* IMAGE SECTION */}
         <div className="relative w-full h-[450px] md:h-[550px] rounded-xl overflow-hidden">
           <Image
-            src="/images/teams/darren-ho.jpg"
+            src={post.postImage || '/images/teams/darren-ho.jpg'}
             alt={post.title}
             fill
             className="object-cover object-[center_20%]"

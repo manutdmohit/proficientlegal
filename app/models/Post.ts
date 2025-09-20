@@ -5,6 +5,7 @@ const postSchema = new mongoose.Schema({
   slug: String,
   content: String,
   result: String,
+  postImage: { type: String, default: '/images/teams/darren-ho.jpg' },
   comments: [
     {
       name: String,
