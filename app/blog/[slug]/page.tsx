@@ -122,7 +122,9 @@ export default async function BlogPostPage({
         )}
 
         <header className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight">{post.title}</h1>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+            {post.title}
+          </h1>
           <div className="flex flex-col sm:flex-row sm:items-center text-gray-500 mb-4 gap-1 sm:gap-0">
             <span className="text-sm sm:text-base">{post.author.name}</span>
             <span className="hidden sm:inline mx-2">•</span>
@@ -151,7 +153,9 @@ export default async function BlogPostPage({
 
         {relatedPosts.length > 0 && (
           <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Related Posts</h2>
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+              Related Posts
+            </h2>
             <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map((relatedPost: any) => (
                 <div
