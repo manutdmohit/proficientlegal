@@ -425,6 +425,38 @@ body {
   margin: 1.5rem 0;
 }
 
+/* Large screen image responsiveness */
+@media (min-width: 1280px) {
+  .prose img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .prose img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Ensure main post images are responsive on large screens */
+@media (min-width: 1280px) {
+  .relative img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .relative img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+}
+
 /* Ensure prose content is responsive */
 .prose {
   max-width: none !important;

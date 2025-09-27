@@ -45,16 +45,16 @@ export default function PostPageClient({
 
   return (
     <section className="bg-gradient-to-b from-[#eaf4fb] to-white min-h-screen py-8 sm:py-12">
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 pt-[80px] sm:pt-[100px] px-4 sm:px-6 lg:px-8">
+      <div className="container max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 pt-[80px] sm:pt-[100px] px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* IMAGE SECTION */}
-        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-xl overflow-hidden">
+        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[600px] 2xl:h-[650px] rounded-xl overflow-hidden">
           <Image
             src={post.postImage || '/images/teams/darren-ho.jpg'}
             alt={post.title}
             fill
-            className="object-cover object-[center_20%]"
+            className="object-cover object-center"
             priority
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 50vw, 50vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 50vw, (max-width: 1280px) 50vw, (max-width: 1536px) 50vw, 50vw"
           />
         </div>
 
@@ -88,7 +88,7 @@ export default function PostPageClient({
                     height={600}
                     className="w-full h-auto max-w-full object-contain"
                     priority
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, (max-width: 1280px) 70vw, (max-width: 1536px) 60vw, 50vw"
                   />
                 </div>
               </div>
