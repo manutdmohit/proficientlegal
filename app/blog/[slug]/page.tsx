@@ -106,30 +106,31 @@ export default async function BlogPostPage({
   const { post, comments, relatedPosts } = await getPost(params.slug);
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-6 sm:py-8 lg:py-10 px-4 sm:px-6 lg:px-8">
       <article className="max-w-4xl mx-auto">
         {post.featuredImage && (
-          <div className="relative h-[400px] w-full mb-8 rounded-lg overflow-hidden">
+          <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-full mb-8 rounded-lg overflow-hidden">
             <Image
               src={post.featuredImage}
               alt={post.title}
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
             />
           </div>
         )}
 
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          <div className="flex items-center text-gray-500 mb-4">
-            <span>{post.author.name}</span>
-            <span className="mx-2">•</span>
-            <time dateTime={post.createdAt}>
+        <header className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 leading-tight">{post.title}</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center text-gray-500 mb-4 gap-1 sm:gap-0">
+            <span className="text-sm sm:text-base">{post.author.name}</span>
+            <span className="hidden sm:inline mx-2">•</span>
+            <time dateTime={post.createdAt} className="text-sm sm:text-base">
               {format(new Date(post.createdAt), 'MMMM d, yyyy')}
             </time>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {post.tags?.map((tag: string) => (
               <span
                 key={tag}
@@ -149,21 +150,22 @@ export default async function BlogPostPage({
         <CommentSection postId={post._id} comments={comments} />
 
         {relatedPosts.length > 0 && (
-          <div className="mt-12 pt-8 border-t">
-            <h2 className="text-2xl font-bold mb-6">Related Posts</h2>
-            <div className="grid gap-6 md:grid-cols-3">
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Related Posts</h2>
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map((relatedPost: any) => (
                 <div
                   key={relatedPost._id}
                   className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
                 >
                   {relatedPost.featuredImage && (
-                    <div className="relative h-48 w-full">
+                    <div className="relative h-40 sm:h-44 md:h-48 w-full">
                       <Image
                         src={relatedPost.featuredImage}
                         alt={relatedPost.title}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 33vw"
                       />
                     </div>
                   )}

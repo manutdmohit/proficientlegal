@@ -44,22 +44,23 @@ export default function PostPageClient({
     post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || '';
 
   return (
-    <section className="bg-gradient-to-b from-[#eaf4fb] to-white min-h-screen py-12">
-      <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 pt-[100px]">
+    <section className="bg-gradient-to-b from-[#eaf4fb] to-white min-h-screen py-8 sm:py-12">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 pt-[80px] sm:pt-[100px]">
         {/* IMAGE SECTION */}
-        <div className="relative w-full h-[450px] md:h-[550px] rounded-xl overflow-hidden">
+        <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-xl overflow-hidden">
           <Image
             src={post.postImage || '/images/teams/darren-ho.jpg'}
             alt={post.title}
             fill
             className="object-cover object-[center_20%]"
             priority
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 50vw, 50vw"
           />
         </div>
 
         {/* CONTENT SECTION */}
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-8 text-center">
+        <div className="max-w-3xl mx-auto lg:max-w-none">
+          <div className="mb-6 sm:mb-8 text-center">
             {post.date && (
               <p className="text-gray-500 text-sm mb-2">
                 {format(new Date(post.date), 'dd/MM/yyyy')}
@@ -67,7 +68,7 @@ export default function PostPageClient({
             )}
           </div>
 
-          <div className="bg-white rounded-xl shadow-xl p-8 mb-12">
+          <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12">
             <div
               className="prose prose-lg prose-blue max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content || '' }}
@@ -79,23 +80,23 @@ export default function PostPageClient({
                 <h3 className="text-lg md:text-xl font-semibold text-green-800 mb-4">
                   Case Result
                 </h3>
-                <div className="relative w-full rounded-lg overflow-hidden">
+                <div className="relative w-full max-w-full rounded-lg overflow-hidden">
                   <Image
                     src={post.result}
                     alt="Case Result"
                     width={800}
                     height={600}
-                    className="w-full h-auto object-contain"
+                    className="w-full h-auto max-w-full object-contain"
                     priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw"
                   />
                 </div>
               </div>
             )}
 
             {/* SOCIAL SHARE BUTTONS */}
-            <div className="mt-8 flex items-center gap-4">
-              <span className="text-gray-600 font-medium">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+              <span className="text-gray-600 font-medium text-sm sm:text-base">
                 Share this post:
               </span>
               <div className="flex gap-2">
@@ -118,8 +119,8 @@ export default function PostPageClient({
           </div>
 
           {/* COMMENTS SECTION */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">Comments</h2>
+          <div className="mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">Comments</h2>
             <AddComment postId={post._id} />
             <div className="space-y-4">
               {(post.comments ?? [])
@@ -133,7 +134,7 @@ export default function PostPageClient({
                     key={
                       (comment.createdAt || '') + (comment.email || '') + idx
                     }
-                    className="bg-[#f6fafd] border border-[#eaf4fb] rounded-lg p-4"
+                    className="bg-[#f6fafd] border border-[#eaf4fb] rounded-lg p-3 sm:p-4"
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-semibold text-[#0056a8]">
