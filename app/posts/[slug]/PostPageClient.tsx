@@ -45,7 +45,7 @@ export default function PostPageClient({
 
   return (
     <section className="bg-gradient-to-b from-[#eaf4fb] to-white min-h-screen py-8 sm:py-12">
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 pt-[80px] sm:pt-[100px]">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 pt-[80px] sm:pt-[100px] px-4 sm:px-6 lg:px-8">
         {/* IMAGE SECTION */}
         <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-xl overflow-hidden">
           <Image
@@ -70,7 +70,7 @@ export default function PostPageClient({
 
           <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 lg:p-8 mb-8 sm:mb-12">
             <div
-              className="prose prose-lg prose-blue max-w-none"
+              className="prose prose-sm sm:prose-base lg:prose-lg prose-blue max-w-none prose-headings:font-bold prose-p:leading-relaxed prose-p:text-gray-700"
               dangerouslySetInnerHTML={{ __html: post.content || '' }}
             />
 

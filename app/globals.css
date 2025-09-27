@@ -425,6 +425,32 @@ body {
   margin: 1.5rem 0;
 }
 
+/* Ensure prose content is responsive */
+.prose {
+  max-width: none !important;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  line-height: 1.3 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.prose p {
+  line-height: 1.7 !important;
+  margin-bottom: 1rem !important;
+}
+
+.prose strong {
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+}
+
 .prose img:first-child {
   margin-top: 0;
 }
