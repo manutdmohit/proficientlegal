@@ -4,7 +4,7 @@ export const LOCATIONS_CONFIG: LocationConfig = {
   locations: {
     sydney: {
       city: 'Sydney',
-      address: '10 Park Rd, Hurstville NSW 2220, Australia',
+      address: 'Suite 132 10 Park Road Hurstville NSW 2220',
       phone: '1300 011 581',
       mapsUrl: 'https://maps.app.goo.gl/mvtu7xboXdY27LZZ7',
       services: [
