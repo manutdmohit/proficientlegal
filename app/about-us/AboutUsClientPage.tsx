@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -30,20 +30,76 @@ import { ContactSection } from '@/components/sections/contact-section';
  * including their values, approach, and team.
  */
 export default function AboutUsClientPage() {
+  const [heroImageError, setHeroImageError] = useState(false);
+  const [heroImageLoading, setHeroImageLoading] = useState(true);
+  const [teamImageError, setTeamImageError] = useState(false);
+  const [teamImageLoading, setTeamImageLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [currentHeroImage, setCurrentHeroImage] = useState(
+    '/sydney-opera-house-hq.png'
+  );
+  const [currentTeamImage, setCurrentTeamImage] = useState(
+    '/legal-team-office.png'
+  );
+
   // Implement smooth scrolling for anchor links
   useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-        if (href) {
-          document.querySelector(href)?.scrollIntoView({
-            behavior: 'smooth',
-          });
-        }
+    try {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              });
+            }
+          }
+        });
       });
-    });
+    } catch (error) {
+      console.error('Error setting up smooth scrolling:', error);
+      setHasError(true);
+    }
   }, []);
+
+  // Debug team image loading
+  useEffect(() => {
+    console.log('Team image state:', {
+      teamImageError,
+      teamImageLoading,
+      currentTeamImage,
+    });
+  }, [teamImageError, teamImageLoading, currentTeamImage]);
+
+  // Error boundary fallback
+  if (hasError) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-[#003b73] mb-4">
+              Something went wrong
+            </h1>
+            <p className="text-gray-600 mb-6">
+              We're experiencing some technical difficulties. Please try
+              refreshing the page.
+            </p>
+            <Button
+              onClick={() => window.location.reload()}
+              className="bg-[#0056a8] text-white hover:bg-[#003b73]"
+            >
+              Refresh Page
+            </Button>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -51,7 +107,10 @@ export default function AboutUsClientPage() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative">
+        <section
+          className="relative about-hero-section"
+          aria-label="About Proficient Legal Hero Section"
+        >
           {/* Semi-transparent gradient overlay to improve text readability */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -61,36 +120,70 @@ export default function AboutUsClientPage() {
           ></motion.div>
 
           {/* Background image container with fixed height */}
-          <div className="relative h-[600px]">
-            <Image
-              src="/sydney-opera-house-hq.png"
-              alt="Sydney Opera House"
-              fill
-              className="object-cover"
-              priority
-              quality={100}
-              sizes="100vw"
-            />
+          <div className="relative h-[600px] w-full bg-gradient-to-br from-blue-900 to-blue-700 overflow-hidden">
+            {!heroImageError ? (
+              <>
+                <Image
+                  src={currentHeroImage}
+                  alt="Sydney Opera House - Proficient Legal's headquarters in Sydney CBD, offering expert legal services in family law, property law, and immigration law"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                  quality={100}
+                  sizes="100vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                  onLoad={() => {
+                    console.log('Hero image loaded successfully');
+                    setHeroImageLoading(false);
+                  }}
+                  onError={(error) => {
+                    console.error('Hero image failed to load:', error);
+                    if (currentHeroImage === '/sydney-opera-house-hq.png') {
+                      console.log('Trying fallback image...');
+                      setCurrentHeroImage('/sydney-opera-house.png');
+                      setHeroImageLoading(true);
+                    } else {
+                      setHeroImageError(true);
+                      setHeroImageLoading(false);
+                    }
+                  }}
+                />
+                {/* Loading indicator */}
+                {heroImageLoading && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center z-10">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+                <div className="text-white text-center">
+                  <h1 className="text-4xl font-bold mb-4">Proficient Legal</h1>
+                  <p className="text-xl">Your Trusted Legal Partner</p>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Content overlay positioned absolutely over the background image */}
-          <div className="container absolute inset-0 flex items-center z-20">
+          <div className="container absolute inset-0 flex items-center z-20 px-4 md:px-6">
             <div className="max-w-3xl text-white drop-shadow-lg">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-shadow-lg">
                 About Proficient Legal
               </h1>
-              <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
+              <p className="text-lg sm:text-xl mb-6 md:mb-8 text-white/90 leading-relaxed text-shadow subtitle">
                 A distinguished law firm providing comprehensive legal services
                 in property, family, and immigration law.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
                   <Link href="#contact">
-                    <Button className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-3 font-medium">
+                    <Button className="w-full sm:w-auto bg-white text-[#0056a8] hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-3 font-medium transition-all duration-300">
                       Contact Us
                     </Button>
                   </Link>
@@ -103,7 +196,7 @@ export default function AboutUsClientPage() {
                   <Link href="#services">
                     <Button
                       variant="outline"
-                      className="bg-white text-[#0056a8] hover:bg-gray-100 text-lg px-8 py-3 font-medium"
+                      className="w-full sm:w-auto bg-white text-[#0056a8] hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-3 font-medium transition-all duration-300"
                     >
                       Our Services
                     </Button>
@@ -115,28 +208,34 @@ export default function AboutUsClientPage() {
         </section>
 
         {/* Introduction Section */}
-        <section className="py-16 bg-white">
+        <section
+          className="py-12 sm:py-16 bg-white"
+          aria-label="About Proficient Legal Introduction"
+        >
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-start lg:items-center">
               <AnimationWrapper animation="slideLeft">
-                <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
+                <div className="relative min-h-[600px] max-h-[600px] w-full rounded-lg overflow-hidden shadow-xl bg-gray-200 team-image-container">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0056a8]/30 to-transparent pointer-events-none"></div>
                   <Image
                     src="/legal-team-office.png"
-                    alt="Proficient Legal Team"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    alt="Proficient Legal Team - Our experienced lawyers specializing in family law, property law, and immigration law"
+                    height={1000}
+                    width={1000}
+                    sizes="100vw"
+                    objectFit="contain"
+                    quality={100}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0056a8]/30 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0056a8]/30 to-transparent pointer-events-none"></div>
                 </div>
               </AnimationWrapper>
 
               <AnimationWrapper animation="slideRight">
-                <div>
-                  <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+                <div className="px-4 sm:px-0 lg:px-6">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#003b73] mb-4 tracking-slight">
                     Welcome to Proficient Legal
                   </h2>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-600 mb-6 text-sm sm:text-base lg:text-lg leading-relaxed">
                     Welcome to Proficient Legal, a distinguished law firm
                     nestled in the vibrant city of Sydney, Australia. Situated
                     in the heart of this bustling metropolis, we stand as a
@@ -145,33 +244,76 @@ export default function AboutUsClientPage() {
                     services specializing in property, family, and immigration
                     law.
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="bg-gray-100 text-[#0056a8] px-3 py-1 rounded-full text-sm font-medium">
+                  <div
+                    className="flex flex-wrap gap-2 mb-6"
+                    role="list"
+                    aria-label="Legal service tags"
+                  >
+                    <span
+                      className="bg-gray-100 text-[#0056a8] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                      role="listitem"
+                    >
                       #LegalExcellence
                     </span>
-                    <span className="bg-gray-100 text-[#0056a8] px-3 py-1 rounded-full text-sm font-medium">
+                    <span
+                      className="bg-gray-100 text-[#0056a8] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                      role="listitem"
+                    >
                       #SydneyLawyers
                     </span>
-                    <span className="bg-gray-100 text-[#0056a8] px-3 py-1 rounded-full text-sm font-medium">
+                    <span
+                      className="bg-gray-100 text-[#0056a8] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                      role="listitem"
+                    >
                       #PropertyLaw
                     </span>
-                    <span className="bg-gray-100 text-[#0056a8] px-3 py-1 rounded-full text-sm font-medium">
+                    <span
+                      className="bg-gray-100 text-[#0056a8] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                      role="listitem"
+                    >
                       #FamilyLaw
                     </span>
-                    <span className="bg-gray-100 text-[#0056a8] px-3 py-1 rounded-full text-sm font-medium">
+                    <span
+                      className="bg-gray-100 text-[#0056a8] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                      role="listitem"
+                    >
                       #ImmigrationLaw
                     </span>
                   </div>
-                  <div className="flex items-center space-x-6">
-                    <div className="flex items-center text-[#0056a8]">
-                      <Phone className="h-5 w-5 mr-2" />
-                      <span className="font-medium">1300 011 581</span>
+                  <div
+                    className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-6"
+                    role="list"
+                    aria-label="Contact information"
+                  >
+                    <div
+                      className="flex items-center text-[#0056a8]"
+                      role="listitem"
+                    >
+                      <Phone
+                        className="h-5 w-5 mr-2 flex-shrink-0"
+                        aria-hidden="true"
+                      />
+                      <a
+                        href="tel:1300011581"
+                        className="font-medium text-sm sm:text-base hover:underline"
+                      >
+                        1300 011 581
+                      </a>
                     </div>
-                    <div className="flex items-center text-[#0056a8]">
-                      <Mail className="h-5 w-5 mr-2" />
-                      <span className="font-medium">
+                    <div
+                      className="flex items-center text-[#0056a8]"
+                      role="listitem"
+                    >
+                      <Mail
+                        className="h-5 w-5 mr-2 flex-shrink-0"
+                        aria-hidden="true"
+                      />
+                      <a
+                        href="mailto:info@proficientlegal.com.au"
+                        className="font-medium text-sm sm:text-base break-all sm:break-normal hover:underline"
+                      >
                         INFO@PROFICIENTLEGAL.COM.AU
-                      </span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -181,7 +323,7 @@ export default function AboutUsClientPage() {
         </section>
 
         {/* Our Approach Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50" aria-label="Our Legal Approach">
           <div className="container">
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
@@ -195,8 +337,8 @@ export default function AboutUsClientPage() {
               </div>
             </AnimationWrapper>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <AnimationWrapper animation="slideUp" delay={0.1}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
+              <AnimationWrapper animation="slideUp" delay={0.1} threshold={0.1}>
                 <div className="bg-white p-8 rounded-lg shadow-md h-full">
                   <div className="rounded-full bg-[#0056a8]/10 p-3 w-fit mb-4">
                     <MessageSquare className="h-6 w-6 text-[#0056a8]" />
@@ -217,7 +359,7 @@ export default function AboutUsClientPage() {
                 </div>
               </AnimationWrapper>
 
-              <AnimationWrapper animation="slideUp" delay={0.2}>
+              <AnimationWrapper animation="slideUp" delay={0.2} threshold={0.1}>
                 <div className="bg-white p-8 rounded-lg shadow-md h-full">
                   <div className="rounded-full bg-[#0056a8]/10 p-3 w-fit mb-4">
                     <Users className="h-6 w-6 text-[#0056a8]" />
@@ -238,7 +380,7 @@ export default function AboutUsClientPage() {
               </AnimationWrapper>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <AnimationWrapper animation="slideUp" delay={0.3}>
                 <div className="bg-white p-8 rounded-lg shadow-md h-full">
                   <div className="rounded-full bg-[#0056a8]/10 p-3 w-fit mb-4">
@@ -279,7 +421,11 @@ export default function AboutUsClientPage() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-16 bg-white">
+        <section
+          id="services"
+          className="py-16 bg-white"
+          aria-label="Our Legal Services"
+        >
           <div className="container">
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
@@ -293,7 +439,7 @@ export default function AboutUsClientPage() {
               </div>
             </AnimationWrapper>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               <AnimationWrapper animation="slideUp" delay={0.1}>
                 <div className="bg-white p-8 rounded-lg shadow-md border border-gray-100 h-full">
                   <div className="rounded-full bg-[#0056a8]/10 p-3 w-fit mb-4">

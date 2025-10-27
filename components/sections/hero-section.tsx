@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import HeroTextAnimation from '@/components/hero-text-animation';
 import Link from 'next/link';
 import { MessageSquare, Briefcase } from 'lucide-react';
+import { useState } from 'react';
 
 /**
  * Hero section component displayed at the top of the homepage.
@@ -15,8 +16,14 @@ import { MessageSquare, Briefcase } from 'lucide-react';
  * for the main heading to create a professional, engaging first impression.
  */
 export function HeroSection() {
+  const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+  const [currentImageSrc, setCurrentImageSrc] = useState(
+    '/sydney-opera-house-hq.png'
+  );
+
   return (
-    <section className="relative">
+    <section className="relative hero-section">
       {/* Semi-transparent gradient overlay to improve text readability */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -26,16 +33,44 @@ export function HeroSection() {
       ></motion.div>
 
       {/* Background image container with fixed height */}
-      <div className="relative h-[500px] md:h-[700px]">
-        <Image
-          src="/sydney-opera-house-hq.png"
-          alt="Best Lawyers in Sydney - Proficient Legal's headquarters in Sydney CBD, offering expert legal services in family law, property law, and immigration law"
-          fill
-          className="object-cover"
-          priority
-          quality={100}
-          sizes="100vw"
-        />
+      <div className="relative h-[500px] md:h-[700px] w-full bg-gradient-to-br from-blue-900 to-blue-700">
+        {!imageError ? (
+          <Image
+            src={currentImageSrc}
+            alt="Best Lawyers in Sydney - Proficient Legal's headquarters in Sydney CBD, offering expert legal services in family law, property law, and immigration law"
+            fill
+            className="object-cover object-center"
+            priority
+            quality={100}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+            onLoad={() => setImageLoading(false)}
+            onError={() => {
+              console.error('Hero image failed to load, trying fallback');
+              if (currentImageSrc === '/sydney-opera-house-hq.png') {
+                setCurrentImageSrc('/sydney-opera-house.png');
+                setImageLoading(true);
+              } else {
+                setImageError(true);
+              }
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+            <div className="text-white text-center">
+              <h1 className="text-4xl font-bold mb-4">Proficient Legal</h1>
+              <p className="text-xl">Your Trusted Legal Partner</p>
+            </div>
+          </div>
+        )}
+
+        {/* Loading indicator */}
+        {imageLoading && !imageError && (
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+          </div>
+        )}
       </div>
 
       {/* Content overlay positioned absolutely over the background image */}

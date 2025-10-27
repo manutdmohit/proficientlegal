@@ -372,6 +372,111 @@ body {
   overflow-x: hidden;
 }
 
+/* Hero section image fixes */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* About us hero section specific fixes */
+.about-hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero-section img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.about-hero-section .loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Team image specific fixes */
+.team-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.team-image-container img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  display: block !important;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.team-image-container img:hover {
+  transform: scale(1.02);
+}
+
+/* Ensure images are visible */
+img[src*='legal-team-office'],
+img[src*='professional-man-headshot'] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* Responsive image adjustments */
+@media (max-width: 640px) {
+  .team-image-container {
+    height: 250px !important;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .team-image-container {
+    height: 300px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .team-image-container {
+    height: 350px !important;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .team-image-container {
+    height: 400px !important;
+  }
+}
+
+@media (min-width: 1281px) {
+  .team-image-container {
+    height: 450px !important;
+  }
+}
+
 .container {
   width: 100%;
   max-width: 100%;

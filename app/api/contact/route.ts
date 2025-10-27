@@ -17,7 +17,13 @@ const contactFormSchema = z.object({
 export async function POST(request: Request) {
   try {
     // Connect to database
-    await connectDB();
+    try {
+      await connectDB();
+    } catch (dbError) {
+      console.error('Database connection failed:', dbError);
+      // Continue without database if connection fails
+      // This allows the form to still work for email notifications
+    }
 
     // Parse request body
     const body = await request.json();
@@ -25,8 +31,15 @@ export async function POST(request: Request) {
     // Validate request data
     const validatedData = contactFormSchema.parse(body);
 
-    // Create new contact form submission
-    const contact = await Contact.create(validatedData);
+    // Create new contact form submission (only if database is available)
+    let contact = null;
+    try {
+      contact = await Contact.create(validatedData);
+    } catch (dbError) {
+      console.warn(
+        'Failed to save to database, but continuing with email notification'
+      );
+    }
 
     // Send email notification
     try {

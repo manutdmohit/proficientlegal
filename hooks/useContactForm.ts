@@ -10,11 +10,11 @@ const contactFormSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   phone: z
     .string()
-    .min(10, 'Please enter a valid phone number')
-    .regex(/^[0-9\s]+$/, 'Phone number can only contain numbers and spaces')
+    .min(8, 'Please enter a valid phone number')
+    .regex(/^[\d\s\-\+\(\)]+$/, 'Please enter a valid phone number')
     .refine(
-      (val) => val.replace(/\s/g, '').length >= 10,
-      'Please enter a valid phone number'
+      (val) => val.replace(/[\s\-\+\(\)]/g, '').length >= 8,
+      'Phone number must be at least 8 digits'
     ),
   subject: z.string().min(1, 'Please select a subject'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
@@ -60,17 +60,24 @@ export function useContactForm(formType: 'contact' | 'enquiry') {
         throw new Error('Failed to submit form');
       }
 
-      // Send Telegram notification
-      const telegramResponse = await fetch('/api/telegram', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      // Send Telegram notification (optional)
+      try {
+        const telegramResponse = await fetch('/api/telegram', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
 
-      if (!telegramResponse.ok) {
-        console.error('Failed to send Telegram notification');
+        if (!telegramResponse.ok) {
+          console.warn(
+            'Telegram notification failed, but form was submitted successfully'
+          );
+        }
+      } catch (telegramError) {
+        console.warn('Telegram notification error:', telegramError);
+        // Don't fail the form submission if Telegram fails
       }
 
       // Dismiss loading toast

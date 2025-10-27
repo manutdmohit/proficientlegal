@@ -17,10 +17,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Check if Telegram is configured
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID || !TELEGRAM_GROUP_ID) {
+      console.warn('Telegram configuration is missing - skipping notification');
       return NextResponse.json(
-        { error: 'Telegram configuration is missing' },
-        { status: 500 }
+        {
+          success: true,
+          message: 'Telegram notification skipped - not configured',
+        },
+        { status: 200 }
       );
     }
 

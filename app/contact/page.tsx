@@ -92,14 +92,14 @@ export default function ContactPage() {
       {/* Quick contact info */}
       <section className="py-12 bg-white">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center p-6 bg-gray-50 rounded-lg"
+              className="flex flex-col sm:flex-row items-start sm:items-center p-6 bg-gray-50 rounded-lg"
             >
-              <Phone className="h-8 w-8 text-[#003b73] mr-4" />
+              <Phone className="h-8 w-8 text-[#003b73] mr-0 sm:mr-4 mb-2 sm:mb-0" />
               <div>
                 <h3 className="font-semibold text-lg">Phone</h3>
                 <p className="text-gray-600">
@@ -115,9 +115,9 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center p-6 bg-gray-50 rounded-lg"
+              className="flex flex-col sm:flex-row items-start sm:items-center p-6 bg-gray-50 rounded-lg"
             >
-              <Mail className="h-8 w-8 text-[#003b73] mr-4" />
+              <Mail className="h-8 w-8 text-[#003b73] mr-0 sm:mr-4 mb-2 sm:mb-0" />
               <div>
                 <h3 className="font-semibold text-lg">Email</h3>
                 <p className="text-gray-600">
@@ -131,9 +131,9 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center p-6 bg-gray-50 rounded-lg"
+              className="flex flex-col sm:flex-row items-start sm:items-center p-6 bg-gray-50 rounded-lg"
             >
-              <MapPin className="h-8 w-8 text-[#003b73] mr-4" />
+              <MapPin className="h-8 w-8 text-[#003b73] mr-0 sm:mr-4 mb-2 sm:mb-0" />
               <div>
                 <h3 className="font-semibold text-lg">Office</h3>
                 <p className="text-gray-600">Sydney, Melbourne</p>
@@ -210,7 +210,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="contact-name"
-                          className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                          className="flex items-center text-sm font-medium text-gray-700 mb-1"
                         >
                           <User className="h-4 w-4 mr-1 text-[#0056a8]" />
                           Full Name
@@ -230,7 +230,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="contact-phone"
-                          className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                          className="flex items-center text-sm font-medium text-gray-700 mb-1"
                         >
                           <Phone className="h-4 w-4 mr-1 text-[#0056a8]" />
                           Phone Number
@@ -251,7 +251,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="contact-email"
-                        className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                        className="flex items-center text-sm font-medium text-gray-700 mb-1"
                       >
                         <Mail className="h-4 w-4 mr-1 text-[#0056a8]" />
                         Email Address
@@ -271,7 +271,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="contact-subject"
-                        className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                        className="flex items-center text-sm font-medium text-gray-700 mb-1"
                       >
                         <FileText className="h-4 w-4 mr-1 text-[#0056a8]" />
                         Subject
@@ -291,7 +291,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="contact-message"
-                        className="block text-sm font-medium text-gray-700 mb-1 flex items-center"
+                        className="flex items-center text-sm font-medium text-gray-700 mb-1"
                       >
                         <MessageSquare className="h-4 w-4 mr-1 text-[#0056a8]" />
                         Message
@@ -331,7 +331,7 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-[#003b73] mb-8 text-center">
               Our Locations
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="font-semibold text-lg mb-4">Sydney Office</h3>
                 <div className="aspect-video bg-gray-200 rounded-lg mb-4">
