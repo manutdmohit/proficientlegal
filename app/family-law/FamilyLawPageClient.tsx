@@ -181,6 +181,7 @@ export default function FamilyLawPageClient() {
                   upfront. Contact us for more information, or visit{' '}
                   <Link
                     href="https://www.justfund.com.au/"
+                    target="_blank"
                     className="text-[#0056a8] font-medium"
                   >
                     justfund.com.au
