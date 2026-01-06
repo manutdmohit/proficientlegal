@@ -142,6 +142,55 @@ export default function FamilyLawPageClient() {
           </div>
         </section>
 
+        {/* ================= INTRO ================= */}
+        <section className="bg-white py-16">
+          <div className="container grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <AnimationWrapper animation="slideLeft">
+              <div>
+                <Image
+                  src="/just-fund.png"
+                  alt="Family law consultation"
+                  quality={100}
+                  sizes="100vw"
+                  width={500}
+                  height={500}
+                  priority
+                />
+              </div>
+            </AnimationWrapper>
+
+            <AnimationWrapper animation="slideRight">
+              <div>
+                <h2 className="mb-4 text-3xl font-bold tracking-tight text-[#003b73]">
+                  A Smarter, Flexible Way to Fund Your Family Law Matter
+                </h2>
+                <p className="mb-4 text-gray-600">
+                  We understand that when you’re navigating a separation or
+                  relationship property matter, the financial strain can
+                  sometimes stand in the way of getting the legal support you
+                  need.That’s why we’ve partnered with JustFund - Australia’s
+                  only dedicated provider of flexible funding solutions for
+                  family law legal fees.
+                </p>
+                <p className="mb-6 text-gray-600">
+                  Through this partnership, eligible clients can access a
+                  flexible line of credit to cover legal fees and expenses
+                  related to separation or relationship property proceedings.
+                  You don't have to repay the loan until you reach a settlement,
+                  which we hope reduces the stress associated with paying costs
+                  upfront. Contact us for more information, or visit{' '}
+                  <Link
+                    href="https://www.justfund.com.au/"
+                    className="text-[#0056a8] font-medium"
+                  >
+                    justfund.com.au
+                  </Link>
+                </p>
+              </div>
+            </AnimationWrapper>
+          </div>
+        </section>
+
         {/* ================= SERVICES ================= */}
         <section id="services" className="bg-gray-50 py-16">
           <div className="container">
