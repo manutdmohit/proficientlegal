@@ -7,37 +7,48 @@ import { motion } from 'framer-motion';
 import { Header } from '@/components/layout/header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Scale, Shield, Gavel, CheckCircle, HelpCircle } from 'lucide-react';
+import {
+  Scale,
+  Shield,
+  Gavel,
+  CheckCircle,
+  HelpCircle,
+  Phone,
+  Mail,
+  Calendar,
+} from 'lucide-react';
 import AnimationWrapper from '@/components/animation-wrapper';
 import FloatingCTAButton from '@/components/floating-cta-button';
 import { CTASection } from '@/components/sections/cta-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import FaqAccordion from '@/components/faq-accordion';
+import { CONTACT_INFO } from '@/lib/constants';
 
 export default function CriminalLawClientPage() {
+  // Smooth scroll for anchor links
   useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    const anchors = document.querySelectorAll('a[href^="#"]');
+    anchors.forEach((anchor) => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const href = (e.currentTarget as HTMLAnchorElement).getAttribute(
           'href'
         );
         if (href) {
-          document.querySelector(href)?.scrollIntoView({
-            behavior: 'smooth',
-          });
+          document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col pt-[88px]">
+    <div className="flex min-h-screen flex-col">
       <Header />
 
-      <main>
+      <main className="mt-[88px]">
         {/* Hero Section */}
-        <section className="relative">
+        <section className="relative min-h-[700px] lg:min-h-[800px]">
+          {/* Gradient overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -45,7 +56,8 @@ export default function CriminalLawClientPage() {
             className="absolute inset-0 bg-gradient-to-r from-[#003b73]/80 to-[#0056a8]/60 z-10"
           ></motion.div>
 
-          <div className="relative h-[700px]">
+          {/* Hero image */}
+          <div className="absolute inset-0 -z-10">
             <Image
               src="/criminal-law-hero.png"
               alt="Criminal law services in ACT, NSW, QLD & VIC"
@@ -57,12 +69,13 @@ export default function CriminalLawClientPage() {
             />
           </div>
 
-          <div className="container absolute inset-0 flex items-center z-20">
+          {/* Hero content */}
+          <div className="relative z-20 container flex flex-col justify-center h-full py-32 lg:py-40">
             <div className="max-w-3xl text-white drop-shadow-lg">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-shadow-lg">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight">
                 Criminal Law Services in Sydney & Melbourne
               </h1>
-              <p className="text-xl mb-8 text-white/90 leading-relaxed text-shadow subtitle">
+              <p className="text-xl mb-8 text-white/90 leading-relaxed">
                 Proficient Legal provides expert criminal law representation
                 across Sydney & Melbourne. Our experienced criminal lawyers
                 ensure your rights are protected and provide strong defense
@@ -100,7 +113,7 @@ export default function CriminalLawClientPage() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-16 bg-gray-50">
+        <section id="services" className="py-20 bg-gray-50">
           <div className="container">
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
@@ -115,7 +128,7 @@ export default function CriminalLawClientPage() {
             </AnimationWrapper>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Service 1 */}
+              {/* Criminal Defense */}
               <AnimationWrapper animation="slideUp" delay={0.1}>
                 <Card className="h-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
                   <div className="bg-[#0056a8] h-2 w-full"></div>
@@ -148,7 +161,7 @@ export default function CriminalLawClientPage() {
                 </Card>
               </AnimationWrapper>
 
-              {/* Service 2 */}
+              {/* Bail Applications */}
               <AnimationWrapper animation="slideUp" delay={0.2}>
                 <Card className="h-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
                   <div className="bg-[#0056a8] h-2 w-full"></div>
@@ -181,7 +194,7 @@ export default function CriminalLawClientPage() {
                 </Card>
               </AnimationWrapper>
 
-              {/* Service 3 */}
+              {/* Court Representation */}
               <AnimationWrapper animation="slideUp" delay={0.3}>
                 <Card className="h-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden flex flex-col">
                   <div className="bg-[#0056a8] h-2 w-full"></div>
@@ -220,7 +233,7 @@ export default function CriminalLawClientPage() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="py-16 bg-gray-50">
+        <section id="faq" className="py-20 bg-gray-50">
           <div className="container">
             <AnimationWrapper animation="slideUp">
               <div className="text-center mb-12">
@@ -234,37 +247,33 @@ export default function CriminalLawClientPage() {
               </div>
             </AnimationWrapper>
 
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-4">
-                <FaqAccordion
-                  items={[
-                    {
-                      question: 'What should I do if I am arrested?',
-                      answer:
-                        'If you are arrested, remain silent and request to speak with a lawyer immediately. Do not make any statements to police without legal representation. Contact us as soon as possible, and we will guide you through the process and protect your rights.',
-                    },
-                    {
-                      question: 'How much does a criminal lawyer cost?',
-                      answer:
-                        'Our fees vary depending on the complexity of your case and the court level. We offer fixed-fee arrangements for many matters and can discuss payment options during your initial consultation. We believe in transparent pricing and will provide a clear fee structure upfront.',
-                    },
-                    {
-                      question:
-                        'What is the difference between summary and indictable offenses?',
-                      answer:
-                        'Summary offenses are less serious matters heard in the Local Court, while indictable offenses are more serious matters that may be heard in higher courts. The distinction affects the court process, potential penalties, and available defenses. Our lawyers can explain how this applies to your specific case.',
-                    },
-                  ]}
-                />
-              </div>
+            <div className="max-w-4xl mx-auto space-y-4">
+              <FaqAccordion
+                items={[
+                  {
+                    question: 'What should I do if I am arrested?',
+                    answer:
+                      'If you are arrested, remain silent and request to speak with a lawyer immediately. Do not make any statements to police without legal representation. Contact us as soon as possible, and we will guide you through the process and protect your rights.',
+                  },
+                  {
+                    question: 'How much does a criminal lawyer cost?',
+                    answer:
+                      'Our fees vary depending on the complexity of your case and the court level. We offer fixed-fee arrangements for many matters and can discuss payment options during your initial consultation. We believe in transparent pricing and will provide a clear fee structure upfront.',
+                  },
+                  {
+                    question:
+                      'What is the difference between summary and indictable offenses?',
+                    answer:
+                      'Summary offenses are less serious matters heard in the Local Court, while indictable offenses are more serious matters that may be heard in higher courts. The distinction affects the court process, potential penalties, and available defenses. Our lawyers can explain how this applies to your specific case.',
+                  },
+                ]}
+              />
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA & Contact */}
         <CTASection />
-
-        {/* Contact Section */}
         <ContactSection />
       </main>
 

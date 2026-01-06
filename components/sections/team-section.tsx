@@ -12,12 +12,6 @@ import {
 import { ChevronRight, UserCircle } from 'lucide-react';
 import AnimationWrapper from '@/components/animation-wrapper';
 
-/**
- * Interface for team member data structure
- * @property name - Team member's full name
- * @property role - Team member's job title/specialization
- * @property bio - Brief professional biography
- */
 type TeamMember = {
   name: string;
   role: string;
@@ -25,14 +19,15 @@ type TeamMember = {
   image: string;
 };
 
-/**
- * Team section component showcasing the firm's legal professionals.
- * Features cards with photos, titles, and brief bios of key team members.
- *
- * Uses AnimationWrapper for scroll-triggered animations to improve engagement.
- */
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '');
+}
+
 export function TeamSection() {
-  // Data for team members - extracted from JSX for better maintainability
   const teamMembers: TeamMember[] = [
     {
       name: 'Nischal Pokharel',
@@ -55,12 +50,11 @@ export function TeamSection() {
   ];
 
   return (
-    <section id="team" className="py-16">
+    <section id="team" className="py-16 bg-white">
       <div className="container">
-        {/* Section heading with animation */}
         <AnimationWrapper animation="slideUp">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#003b73] mb-4 tracking-slight">
+            <h2 className="text-3xl font-bold text-[#003b73] mb-4">
               Our Expert Legal Team
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
@@ -69,57 +63,48 @@ export function TeamSection() {
           </div>
         </AnimationWrapper>
 
-        {/* Team members grid - responsive layout with 3 columns on large screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <AnimationWrapper
               key={member.name}
               animation="slideUp"
-              delay={0.2 * index}
+              delay={index * 0.15}
             >
-              <Card className="shadow-lg overflow-hidden flex flex-col">
-                {/* Team member photo */}
-                <div className="relative w-full aspect-[3/4]">
+              <Card className="shadow-lg flex flex-col">
+                {/* IMAGE (overflow ONLY here) */}
+                <div className="relative w-full aspect-[3/4] overflow-hidden rounded-t-lg">
                   <Image
                     src={member.image}
                     alt={member.name}
                     fill
-                    style={{ objectFit: 'cover', objectPosition: 'top 40%' }}
-                    priority
+                    priority={index === 0}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-top"
                   />
                 </div>
+
                 <CardHeader>
-                  <CardTitle>{member.name}</CardTitle>
+                  <CardTitle className="text-xl">{member.name}</CardTitle>
                   <CardDescription className="text-[#0056a8] font-medium">
                     {member.role}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="flex-grow">
+
+                <CardContent>
                   <p className="text-gray-600">{member.bio}</p>
-                  {/* Link to individual team member profile page with hover effect */}
+
                   <Link
-                    href={`/team/${member.name
-                      .toLowerCase()
-                      .replace(/\s+/g, '-')}`}
-                    className="flex items-center text-[#0056a8] font-medium mt-4 hover:underline group"
+                    href={`/team/${slugify(member.name)}`}
+                    className="mt-4 inline-flex items-center text-[#0056a8] font-medium hover:underline group"
                   >
                     <UserCircle className="h-4 w-4 mr-1" />
                     Full Profile
-                    <ChevronRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </CardContent>
               </Card>
             </AnimationWrapper>
           ))}
-        </div>
-        {/* View More button */}
-        <div className="flex justify-center mt-10">
-          <Link
-            href="/ourteam"
-            className="inline-block px-6 py-3 rounded-full bg-[#003b73] text-white font-semibold shadow-md hover:bg-[#0056a8] transition-colors duration-200"
-          >
-            View More
-          </Link>
         </div>
       </div>
     </section>
