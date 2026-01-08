@@ -75,7 +75,7 @@ export default function PostPageClient({
             />
 
             {/* RESULT IMAGE */}
-            {post.result && (
+            {post.result! === ' ' && (
               <div className="mt-8 p-4 md:p-6 bg-green-50 rounded-lg border border-green-200">
                 <h3 className="text-lg md:text-xl font-semibold text-green-800 mb-4">
                   Case Result
