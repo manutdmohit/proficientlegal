@@ -18,7 +18,7 @@ const LocationCard = dynamic(
       <div className="h-[400px] animate-pulse bg-gray-200 rounded-lg" />
     ),
     ssr: false, // Disable server-side rendering for better performance
-  }
+  },
 );
 
 // Lazy load FAQ section
@@ -145,9 +145,9 @@ export function LocationsSection() {
           {/* FAQ Section */}
           <div className="mt-16">
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<LoadingFallback />}>
-              <FAQSection />
-            </Suspense>
+              <Suspense fallback={<LoadingFallback />}>
+                <FAQSection />
+              </Suspense>
             </ErrorBoundary>
           </div>
         </div>

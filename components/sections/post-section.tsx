@@ -104,7 +104,9 @@ export default function PostSection() {
         <h2 className="text-3xl font-bold text-[#003b73] mb-8 text-center">
           Latest Blog Posts
         </h2>
-        <p className="text-center text-gray-600">No posts available at the moment.</p>
+        <p className="text-center text-gray-600">
+          No posts available at the moment.
+        </p>
       </section>
     );
   }
