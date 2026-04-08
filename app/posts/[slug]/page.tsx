@@ -41,10 +41,10 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   // Fetch post data
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
-    { next: { revalidate: 3600 } },
-  );
+  const res = await fetch(`/api/post/${params.slug}`, {
+    next: { revalidate: 3600 },
+  });
+
   if (!res.ok) return { title: 'Post Not Found | Proficient Legal' };
 
   const post = (await res.json()) as Post;
@@ -91,9 +91,7 @@ export default async function PostSlugPage({
   params: { slug: string };
 }) {
   // Fetch post data
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
-  );
+  const res = await fetch(`/api/post/${params.slug}`);
   if (!res.ok) notFound();
 
   const post = (await res.json()) as Post;
