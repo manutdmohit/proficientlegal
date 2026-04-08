@@ -11,10 +11,7 @@ export async function GET(
   try {
     await connectDB();
 
-    const post = await Post.findOne({ slug, published: true }).populate(
-      'author',
-      'name',
-    );
+    const post = await Post.findOne({ slug });
 
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });

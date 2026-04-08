@@ -16,14 +16,15 @@ interface Post {
   _id: string;
   title: string;
   content: string;
-  excerpt: string;
-  featuredImage: string;
-  tags: string[];
-  published: boolean;
+  excerpt?: string;
+  featuredImage?: string;
+  postImage?: string;
+  tags?: string[];
+  published?: boolean;
   author: {
     name: string;
   };
-  seo: {
+  seo?: {
     title: string;
     description: string;
     keywords: string[];
@@ -62,7 +63,7 @@ export async function generateMetadata({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
       images: [
         {
-          url: post.featuredImage || '/images/teams/darren-ho.jpg',
+          url: post.featuredImage || post.postImage || '/images/teams/darren-ho.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -73,7 +74,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: cleanContent,
-      images: [post.featuredImage || '/images/teams/darren-ho.jpg'],
+      images: [post.featuredImage || post.postImage || '/images/teams/darren-ho.jpg'],
     },
   };
 }
@@ -98,7 +99,7 @@ export default async function PostSlugPage({
       <ArticleSchema
         title={post.title}
         description={post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || ''}
-        image={post.featuredImage || '/images/teams/darren-ho.jpg'}
+        image={post.featuredImage || post.postImage || '/images/teams/darren-ho.jpg'}
         datePublished={
           post.createdAt?.toISOString() || new Date().toISOString()
         }
