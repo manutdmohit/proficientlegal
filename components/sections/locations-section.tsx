@@ -104,7 +104,7 @@ export function LocationsSection() {
       />
 
       <section id="locations" className="py-16" aria-label="Office Locations">
-        <div className="container">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* Breadcrumb Navigation */}
           {/* <Breadcrumb items={breadcrumbItems} /> */}
 
@@ -127,7 +127,7 @@ export function LocationsSection() {
 
           {/* Locations grid - responsive layout with 2 columns on desktop */}
           <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
               {locations.map((location, index) => (
                 <AnimationWrapper
                   key={location.city}
@@ -143,11 +143,13 @@ export function LocationsSection() {
           </ErrorBoundary>
 
           {/* FAQ Section */}
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <div className="mt-16">
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<LoadingFallback />}>
               <FAQSection />
             </Suspense>
-          </ErrorBoundary>
+            </ErrorBoundary>
+          </div>
         </div>
       </section>
     </>

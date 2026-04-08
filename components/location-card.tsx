@@ -34,11 +34,11 @@ export const LocationCard: React.FC<LocationCardProps> = ({
 }) => {
   return (
     <Card
-      className="h-full shadow-lg flex flex-col"
+      className="h-full shadow-lg flex flex-col overflow-hidden"
       data-testid={`location-card-${location.city}`}
     >
       {/* City image */}
-      <div className="relative h-48 w-full">
+      <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
         <Image
           src={`/abstract-geometric-shapes.png?height=200&width=400&query=${location.city} city skyline`}
           alt={`Top Legal Consultation Services in ${location.city} - Proficient Legal ${location.city} Office - Expert Lawyers & Legal Advice`}

@@ -26,12 +26,38 @@ interface Post {
 export default function PostSection() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/post')
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
+      .then(async (res) => {
+        const data = await res.json();
+
+        if (!res.ok) {
+          const message = data?.error || 'Failed to load posts';
+          setError(message);
+          return [];
+        }
+
+        if (Array.isArray(data)) {
+          return data;
+        }
+
+        if (data?.posts && Array.isArray(data.posts)) {
+          return data.posts;
+        }
+
+        console.error('Unexpected /api/post response:', data);
+        return [];
+      })
+      .then((postsData) => {
+        setPosts(postsData);
+      })
+      .catch((err) => {
+        console.error('Error fetching posts:', err);
+        setError('Unable to load latest posts.');
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
@@ -55,6 +81,30 @@ export default function PostSection() {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-[#0056a8] rounded-full animate-pulse"></div>
           </div>
         </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="container py-12">
+        <h2 className="text-3xl font-bold text-[#003b73] mb-8 text-center">
+          Latest Blog Posts
+        </h2>
+        <div className="rounded-xl bg-red-50 border border-red-200 p-8 text-center text-red-700">
+          {error}
+        </div>
+      </section>
+    );
+  }
+
+  if (!Array.isArray(posts) || posts.length === 0) {
+    return (
+      <section className="container py-12">
+        <h2 className="text-3xl font-bold text-[#003b73] mb-8 text-center">
+          Latest Blog Posts
+        </h2>
+        <p className="text-center text-gray-600">No posts available at the moment.</p>
       </section>
     );
   }
