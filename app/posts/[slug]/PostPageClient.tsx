@@ -58,7 +58,11 @@ export default function PostPageClient({
         {/* IMAGE SECTION */}
         <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[600px] 2xl:h-[650px] rounded-xl overflow-hidden">
           <Image
-            src={post.featuredImage || post.postImage || '/images/teams/darren-ho.jpg'}
+            src={
+              post.featuredImage ||
+              post.postImage ||
+              '/images/teams/darren-ho.jpg'
+            }
             alt={post.title}
             fill
             className="object-cover object-center"
