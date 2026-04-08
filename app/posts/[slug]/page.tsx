@@ -29,11 +29,12 @@ interface Post {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   // Fetch post data
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${slug}`,
     { next: { revalidate: 3600 } }
   );
   if (!res.ok) return { title: 'Post Not Found | Proficient Legal' };
@@ -51,7 +52,7 @@ export async function generateMetadata({
       title: post.title,
       description: cleanContent,
       type: 'article',
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${slug}`,
       images: [
         {
           url:
@@ -77,16 +78,17 @@ export async function generateMetadata({
 export default async function PostSlugPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   // Fetch post data
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${slug}`
   );
   if (!res.ok) notFound();
 
   const post = (await res.json()) as Post;
-  const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`;
+  const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${slug}`;
 
   return (
     <>
