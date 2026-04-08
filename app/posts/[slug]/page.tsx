@@ -42,7 +42,7 @@ export async function generateMetadata({
   // Fetch post data
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } },
   );
   if (!res.ok) return { title: 'Post Not Found | Proficient Legal' };
 
@@ -62,8 +62,7 @@ export async function generateMetadata({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
       images: [
         {
-          url:
-            post.featuredImage || '/images/teams/darren-ho.jpg',
+          url: post.featuredImage || '/images/teams/darren-ho.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -74,9 +73,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: cleanContent,
-      images: [
-        post.featuredImage || '/images/teams/darren-ho.jpg',
-      ],
+      images: [post.featuredImage || '/images/teams/darren-ho.jpg'],
     },
   };
 }
@@ -89,7 +86,7 @@ export default async function PostSlugPage({
 }) {
   // Fetch post data
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
   );
   if (!res.ok) notFound();
 
@@ -101,8 +98,10 @@ export default async function PostSlugPage({
       <ArticleSchema
         title={post.title}
         description={post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || ''}
-        image={post.featuredImage || "/images/teams/darren-ho.jpg"}
-        datePublished={post.createdAt?.toISOString() || new Date().toISOString()}
+        image={post.featuredImage || '/images/teams/darren-ho.jpg'}
+        datePublished={
+          post.createdAt?.toISOString() || new Date().toISOString()
+        }
         dateModified={post.updatedAt?.toISOString() || new Date().toISOString()}
         authorName={post.author?.name || 'Proficient Legal'}
         url={shareUrl}

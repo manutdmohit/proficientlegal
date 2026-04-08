@@ -4,14 +4,17 @@ import connectDB from '@/app/config/database';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: { slug: string } },
 ) {
   const { slug } = await params;
 
   try {
     await connectDB();
 
-    const post = await Post.findOne({ slug, published: true }).populate('author', 'name');
+    const post = await Post.findOne({ slug, published: true }).populate(
+      'author',
+      'name',
+    );
 
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
@@ -21,7 +24,7 @@ export async function GET(
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

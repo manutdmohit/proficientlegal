@@ -20,7 +20,7 @@ export interface IPost extends Document {
       email: string;
       comment: string;
       createdAt: Date;
-    }
+    },
   ];
   createdAt: Date;
   updatedAt: Date;
@@ -79,7 +79,7 @@ const PostSchema = new Schema<IPost>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Create text index for search

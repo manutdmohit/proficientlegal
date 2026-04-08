@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     if (post) {
       return NextResponse.json(
         { error: 'Comment already exists by this email' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -45,14 +45,14 @@ export async function POST(request: NextRequest) {
     const updatedPost = await Post.findByIdAndUpdate(
       postId,
       { $push: { comments: newComment } },
-      { new: true }
+      { new: true },
     );
 
     return NextResponse.json(updatedPost);
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
