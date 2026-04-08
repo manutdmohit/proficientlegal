@@ -3,17 +3,15 @@ const nextConfig = {
   // Disable static generation for the not-found page
   output: 'standalone',
   
-  // Disable TypeScript and ESLint during build
+  // Disable TypeScript build errors during build
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  
+
   // Configure images
   images: {
     unoptimized: true,
+    qualities: [100, 75],
   },
   
   // Experimental features
