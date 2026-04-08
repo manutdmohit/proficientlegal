@@ -14,6 +14,14 @@ export interface IPost extends Document {
     description: string;
     keywords: string[];
   };
+  comments: [
+    {
+      name: string;
+      email: string;
+      comment: string;
+      createdAt: Date;
+    }
+  ];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -60,6 +68,14 @@ const PostSchema = new Schema<IPost>(
       description: String,
       keywords: [String],
     },
+    comments: [
+      {
+        name: String,
+        email: String,
+        comment: String,
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
   },
   {
     timestamps: true,

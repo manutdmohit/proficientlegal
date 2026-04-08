@@ -16,13 +16,21 @@ interface Post {
   _id: string;
   title: string;
   content: string;
-  comments: Comment[];
-  date?: string;
-  heroImage?: string;
-  postImage?: string;
-  author?: {
+  excerpt: string;
+  featuredImage: string;
+  tags: string[];
+  published: boolean;
+  author: {
     name: string;
   };
+  seo: {
+    title: string;
+    description: string;
+    keywords: string[];
+  };
+  comments?: Comment[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 // Generate metadata for the page
@@ -55,7 +63,7 @@ export async function generateMetadata({
       images: [
         {
           url:
-            post.postImage || post.heroImage || '/images/teams/darren-ho.jpg',
+            post.featuredImage || '/images/teams/darren-ho.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -67,7 +75,7 @@ export async function generateMetadata({
       title: post.title,
       description: cleanContent,
       images: [
-        post.postImage || post.heroImage || '/images/teams/darren-ho.jpg',
+        post.featuredImage || '/images/teams/darren-ho.jpg',
       ],
     },
   };
@@ -93,9 +101,9 @@ export default async function PostSlugPage({
       <ArticleSchema
         title={post.title}
         description={post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || ''}
-        image="/images/teams/darren-ho.jpg"
-        datePublished={post.date || new Date().toISOString()}
-        dateModified={post.date || new Date().toISOString()}
+        image={post.featuredImage || "/images/teams/darren-ho.jpg"}
+        datePublished={post.createdAt?.toISOString() || new Date().toISOString()}
+        dateModified={post.updatedAt?.toISOString() || new Date().toISOString()}
         authorName={post.author?.name || 'Proficient Legal'}
         url={shareUrl}
       />

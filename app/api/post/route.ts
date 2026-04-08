@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Post from '@/app/models/Post';
+import { Post } from '@/lib/models/Post';
 import connectDB from '@/app/config/database';
 import mongoose from 'mongoose';
 

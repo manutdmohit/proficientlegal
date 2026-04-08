@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Post from '@/app/models/Post';
+import { Post } from '@/lib/models/Post';
 import connectDB from '@/app/config/database';
 
 export async function GET(
@@ -11,7 +11,7 @@ export async function GET(
   try {
     await connectDB();
 
-    const post = await Post.findOne({ slug });
+    const post = await Post.findOne({ slug, published: true }).populate('author', 'name');
 
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
