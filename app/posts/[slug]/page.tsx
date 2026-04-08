@@ -4,6 +4,8 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { notFound } from 'next/navigation';
 import ArticleSchema from '@/app/components/ArticleSchema';
 import PostPageClient from './PostPageClient';
+import Post from '@/app/models/Post';
+import connectDB from '@/app/config/database';
 
 interface Comment {
   name: string;
@@ -12,7 +14,7 @@ interface Comment {
   createdAt: string;
 }
 
-interface Post {
+interface PostType {
   _id: string;
   title: string;
   content: string;
@@ -21,15 +23,10 @@ interface Post {
   postImage?: string;
   tags?: string[];
   published?: boolean;
-  author: {
+  comments?: Comment[];
+  author?: {
     name: string;
   };
-  seo?: {
-    title: string;
-    description: string;
-    keywords: string[];
-  };
-  comments?: Comment[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -40,16 +37,13 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  // Fetch post data
-  const res = await fetch(`/api/post/${params.slug}`, {
-    next: { revalidate: 3600 },
-  });
+  await connectDB();
+  const post = (await Post.findOne({
+    slug: params.slug,
+  }).lean()) as PostType | null;
 
-  if (!res.ok) return { title: 'Post Not Found | Proficient Legal' };
+  if (!post) return { title: 'Post Not Found | Proficient Legal' };
 
-  const post = (await res.json()) as Post;
-
-  // Clean content for description
   const cleanContent =
     post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || '';
 
@@ -60,7 +54,7 @@ export async function generateMetadata({
       title: post.title,
       description: cleanContent,
       type: 'article',
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || ''}/posts/${params.slug}`,
       images: [
         {
           url:
@@ -90,12 +84,14 @@ export default async function PostSlugPage({
 }: {
   params: { slug: string };
 }) {
-  // Fetch post data
-  const res = await fetch(`/api/post/${params.slug}`);
-  if (!res.ok) notFound();
+  await connectDB();
+  const post = (await Post.findOne({
+    slug: params.slug,
+  }).lean()) as PostType | null;
 
-  const post = (await res.json()) as Post;
-  const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`;
+  if (!post) notFound();
+
+  const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ''}/posts/${params.slug}`;
 
   return (
     <>
