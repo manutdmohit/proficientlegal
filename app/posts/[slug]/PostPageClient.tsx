@@ -21,23 +21,14 @@ interface Post {
   _id: string;
   title: string;
   content: string;
-  excerpt?: string;
-  featuredImage?: string;
+  comments: Comment[];
+  date?: string;
+  heroImage?: string;
   postImage?: string;
-  tags?: string[];
-  published?: boolean;
+  result?: string;
   author?: {
     name: string;
   };
-  seo?: {
-    title: string;
-    description: string;
-    keywords: string[];
-  };
-  comments?: Comment[];
-  result?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 interface PostPageClientProps {
@@ -58,11 +49,7 @@ export default function PostPageClient({
         {/* IMAGE SECTION */}
         <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[600px] 2xl:h-[650px] rounded-xl overflow-hidden">
           <Image
-            src={
-              post.featuredImage ||
-              post.postImage ||
-              '/images/teams/darren-ho.jpg'
-            }
+            src={post.postImage || '/images/teams/darren-ho.jpg'}
             alt={post.title}
             fill
             className="object-cover object-center"
@@ -74,9 +61,9 @@ export default function PostPageClient({
         {/* CONTENT SECTION */}
         <div className="max-w-3xl mx-auto lg:max-w-none">
           <div className="mb-6 sm:mb-8 text-center">
-            {post.createdAt && (
+            {post.date && (
               <p className="text-gray-500 text-sm mb-2">
-                {format(new Date(post.createdAt), 'dd/MM/yyyy')}
+                {format(new Date(post.date), 'dd/MM/yyyy')}
               </p>
             )}
           </div>
@@ -140,7 +127,7 @@ export default function PostPageClient({
                 .sort(
                   (a, b) =>
                     new Date(b.createdAt).getTime() -
-                    new Date(a.createdAt).getTime(),
+                    new Date(a.createdAt).getTime()
                 )
                 .map((comment, idx) => (
                   <div

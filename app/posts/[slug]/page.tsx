@@ -4,8 +4,6 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { notFound } from 'next/navigation';
 import ArticleSchema from '@/app/components/ArticleSchema';
 import PostPageClient from './PostPageClient';
-import Post from '@/app/models/Post';
-import connectDB from '@/app/config/database';
 
 interface Comment {
   name: string;
@@ -14,21 +12,17 @@ interface Comment {
   createdAt: string;
 }
 
-interface PostType {
+interface Post {
   _id: string;
   title: string;
   content: string;
-  excerpt?: string;
-  featuredImage?: string;
+  comments: Comment[];
+  date?: string;
+  heroImage?: string;
   postImage?: string;
-  tags?: string[];
-  published?: boolean;
-  comments?: Comment[];
   author?: {
     name: string;
   };
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 // Generate metadata for the page
@@ -37,13 +31,16 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  await connectDB();
-  const post = (await Post.findOne({
-    slug: params.slug,
-  }).lean()) as PostType | null;
+  // Fetch post data
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`,
+    { next: { revalidate: 3600 } }
+  );
+  if (!res.ok) return { title: 'Post Not Found | Proficient Legal' };
 
-  if (!post) return { title: 'Post Not Found | Proficient Legal' };
+  const post = (await res.json()) as Post;
 
+  // Clean content for description
   const cleanContent =
     post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || '';
 
@@ -54,13 +51,11 @@ export async function generateMetadata({
       title: post.title,
       description: cleanContent,
       type: 'article',
-      url: `${process.env.NEXT_PUBLIC_BASE_URL || ''}/posts/${params.slug}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`,
       images: [
         {
           url:
-            post.featuredImage ||
-            post.postImage ||
-            '/images/teams/darren-ho.jpg',
+            post.postImage || post.heroImage || '/images/teams/darren-ho.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -72,7 +67,7 @@ export async function generateMetadata({
       title: post.title,
       description: cleanContent,
       images: [
-        post.featuredImage || post.postImage || '/images/teams/darren-ho.jpg',
+        post.postImage || post.heroImage || '/images/teams/darren-ho.jpg',
       ],
     },
   };
@@ -84,27 +79,23 @@ export default async function PostSlugPage({
 }: {
   params: { slug: string };
 }) {
-  await connectDB();
-  const post = (await Post.findOne({
-    slug: params.slug,
-  }).lean()) as PostType | null;
+  // Fetch post data
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${params.slug}`
+  );
+  if (!res.ok) notFound();
 
-  if (!post) notFound();
-
-  const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL || ''}/posts/${params.slug}`;
+  const post = (await res.json()) as Post;
+  const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${params.slug}`;
 
   return (
     <>
       <ArticleSchema
         title={post.title}
         description={post.content?.replace(/<[^>]+>/g, '').slice(0, 150) || ''}
-        image={
-          post.featuredImage || post.postImage || '/images/teams/darren-ho.jpg'
-        }
-        datePublished={
-          post.createdAt?.toISOString() || new Date().toISOString()
-        }
-        dateModified={post.updatedAt?.toISOString() || new Date().toISOString()}
+        image="/images/teams/darren-ho.jpg"
+        datePublished={post.date || new Date().toISOString()}
+        dateModified={post.date || new Date().toISOString()}
         authorName={post.author?.name || 'Proficient Legal'}
         url={shareUrl}
       />
