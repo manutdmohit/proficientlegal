@@ -35,7 +35,7 @@ export async function generateMetadata({
   // Fetch post data
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${slug}`,
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } },
   );
   if (!res.ok) return { title: 'Post Not Found | Proficient Legal' };
 
@@ -83,7 +83,7 @@ export default async function PostSlugPage({
   const { slug } = await params;
   // Fetch post data
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${slug}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${slug}`,
   );
   if (!res.ok) notFound();
 
