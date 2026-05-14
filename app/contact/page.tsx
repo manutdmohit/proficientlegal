@@ -159,14 +159,10 @@ export default function ContactPage() {
                     <div className="flex items-start">
                       <Building className="h-6 w-6 mr-4 mt-0.5" />
                       <div>
-                        <h3 className="font-semibold">Our Offices</h3>
+                        <h3 className="font-semibold">Our Office</h3>
                         <p className="text-white/80">Sydney Office</p>
                         <p className="text-white/80">
                           {LOCATIONS_CONFIG.locations.sydney.address}
-                        </p>
-                        <p className="text-white/80 mt-2">Melbourne Office</p>
-                        <p className="text-white/80">
-                          {LOCATIONS_CONFIG.locations.melbourne.address}
                         </p>
                       </div>
                     </div>
@@ -331,7 +327,7 @@ export default function ContactPage() {
             <h2 className="text-3xl font-bold text-[#003b73] mb-8 text-center">
               Our Locations
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 gap-6 md:gap-8">
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="font-semibold text-lg mb-4">Sydney Office</h3>
                 <div className="aspect-video bg-gray-200 rounded-lg mb-4">
@@ -350,26 +346,6 @@ export default function ContactPage() {
                 </p>
                 <p className="text-gray-600 mt-2">
                   Phone: {LOCATIONS_CONFIG.locations.sydney.phone}
-                </p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="font-semibold text-lg mb-4">Melbourne Office</h3>
-                <div className="aspect-video bg-gray-200 rounded-lg mb-4">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3151.042491248897!2d144.9713368!3d-37.8358911!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6681d6bf5538b%3A0x5b9dcebd82d23269!2sSuite%20220%2C%20222%2C%20Level%202%2F1%20Queens%20Rd%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2snp!4v1748345572636!5m2!1sen!2snp"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
-                <p className="text-gray-600">
-                  {LOCATIONS_CONFIG.locations.melbourne.address}
-                </p>
-                <p className="text-gray-600 mt-2">
-                  Phone: {LOCATIONS_CONFIG.locations.melbourne.phone}
                 </p>
               </div>
             </div>
