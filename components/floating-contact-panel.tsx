@@ -57,7 +57,7 @@ export function FloatingContactPanel() {
                   className="h-4 w-4 mr-2 text-[#0056a8]"
                   aria-hidden="true"
                 />
-                <span>Sydney, Melbourne</span>
+                <span>Sydney, NSW 2220</span>
               </div>
               <div className="flex items-center text-sm">
                 <Clock
